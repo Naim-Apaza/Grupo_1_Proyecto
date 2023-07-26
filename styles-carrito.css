@@ -1,0 +1,22 @@
+body{
+    box-sizing: border-box;
+}
+.header-bar{
+    border-bottom: solid 2px black;
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+}
+.logo-bar{
+    width: 100px;
+}
+.subtitulo-h2{
+    
+}
+.h2-subtitulo{
+    
+    text-align: center;
+    width:150px;
+    display: block;
+    border: solid 2px black;
+}
