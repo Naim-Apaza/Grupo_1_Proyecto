@@ -1,0 +1,70 @@
+body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+}
+.contenedor{
+    display: flex;
+}
+#Terminos{
+    font-size: 80%;
+}
+.checkbox{
+    display: flex;
+    height: 1%;
+    align-items: center;
+}
+.cinta {
+    background-color: #3f3e3e;
+    color: rgb(228, 112, 23);
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.logo {
+    margin-left: 16vh;
+}
+.imagen{
+    width: 20vw;
+}
+.flecha {
+    width: 2%;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    margin-left: 4%;
+    margin-right: 24%;
+}
+.container {
+display: flex;
+justify-content: center;
+height: 100vh;
+}
+.form {
+background-color: #e76304;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+width: 40%;
+height: 40%;
+margin-top: 15%;
+}
+.form input {
+width: 100%;
+padding: 10px;
+margin: 5px 0 0 -5%;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+.form button {
+background-color: #007bff;
+color: #fff;
+margin-top: 8%;
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
