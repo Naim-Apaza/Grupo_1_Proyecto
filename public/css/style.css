@@ -1,0 +1,139 @@
+/***** Estilo General *****/
+
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap");
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/***** End Estilo General *****/
+
+/***** Cuerpo *****/
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2)
+    ),
+    url("../images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/***** End Cuerpo *****/
+
+/***** Barra de navegacion *****/
+
+.header {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header .header-logo-container {
+  width: 33%;
+}
+
+.header .header-logo-container img {
+  margin-left: 30px;
+  max-width: 5vw;
+}
+
+.header .navbar {
+  width: auto;
+  display: inline-flex;
+  margin-right: 30px;
+}
+
+.header .navbar .nav-link {
+  color: red;
+  text-decoration: none;
+  font-size: 0.9em;
+  padding: 10px;
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+
+.header .navbar .nav-link:hover {
+  background-color: rgb(212, 212, 212);
+  color: black;
+  font-weight: bolder;
+}
+
+/***** End Barra de navegacion *****/
+
+/***** Contenido principal *****/
+
+.index-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  font-weight: lighter;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 1em;
+}
+
+.index-main .seccion {
+  padding: 15px;
+}
+
+.index-main .seccion .title {
+  font-size: 1.5em;
+}
+
+.index-main .seccion .container {
+  display: flex;
+  padding: 2em;
+  margin: 0 auto;
+  flex-wrap: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-main .seccion .container .juego-container {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  border-radius: 10px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.index-main .seccion .container .juego-container:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  box-shadow: 1px 1px 1px 1px red;
+}
+
+.index-main .seccion .container .juego-container .img-juego {
+  width: 100%;
+  height: auto;
+}
+
+.index-main .seccion .container .juego-container .desc-box {
+  padding: 10px;
+}
+
+.index-main .seccion .container .juego-container .desc-box .titulo-juego {
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
+}
+
+.index-main .seccion .container .juego-container .desc-box .año {
+  font-size: 12px;
+}
+
+/***** End Contenido principal *****/
