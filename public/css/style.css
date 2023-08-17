@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /***** End Estilo General *****/
@@ -27,6 +28,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /***** End Cuerpo *****/
@@ -34,12 +36,11 @@ body {
 /***** Barra de navegacion *****/
 
 .header {
-  width: 100%;
+  width: auto;
   background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .header .header-logo-container {
@@ -52,15 +53,16 @@ body {
 }
 
 .header .navbar {
+  display: none;
   width: auto;
-  display: inline-flex;
+  display: flex;
   margin-right: 30px;
 }
 
 .header .navbar .nav-link {
-  color: red;
   text-decoration: none;
-  font-size: 0.9em;
+  display: flex;
+  color: red;
   padding: 10px;
   transition: all 0.2s;
   border-radius: 5px;
@@ -72,40 +74,190 @@ body {
   font-weight: bolder;
 }
 
+.header .navbar .nav-link .link {
+  display: none;
+  color: inherit;
+  font-size: 0.9em;
+  font-weight: inherit;
+}
+
+.header .navbar .nav-link i {
+  display: none;
+  margin-left: 2px;
+}
+
+.header .menu-container {
+  background-color: red;
+  color: white;
+  margin-left: 0;
+  padding: 10px;
+}
+
 /***** End Barra de navegacion *****/
 
 /***** Contenido principal *****/
+
+.detail-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  font-weight: lighter;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.detail-main .game-title {
+  margin: 20px;
+  text-align: right;
+}
+
+.detail-main .game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 10px;
+}
+
+.detail-main .game-container .game-img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px red;
+  margin: 10px;
+}
+
+.detail-main .game-container .descripcion {
+  width: 100%;
+  box-shadow: 1px 1px 1px 1px black;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.detail-main .game-container .descripcion .tags {
+  justify-content: end;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-main .game-container .descripcion .tags .tag {
+  box-shadow: 0.8px 0.8px 0.8px 0.8px gray;
+  font-size: 0.9em;
+  text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 0.5em;
+}
+
+.detail-main .game-container .descripcion .tags .tag.play {
+  background-color: blue;
+  color: white;
+}
+
+.detail-main .game-container .descripcion .tags .tag.xbox {
+  background-color: green;
+  color: white;
+}
+
+.detail-main .game-container .descripcion .tags .tag.pc {
+  background-color: black;
+  color: white;
+}
+
+.detail-main .game-container .descripcion .detalles {
+  margin: 5px;
+}
+
+.detail-main .game-container .descripcion .detalles .precio {
+  text-align: right;
+  color: red;
+}
+
+.detail-main .game-container .descripcion .detalles .oferta {
+  text-align: right;
+  color: rgb(0, 255, 0);
+}
+
+.detail-main .game-container .descripcion .detalles .genero {
+  text-align: right;
+}
+
+.detail-main .game-container .descripcion .detalles .about-game {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: gray;
+}
+
+.detail-main .game-container .descripcion .buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.detail-main .game-container .descripcion .buttons .carrito {
+  border: transparent;
+  border-radius: 5px;
+  background-color: red;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 1px;
+
+  transition: all 0.2s ease;
+}
+
+.detail-main .game-container .descripcion .buttons .carrito:hover {
+  background-color: rgb(124, 39, 39);
+}
 
 .index-main {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
   width: 90vw;
   font-weight: lighter;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 1em;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .index-main .seccion {
-  padding: 15px;
+  padding: 15px 15px 0 15px;
 }
 
 .index-main .seccion .title {
+  background-color: white;
+  text-align: center;
   font-size: 1.5em;
+  width: 200px;
+  margin: 0 auto;
+  box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(255, 0, 0, 0.5);
+  border-radius: 5px;
 }
 
 .index-main .seccion .container {
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1);
+  background-color: white;
+  border-radius: 5px;
   display: flex;
   padding: 2em;
-  margin: 0 auto;
-  flex-wrap: row nowrap;
+  margin: 10px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .index-main .seccion .container .juego-container {
-  background-color: rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  border: 0.1px red solid;
+  margin: 5px;
   border-radius: 10px;
   width: 100%;
   transition: all 0.2s ease;
@@ -118,6 +270,7 @@ body {
 }
 
 .index-main .seccion .container .juego-container .img-juego {
+  border-bottom: 0.1px red solid;
   width: 100%;
   height: auto;
 }
@@ -132,8 +285,95 @@ body {
   font-size: 16px;
 }
 
+.index-main .seccion .container .juego-container .desc-box .titulo-juego:hover {
+  color: red;
+  font-weight: bolder;
+}
+
+.index-main .seccion .container .juego-container .desc-box .oferta {
+  font-size: 12;
+  color: rgb(0, 255, 0);
+  font-weight: bolder;
+}
+
 .index-main .seccion .container .juego-container .desc-box .año {
-  font-size: 12px;
+  text-align: right;
+  font-size: 10px;
 }
 
 /***** End Contenido principal *****/
+
+/***** Pie de página *****/
+
+.footer {
+  height: auto;
+  background-color: black;
+  color: white;
+  padding: 15px;
+}
+
+.footer .copy {
+  text-align: center;
+}
+/***** End Pie de página *****/
+
+/***** Adaptacion responsiva *****/
+
+@media (min-width: 361px) {
+  .header .navbar {
+    display: inherit;
+  }
+
+  .header .menu-container {
+    display: none;
+  }
+
+  .header .navbar .nav-link .link {
+    display: none;
+  }
+
+  .header .navbar .nav-link i {
+    display: inherit;
+  }
+
+  .detail-main .game-container .game-img {
+    width: 100%;
+  }
+
+  .detail-main .game-container .descripcion {
+    width: 100%;
+  }
+
+  .index-main .seccion .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .index-main .seccion .container .juego-container {
+    width: 40%;
+  }
+}
+
+@media (min-width: 769px) {
+  .header .navbar .nav-link .link {
+    display: inherit;
+  }
+  
+  .detail-main .game-container {
+    flex-direction: row;
+  }
+
+  .detail-main .game-container .game-img {
+    width: 50%;
+  }
+
+  .detail-main .game-container .descripcion {
+    width: 50%;
+  }
+
+  .index-main .seccion .container .juego-container {
+    width: 23%;
+  }
+}
+
+/***** End Adaptacion responsiva *****/

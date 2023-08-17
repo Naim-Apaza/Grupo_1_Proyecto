@@ -18,6 +18,7 @@ app.use(express.static("public"));
 app.set("views", "./views");
 
 // Configuracion de motor de plantillas
+
 app.set("view engine", "ejs");
 
 // Ruteo
