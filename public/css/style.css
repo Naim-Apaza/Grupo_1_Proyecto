@@ -29,6 +29,26 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  position: relative;
+  padding-bottom: 6em;
+}
+
+.body-login {
+  width: 100vw;
+  height: auto;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2)
+    ),
+    url("../images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-bottom: 0;
+  overflow: hidden;
 }
 
 /***** End Cuerpo *****/
@@ -71,7 +91,7 @@ body {
 .header .navbar .nav-link:hover {
   background-color: rgb(212, 212, 212);
   color: black;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .header .navbar .nav-link .link {
@@ -97,16 +117,121 @@ body {
 
 /***** Contenido principal *****/
 
+.back-container {
+  box-shadow: 1px 1px 1px 1px black;
+  background-color: black;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  width: 40px;
+  text-align: center;
+  color: white;
+}
+
+.back-container:hover {
+  background-color: white;
+  color: red;
+}
+
+.back-container .back-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.login-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: white;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  border-radius: 1em;
+  margin-top: 100px;
+}
+
+.login-main .login-title {
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 20px 0 20px;
+}
+
+.login-main .login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+}
+
+.login-main .login-container .form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.login-main .login-container .form-container .form-field {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
+}
+
+.login-main .login-container .form-container .send-button {
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.login-main .login-container .form-container .send-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+.login-main .login-container .form-footer {
+  border-top: 1px solid red;
+}
+
+.login-main .login-container .form-footer .text {
+  padding-top: 10px;
+}
+
+.login-main .login-container .form-footer .text .question {
+  font-weight: lighter;
+  color: gray;
+  font-size: 14px;
+}
+
+.login-main .login-container .form-footer .text .question .link {
+  color: black;
+  text-decoration: none;
+}
+
+.login-main .login-container .form-footer .text .question .link:hover {
+  font-weight: bold;
+  color: red;
+}
+
 .detail-main {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
   width: 90vw;
-  font-weight: lighter;
   background-color: white;
   box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
   border-radius: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .detail-main .game-title {
@@ -222,11 +347,11 @@ body {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
   width: 90vw;
-  font-weight: lighter;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  box-shadow: inset 0px 11px 8px -10px red, inset 0px -11px 8px -10px red;
 }
 
 .index-main .seccion {
@@ -234,6 +359,7 @@ body {
 }
 
 .index-main .seccion .title {
+  padding: 5px;
   background-color: white;
   text-align: center;
   font-size: 1.5em;
@@ -244,9 +370,6 @@ body {
 }
 
 .index-main .seccion .container {
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1);
-  background-color: white;
-  border-radius: 5px;
   display: flex;
   padding: 2em;
   margin: 10px;
@@ -256,7 +379,7 @@ body {
 }
 
 .index-main .seccion .container .juego-container {
-  border: 0.1px red solid;
+  background-color: white;
   margin: 5px;
   border-radius: 10px;
   width: 100%;
@@ -264,7 +387,8 @@ body {
 }
 
 .index-main .seccion .container .juego-container:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+  backdrop-filter: blur(8px);
   color: white;
   box-shadow: 1px 1px 1px 1px red;
 }
@@ -282,18 +406,18 @@ body {
 .index-main .seccion .container .juego-container .desc-box .titulo-juego {
   text-decoration: none;
   color: inherit;
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .index-main .seccion .container .juego-container .desc-box .titulo-juego:hover {
   color: red;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .index-main .seccion .container .juego-container .desc-box .oferta {
   font-size: 12;
   color: rgb(0, 255, 0);
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .index-main .seccion .container .juego-container .desc-box .año {
@@ -306,18 +430,23 @@ body {
 /***** Pie de página *****/
 
 .footer {
-  height: auto;
+  width: 100%;
+  position: fixed;
   background-color: black;
   color: white;
   padding: 15px;
+  bottom: 0;
 }
 
 .footer .copy {
   text-align: center;
 }
+
 /***** End Pie de página *****/
 
 /***** Adaptacion responsiva *****/
+
+/***** Tablet *****/
 
 @media (min-width: 361px) {
   .header .navbar {
@@ -330,6 +459,10 @@ body {
 
   .header .navbar .nav-link .link {
     display: none;
+  }
+
+  .login-main {
+    width: 70vw;
   }
 
   .header .navbar .nav-link i {
@@ -354,11 +487,19 @@ body {
   }
 }
 
+/***** End Tablet *****/
+
+/***** Computadoras *****/
+
 @media (min-width: 769px) {
   .header .navbar .nav-link .link {
     display: inherit;
   }
-  
+
+  .login-main {
+    width: 40vw;
+  }
+
   .detail-main .game-container {
     flex-direction: row;
   }
@@ -375,5 +516,7 @@ body {
     width: 23%;
   }
 }
+
+/***** End Computadoras *****/
 
 /***** End Adaptacion responsiva *****/
