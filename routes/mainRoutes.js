@@ -13,7 +13,8 @@ const registerController = require('../controllers/registerController')
 // Ruteos
 
 router.get('/', mainController.index)
-router.get('/productDetail', productController.detail)
+router.get('/product', productController.detail)
+router.get('/cart', productController.cart)
 router.get('/login', loginController.login)
 router.get('/register', registerController.register)
 

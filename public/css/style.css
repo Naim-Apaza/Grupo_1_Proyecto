@@ -33,7 +33,6 @@ body {
   padding-bottom: 6em;
 
   font-family: "Sofia Sans", sans-serif;
-
 }
 
 .body-login {
@@ -144,10 +143,13 @@ body {
   box-shadow: 1px 1px 1px 1px black;
   background-color: black;
   border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
-  width: 40px;
+  margin: 20px;
+  padding: 15px;
+  width: 50px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
 }
 
@@ -157,6 +159,7 @@ body {
 }
 
 .back-container .back-link {
+  margin: 0 auto;
   color: inherit;
   text-decoration: none;
 }
@@ -168,7 +171,7 @@ body {
   background-color: white;
   box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
   border-radius: 1em;
-  margin-top: 100px;
+  margin-bottom: 50px;
 }
 
 .register-main .register-title {
@@ -202,7 +205,25 @@ body {
   font-size: 1em;
 }
 
+.register-main .register-container .form-container .main-field {
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
+}
+
+.register-main .register-container .form-container .info {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  color: gray;
+}
+
 .register-main .register-container .form-container .send-button {
+  cursor: pointer;
   background-color: black;
   font-family: "Sofia Sans", sans-serif;
   color: white;
@@ -292,6 +313,7 @@ body {
 }
 
 .login-main .login-container .form-container .send-button {
+  cursor: pointer;
   background-color: black;
   font-family: "Sofia Sans", sans-serif;
   color: white;
@@ -352,7 +374,10 @@ body {
 
 .detail-main .game-title {
   margin: 20px;
+  padding-bottom: 5px;
   text-align: right;
+  border-bottom: 1px gray solid;
+  text-transform: uppercase;
 }
 
 .detail-main .game-container {
@@ -367,13 +392,13 @@ body {
 .detail-main .game-container .game-img {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px 1px red;
+  box-shadow: 2px 2px 2px 2px red;
   margin: 10px;
 }
 
 .detail-main .game-container .descripcion {
   width: 100%;
-  box-shadow: 1px 1px 1px 1px gray;
+  box-shadow: 2px 2px 2px 2px gray;
   border-radius: 10px;
   padding: 15px;
 }
@@ -460,6 +485,38 @@ body {
 }
 
 /***** End Contenido del detalle del producto *****/
+
+/***** Carrito *****/
+
+.cart-main {
+  color: white;
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: black;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.cart-main .cart-title {
+  margin: 20px;
+  padding-bottom: 5px;
+  text-align: right;
+  border-bottom: 1px white solid;
+}
+
+.cart-main .cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 10px;
+}
+
+/***** End Carrito *****/
 
 .index-main {
   font-family: "Sofia Sans", sans-serif;
@@ -583,6 +640,10 @@ body {
     width: 70vw;
   }
 
+  .register-main {
+    width: 70vw;
+  }
+
   .header .navbar .nav-link i {
     display: inherit;
   }
@@ -615,6 +676,10 @@ body {
   }
 
   .login-main {
+    width: 40vw;
+  }
+
+  .register-main {
     width: 40vw;
   }
 
