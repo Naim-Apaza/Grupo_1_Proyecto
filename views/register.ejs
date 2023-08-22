@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Encabezado -->
+  <%- include('./partials/head') %>
+  <body class="body-register">
+    <div class="back-container">
+      <a href="/" class="back-link">
+        <i class="fa-solid fa-arrow-left-long"></i>
+      </a>
+    </div>
+
+    <main class="register-main">
+      <h1 class="register-title">Registro</h1>
+      <div class="register-container">
+        <form action="POST" class="form-container">
+          <input
+            class="form-field"
+            type="text"
+            name="user"
+            placeholder="Nombre de usuario"
+          />
+          <input
+            class="form-field"
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+          />
+          <button class="send-button" type="submit">Registrarme</button>
+        </form>
+        <div class="form-footer">
+          <div class="text">
+            <h2 class="question">
+              ¿Ya tienes una cuenta?
+              <a class="link" href="/login">Ingresa</a>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

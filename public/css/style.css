@@ -31,9 +31,30 @@ body {
   background-attachment: fixed;
   position: relative;
   padding-bottom: 6em;
+
+  font-family: "Sofia Sans", sans-serif;
+
 }
 
 .body-login {
+  width: 100vw;
+  height: auto;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2)
+    ),
+    url("../images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.body-register {
   width: 100vw;
   height: auto;
   background: linear-gradient(
@@ -117,6 +138,8 @@ body {
 
 /***** Contenido principal *****/
 
+/***** Contenido del registro *****/
+
 .back-container {
   box-shadow: 1px 1px 1px 1px black;
   background-color: black;
@@ -138,6 +161,95 @@ body {
   text-decoration: none;
 }
 
+.register-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: white;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  border-radius: 1em;
+  margin-top: 100px;
+}
+
+.register-main .register-title {
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px 0 20px;
+}
+
+.register-main .register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+}
+
+.register-main .register-container .form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.register-main .register-container .form-container .form-field {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
+}
+
+.register-main .register-container .form-container .send-button {
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.register-main .register-container .form-container .send-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+.register-main .register-container .form-footer {
+  border-top: 1px solid red;
+}
+
+.register-main .register-container .form-footer .text {
+  padding-top: 10px;
+}
+
+.register-main .register-container .form-footer .text .question {
+  font-weight: lighter;
+  color: gray;
+  font-size: 14px;
+}
+
+.register-main .register-container .form-footer .text .question .link {
+  color: black;
+  text-decoration: none;
+}
+
+.register-main .register-container .form-footer .text .question .link:hover {
+  font-weight: bold;
+  color: red;
+}
+
+/***** End Contenido del registro *****/
+
+/***** Contenido del login *****/
+
 .login-main {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
@@ -151,7 +263,7 @@ body {
 .login-main .login-title {
   margin: 0 auto;
   text-align: center;
-  padding: 20px 20px 0 20px;
+  padding: 40px 20px 0 20px;
 }
 
 .login-main .login-container {
@@ -223,6 +335,10 @@ body {
   color: red;
 }
 
+/***** End Contenido del login *****/
+
+/***** Contenido del detalle del producto *****/
+
 .detail-main {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
@@ -257,7 +373,7 @@ body {
 
 .detail-main .game-container .descripcion {
   width: 100%;
-  box-shadow: 1px 1px 1px 1px black;
+  box-shadow: 1px 1px 1px 1px gray;
   border-radius: 10px;
   padding: 15px;
 }
@@ -334,7 +450,7 @@ body {
   padding: 15px;
   font-family: "Sofia Sans", sans-serif;
   font-size: 1em;
-  margin: 1px;
+  margin: 2px;
 
   transition: all 0.2s ease;
 }
@@ -342,6 +458,8 @@ body {
 .detail-main .game-container .descripcion .buttons .carrito:hover {
   background-color: rgb(124, 39, 39);
 }
+
+/***** End Contenido del detalle del producto *****/
 
 .index-main {
   font-family: "Sofia Sans", sans-serif;
