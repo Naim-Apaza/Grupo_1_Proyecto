@@ -516,6 +516,50 @@ body {
   margin: 10px;
 }
 
+.cart-main .cart-container .products-table {
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  width: 100%;
+}
+
+.cart-main .cart-container .products-table .table-head th {
+  background-color: red;
+  border: red 1px solid;
+  padding: 10px;
+}
+
+.cart-main .cart-container .products-table .table-body td {
+  background-color: white;
+  border: none;
+  text-align: center;
+  color: black;
+  width: 150px;
+  height: 100px;
+}
+
+.cart-main
+  .cart-container
+  .products-table
+  .table-body
+  .img-container
+  .game-img-cart {
+  width: auto;
+  height: 100%;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 5px;
+}
+.cart-main .cart-container .products-table .table-body td a {
+  text-decoration: none;
+  color: red;
+}
+
+.cart-main .cart-container .products-table .table-body .descuento {
+  color: rgb(0, 255, 0);
+}
+
 /***** End Carrito *****/
 
 .index-main {
