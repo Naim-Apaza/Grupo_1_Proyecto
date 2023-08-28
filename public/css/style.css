@@ -656,6 +656,17 @@ body {
   padding: 15px;
   bottom: 0;
 }
+.enlace_footer{
+  text-decoration: none;
+  color: white;
+}
+.li_footer{
+  list-style: none;
+  margin: 10px;
+}
+.ul_footer{
+  display: flex;
+}
 
 .footer .copy {
   text-align: center;
