@@ -602,7 +602,6 @@ body {
   margin: 5px;
   border-radius: 10px;
   width: 100%;
-  transition: all 0.2s ease;
 }
 
 .index-main .seccion .container .juego-container:hover {
@@ -651,25 +650,36 @@ body {
 .footer {
   width: 100%;
   position: fixed;
-  background-color: black;
-  color: white;
+  background-color: white;
   padding: 15px;
   bottom: 0;
 }
-.enlace_footer{
+
+.footer .ul-footer .li-footer .enlace-footer {
   text-decoration: none;
-  color: white;
+  color: inherit;
+  font-weight: bold;
 }
-.li_footer{
+
+.footer .ul-footer .li-footer .enlace-footer:hover {
+  color: red;
+}
+
+.footer .ul-footer .li-footer {
   list-style: none;
   margin: 10px;
 }
-.ul_footer{
+
+.footer .ul-footer {
   display: flex;
+  justify-content: center;
 }
 
 .footer .copy {
   text-align: center;
+  font-size: 12px;
+  font-weight: lighter;
+  color: gray;
 }
 
 /***** End Pie de página *****/
