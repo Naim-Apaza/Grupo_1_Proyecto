@@ -7,12 +7,12 @@ const controller = {
   products: (req, res) => {
     res.render("products");
   },
-  create: (req, res)=>{
+  create: (req, res) => {
     res.render("productCreate");
   },
-  edit: (req, res)=>{
-    res.render("productEdit")
-  }
+  edit: (req, res) => {
+    res.render("productEdit");
+  },
 };
 
 module.exports = controller;
