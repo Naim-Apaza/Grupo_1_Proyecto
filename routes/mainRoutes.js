@@ -3,19 +3,16 @@
 const express = require("express");
 const router = express.Router();
 
-// Controladores 
+// Controladores
 
-const mainController = require('../controllers/mainController')
-const productController = require('../controllers/productController')
-const loginController = require('../controllers/loginController')
-const registerController = require('../controllers/registerController')
+const mainController = require("../controllers/mainController");
+const loginController = require("../controllers/loginController");
+const registerController = require("../controllers/registerController");
 
 // Ruteos
 
-router.get('/', mainController.index)
-router.get('/product', productController.detail)
-router.get('/cart', productController.cart)
-router.get('/login', loginController.login)
-router.get('/register', registerController.register)
+router.get("/", mainController.index);
+router.get("/login", loginController.login);
+router.get("/register", registerController.register);
 
-module.exports = router
+module.exports = router;

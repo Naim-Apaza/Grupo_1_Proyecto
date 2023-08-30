@@ -11,28 +11,38 @@
       <div class="cart-container">
         <table class="products-table">
           <tr class="table-head">
-            <th></th>
+            <th class="img-head">Imagen</th>
             <th>Juego</th>
             <th>Cantidad</th>
-            <th></th>
+            <th>Acciones</th>
             <th>Precio unitario</th>
-            <th></th>
+            <th class="disc-head">Descuento</th>
             <th>Total</th>
           </tr>
           <tr class="table-body">
             <td class="img-container">
-              <img class="game-img-cart" src="images/farcry.jpg" alt="img-juego" />
+              <img
+                class="game-img-cart"
+                src="images/farcry.jpg"
+                alt="img-juego"
+              />
             </td>
             <td>Far Cry 6</td>
             <td>1</td>
             <td>
-              <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+              <a href="/cart/delete"><i class="fa-solid fa-trash-can"></i></a>
             </td>
             <td>$2.000</td>
             <td class="descuento">20%</td>
-            <td>$2.000</td>
+            <td class="final-price">$2.000</td>
           </tr>
         </table>
+      </div>
+      <div class="cart-footer">
+        <div class="total">TOTAL:</div>
+        <div class="footer-buttons">
+          <button class="pay-button" type="submit">Realizar compra</button>
+        </div>
       </div>
     </main>
 

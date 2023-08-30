@@ -3,6 +3,8 @@
 const express = require("express");
 const app = express();
 const mainRoutes = require("./routes/mainRoutes");
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 // Variables
 
@@ -24,3 +26,5 @@ app.set("view engine", "ejs");
 // Ruteo
 
 app.use("/", mainRoutes);
+app.use("/products", productRoutes);
+app.use("/cart", cartRoutes);

@@ -30,7 +30,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
-  padding-bottom: 6em;
+  padding-bottom: 14em;
 
   font-family: "Sofia Sans", sans-serif;
 }
@@ -476,8 +476,7 @@ body {
   font-family: "Sofia Sans", sans-serif;
   font-size: 1em;
   margin: 2px;
-
-  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .detail-main .game-container .descripcion .buttons .carrito:hover {
@@ -509,19 +508,19 @@ body {
 
 .cart-main .cart-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 15px;
   margin: 10px;
 }
 
 .cart-main .cart-container .products-table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
   border-collapse: collapse;
   background-color: white;
   border-radius: 10px;
-  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
-  width: 100%;
 }
 
 .cart-main .cart-container .products-table .table-head th {
@@ -534,9 +533,10 @@ body {
   background-color: white;
   border: none;
   text-align: center;
-  color: black;
-  width: 150px;
-  height: 100px;
+  color: gray;
+  padding: 10px;
+  width: 200px;
+  font-size: 0.8em;
 }
 
 .cart-main
@@ -546,11 +546,12 @@ body {
   .img-container
   .game-img-cart {
   width: auto;
-  height: 100%;
+  height: auto;
   border-radius: 5px;
   margin: 0 auto;
-  padding: 5px;
+  height: 100px;
 }
+
 .cart-main .cart-container .products-table .table-body td a {
   text-decoration: none;
   color: red;
@@ -558,6 +559,51 @@ body {
 
 .cart-main .cart-container .products-table .table-body .descuento {
   color: rgb(0, 255, 0);
+}
+
+.cart-main .cart-container .products-table .table-body .final-price {
+  color: black;
+  font-weight: bold;
+}
+
+.cart-main .cart-footer {
+  display: flex;
+  padding: 15px;
+  margin: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-main .cart-footer .total {
+  color: black;
+  background-color: white;
+  font-size: 24px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cart-main .cart-footer .footer-buttons .pay-button {
+  border: transparent;
+  border-radius: 5px;
+  background-color: rgb(0, 255, 0);
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 2px;
+  cursor: pointer;
+  width: 200px;
+  color: inherit;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.cart-main .cart-footer .footer-buttons .pay-button:hover {
+  color: black;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px red;
 }
 
 /***** End Carrito *****/
@@ -643,6 +689,76 @@ body {
   font-size: 10px;
 }
 
+.product-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  box-shadow: inset 0px 11px 8px -10px red, inset 0px -11px 8px -10px red;
+}
+
+.product-main .seccion {
+  padding: 15px 15px 0 15px;
+}
+
+.product-main .seccion .container {
+  display: flex;
+  padding: 2em;
+  margin: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-main .seccion .container .juego-container {
+  background-color: white;
+  margin: 5px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.product-main .seccion .container .juego-container:hover {
+  background-color: transparent;
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 1px 1px 1px 1px red;
+}
+
+.product-main .seccion .container .juego-container .img-juego {
+  border-bottom: 0.1px red solid;
+  width: 100%;
+  height: auto;
+}
+
+.product-main .seccion .container .juego-container .desc-box {
+  padding: 10px;
+}
+
+.product-main .seccion .container .juego-container .desc-box .titulo-juego {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1em;
+}
+
+.product-main .seccion .container .juego-container .desc-box .titulo-juego:hover {
+  color: red;
+  font-weight: bold;
+}
+
+.product-main .seccion .container .juego-container .desc-box .oferta {
+  font-size: 12;
+  color: rgb(0, 255, 0);
+  font-weight: bold;
+}
+
+.product-main .seccion .container .juego-container .desc-box .año {
+  text-align: right;
+  font-size: 10px;
+}
+
 /***** End Contenido principal *****/
 
 /***** Pie de página *****/
@@ -655,6 +771,17 @@ body {
   bottom: 0;
 }
 
+.footer .ul-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer .ul-footer .li-footer {
+  list-style: none;
+  margin: 10px;
+}
+
 .footer .ul-footer .li-footer .enlace-footer {
   text-decoration: none;
   color: inherit;
@@ -663,16 +790,6 @@ body {
 
 .footer .ul-footer .li-footer .enlace-footer:hover {
   color: red;
-}
-
-.footer .ul-footer .li-footer {
-  list-style: none;
-  margin: 10px;
-}
-
-.footer .ul-footer {
-  display: flex;
-  justify-content: center;
 }
 
 .footer .copy {
@@ -727,7 +844,16 @@ body {
   }
 
   .index-main .seccion .container .juego-container {
-    width: 40%;
+    width: 45%;
+  }
+
+  .product-main .seccion .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .product-main .seccion .container .juego-container {
+    width: 45%;
   }
 }
 
@@ -736,6 +862,10 @@ body {
 /***** Computadoras *****/
 
 @media (min-width: 769px) {
+  body {
+    padding-bottom: 5em;
+  }
+
   .header .navbar .nav-link .link {
     display: inherit;
   }
@@ -760,8 +890,20 @@ body {
     width: 50%;
   }
 
+  .cart-main .cart-footer {
+    flex-direction: row;
+  }
+
   .index-main .seccion .container .juego-container {
     width: 23%;
+  }
+
+  .product-main .seccion .container .juego-container {
+    width: 23%;
+  }
+
+  .footer .ul-footer {
+    flex-direction: row;
   }
 }
 

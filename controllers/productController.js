@@ -2,11 +2,11 @@
 
 const controller = {
   detail: (req, res) => {
-    res.render('productDetail')
+    res.render("productDetail");
   },
-  cart: (req, res) => {
-    res.render('productCart')
+  products: (req, res) => {
+    res.render("products");
   },
 };
 
-module.exports = controller
+module.exports = controller;
