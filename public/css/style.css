@@ -749,7 +749,12 @@ body {
   font-size: 1em;
 }
 
-.product-main .seccion .container .juego-container .desc-box .titulo-juego:hover {
+.product-main
+  .seccion
+  .container
+  .juego-container
+  .desc-box
+  .titulo-juego:hover {
   color: red;
   font-weight: bold;
 }
@@ -773,11 +778,154 @@ body {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
   width: 90vw;
-  background-color: white;
+  background-image: url("../images/banner-form.jpg");
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
   border-radius: 1em;
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+.create-main .create-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.create-main .create-header .header-logo {
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 100px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.create-main .create-container {
+  border-radius: 20px 20px 0 0;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  background-color: white;
+}
+
+.create-main .create-container .create-title {
+  text-align: end;
+  margin: 20px;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.create-main .create-container .create-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.create-main .create-container .create-form .field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.create-main .create-container .create-form .detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.create-main .create-container .create-form .detail .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-main .create-container .create-form .detail textarea {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.create-main .create-container .create-form .detail textarea:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.create-main .create-container .create-form .field .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-main .create-container .create-form .field .input {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.create-main .create-container .create-form .field .input:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.create-main .create-container .create-form .field select {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+}
+
+.create-main .create-container .create-form .crear-button {
+  cursor: pointer;
+  width: 90%;
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.create-main .create-container .create-form .crear-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
 }
 
 /***** End Creacion de producto *****/
@@ -788,11 +936,154 @@ body {
   font-family: "Sofia Sans", sans-serif;
   margin: 0 auto;
   width: 90vw;
-  background-color: white;
+  background-image: url("../images/banner-form.jpg");
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
   border-radius: 1em;
   margin-bottom: 30px;
   margin-top: 30px;
+}
+
+.edit-main .edit-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.edit-main .edit-header .header-logo {
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 100px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.edit-main .edit-container {
+  border-radius: 20px 20px 0 0;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  background-color: white;
+}
+
+.edit-main .edit-container .edit-title {
+  text-align: end;
+  margin: 20px;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.edit-main .edit-container .edit-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.edit-main .edit-container .edit-form .field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.edit-main .edit-container .edit-form .detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.edit-main .edit-container .edit-form .detail .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .detail textarea {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-main .edit-container .edit-form .detail textarea:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.edit-main .edit-container .edit-form .field .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .field .input {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-main .edit-container .edit-form .field .input:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.edit-main .edit-container .edit-form .field select {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+}
+
+.edit-main .edit-container .edit-form .editar-button {
+  cursor: pointer;
+  width: 90%;
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.edit-main .edit-container .edit-form .editar-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
 }
 
 /***** End Edicion de producto *****/
@@ -938,6 +1229,24 @@ body {
 
   .product-main .seccion .container .juego-container {
     width: 23%;
+  }
+
+  .create-main .create-container .create-form .field {
+    flex-direction: column;
+    width: 40%;
+  }
+  
+  .create-main .create-container .create-form .detail {
+    width: 90%;
+  }
+
+  .edit-main .edit-container .edit-form .field {
+    flex-direction: column;
+    width: 40%;
+  }
+  
+  .edit-main .edit-container .edit-form .detail {
+    width: 90%;
   }
 
   .footer .ul-footer {

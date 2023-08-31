@@ -8,10 +8,85 @@
 
     <!-- Contenido principal -->
     <main class="create-main">
-      <h1 class="create-title">Publicar juego</h1>
-      <form class="create-form-container" action="/products/create" >
-        
-      </form>
+      <div class="create-header">
+        <img class="header-logo" src="/images/gz-logo.png" alt="logo" />
+      </div>
+      <div class="create-container">
+        <h1 class="create-title">Crear</h1>
+        <form
+          action="/products/create"
+          class="create-form"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="field">
+            <label class="label" for="nombre">Juego</label>
+            <input
+              class="input"
+              id="nombre"
+              type="text"
+              name="nombre"
+              placeholder="Inserte un nombre..."
+              required
+            />
+          </div>
+          <div class="field">
+            <label class="label" for="precio">Precio</label>
+            <input
+              class="input"
+              type="text"
+              id="precio"
+              maxlength="5"
+              name="precio"
+              placeholder="Introduzca el valor del juego..."
+              required
+            />
+          </div>
+          <div class="field">
+            <label class="label" for="descuento">Descuento</label>
+            <input
+            id="descuento"
+              class="input"
+              type="text"
+              name="descuento"
+              placeholder="Introduzca el descuento (opcional)"
+            />
+          </div>
+          <div class="field">
+            <label class="label" for="plataforma">Plataformas</label>
+            <select name="plataforma" size="3" multiple required
+            id="plataforma">
+              <option value="pc">PC</option>
+              <option value="xbox">Xbox</option>
+              <option value="play">Playstation</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="tag">Categoría</label>
+            <select name="tag" size="3" multiple required id="tag">
+              <option value="accion">Acción</option>
+              <option value="fps">FPS</option>
+              <option value="aventura">Aventura</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="imagen">Imagen</label>
+            <input class="input" type="file" name="imagen" required id="imagen"/>
+          </div>
+          <div class="detail">
+            <label for="detalle" class="label">Descripción</label>
+            <textarea
+              required
+              id="detalle"
+              name="detalle"
+              cols="30"
+              rows="10"
+              placeholder="Introduzca una descripcion del juego.."
+            ></textarea>
+          </div>
+          <button class="crear-button" type="submit">Crear</button>
+        </form>
+      </div>
     </main>
 
     <!-- Footer -->
