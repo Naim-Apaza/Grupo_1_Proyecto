@@ -14,9 +14,9 @@
       <div class="edit-container">
         <h1 class="edit-title">Editar</h1>
         <form
-          action="/products/edit"
+          action="/products/detail/1?_method=PUT"
           class="edit-form"
-          method="post"
+          method="post" 
           enctype="multipart/form-data"
         >
           <div class="field">
@@ -71,7 +71,7 @@
           </div>
           <div class="field">
             <label class="label" for="imagen">Imagen</label>
-            <input class="input" type="file" name="imagen" required id="imagen"/>
+            <input class="input" type="file" name="imagen" id="imagen"/>
           </div>
           <div class="detail">
             <label for="detalle" class="label">Descripción</label>
