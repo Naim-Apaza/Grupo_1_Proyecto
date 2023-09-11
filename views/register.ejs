@@ -15,15 +15,21 @@
       <div class="register-container">
         <form action="POST" class="form-container">
           <input
-            class="main-field"
+            class="form-field"
             type="text"
-            name="user"
-            placeholder="Nombre de usuario"
+            name="name"
+            placeholder="Nombre/s"
             required
-            minlength="6"
-            maxlength="16"
+            maxlength="40"
           />
-          <legend class="info">Hasta 16 carácteres.</legend>
+          <input
+            class="form-field"
+            type="text"
+            name="surname"
+            placeholder="Apellido/s"
+            required
+            maxlength="40"
+          />
           <input
             class="form-field"
             type="email"
@@ -31,19 +37,12 @@
             placeholder="Correo electrónico"
             required
           />
-          <input class="main-field" type="date" name="fecha" />
-          <legend class="info">Fecha de nacimiento</legend>
-          <input
-            class="form-field"
-            type="text"
-            name="direccion"
-            placeholder="Domicilio"
-          />
-          <input
+            <input
             class="main-field"
             type="file"
             name="foto"
             accept="image/*"
+            required
           />
           <legend class="info">Foto de perfil</legend>
           <input
@@ -61,6 +60,8 @@
             type="password"
             name="repass"
             placeholder="Repita la contraseña"
+            minlength="8"
+            maxlength="32"
             required
           />
           <button class="send-button" type="submit">Registrarme</button>

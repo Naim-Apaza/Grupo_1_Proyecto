@@ -2,6 +2,9 @@
 
 const express = require("express");
 const app = express();
+const methodOverride = require("method-override")
+
+// Rutas
 const mainRoutes = require("./routes/mainRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
@@ -13,6 +16,10 @@ const port = 3001;
 // Servidor
 
 app.listen(port, () => console.log(`Servidor corriendo en el puerto ${port}`));
+
+// Configuracion HTTP
+
+app.use(methodOverride('_method'))
 
 // Configuracion de carpetas
 
