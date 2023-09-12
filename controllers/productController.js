@@ -11,7 +11,15 @@ const controller = {
     res.render("productCreate");
   },
   store: (req, res) => {
-    console.log(req.body);
+    let imageFile = req.file;
+     //console.log(imageFile)
+    if(imageFile !== undefined){
+      let product=req.body
+      console.log(product);
+      res.redirect("/products")
+    }else{
+        res.render("productCreate")
+    }
   },
   edit: (req, res) => {
     let idProduct = req.params.id;
@@ -44,7 +52,9 @@ const controller = {
     res.render("productEdit", {productsToEdit : productsToEdit})
   },
   actualizar:(req,res) => {
-   res.send("Fui por PUT!!!")
+   let save_product= req.body
+   console.log("ya se guardo")
+   res.redirect("/products")
   },
   modify: (req, res) => {
     console.log(req.body);
