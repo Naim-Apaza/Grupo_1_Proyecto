@@ -1076,6 +1076,7 @@ body {
   font-weight: bold;
 }
 
+
 /***** End Edicion de producto *****/
 
 /***** End Contenido principal *****/
@@ -1119,6 +1120,29 @@ body {
 }
 
 /***** End Pie de página *****/
+/*****       ERROR 404   *****/
+
+
+.title_error{
+  color:red;
+  font-size: 60px;
+}
+
+.parrafo_error{
+  color:white;
+}
+
+.enlace_a{
+  color:red;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 1s;
+}
+.enlace_a:hover{
+  color: blue;
+  
+}
+/*****    FIN del ERROR 404   *****/
 
 /***** Adaptacion responsiva *****/
 

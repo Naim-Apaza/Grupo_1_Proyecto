@@ -14,7 +14,7 @@
       <div class="edit-container">
         <h1 class="edit-title">Editar</h1>
         <form
-          action="/products/detail/1?_method=PUT"
+          action="/products/edit?_method=PUT"
           class="edit-form"
           method="post" 
           enctype="multipart/form-data"
@@ -26,6 +26,7 @@
               id="nombre"
               type="text"
               name="nombre"
+              value="<%= productsToEdit.name %>  "
               placeholder="Inserte un nombre..."
               required
             />
@@ -37,6 +38,7 @@
               type="text"
               id="precio"
               maxlength="5"
+              value="<%= productsToEdit.price %>"
               name="precio"
               placeholder="Introduzca el valor del juego..."
               required
@@ -49,6 +51,7 @@
               class="input"
               type="text"
               name="descuento"
+              value="<%= productsToEdit.discount %>"
               placeholder="Introduzca el descuento (opcional)"
             />
           </div>
@@ -71,7 +74,7 @@
           </div>
           <div class="field">
             <label class="label" for="imagen">Imagen</label>
-            <input class="input" type="file" name="imagen" id="imagen"/>
+            <input class="input" type="file" name="imagen" id="imagen" value="<%= productsToEdit.image %>"/>
           </div>
           <div class="detail">
             <label for="detalle" class="label">Descripción</label>

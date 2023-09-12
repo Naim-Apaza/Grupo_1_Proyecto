@@ -14,6 +14,7 @@ router.post("/", productController.store);
 router.get("/detail/:id", productController.detail);
 router.post("/detail/:id", productController.modify);
 router.get("/create", productController.create);
-router.get("/:id/edit", productController.edit);
+router.get("/edit/:id", productController.edit);
+router.put("/edit",productController.actualizar)
 
 module.exports = router;
