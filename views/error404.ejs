@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Error 404!!</title>
-</head>
-<body>
-    <main class="error_main">
-        <center><h1 class="title_error">Error 404!!</h1>
-        <p class="parrafo_error">Lo sentimos, f en el chat</p>
-
-
-        <a class="enlace_a" href="/products">Vuele a la pagina principal</a>
-    </center>
+  <!-- Encabezado -->
+  <%- include('./partials/head')%>
+  <body>
+    <main class="error-main">
+      <div class="error-container">
+        <h1 class="title-error">Error 404</h1>
+        <p class="parrafo-error">
+          Lo sentimos, no se ha encontrado la página a la que se quiere ingresar.
+        </p>
+        <a class="enlace-a" href="/products"><i class="fa-solid fa-arrow-left-long"></i></a>
+      </div>
     </main>
-    <%- include('./partials/footer') %>
-</body>
+  </body>
 </html>

@@ -466,7 +466,7 @@ body {
   margin: 0 auto;
 }
 
-.detail-main .game-container .descripcion .buttons .carrito {
+.detail-main .game-container .descripcion .buttons .delete-container .delete-btn {
   border: transparent;
   border-radius: 5px;
   background-color: red;
@@ -479,8 +479,28 @@ body {
   cursor: pointer;
 }
 
+.detail-main .game-container .descripcion .buttons .delete-container .delete-btn:hover {
+  background-color: rgb(121, 45, 45);
+}
+
+
+.detail-main .game-container .descripcion .buttons .carrito {
+  border: transparent;
+  border-radius: 5px;
+  background-color: rgb(0, 255, 0);
+  box-shadow: 1px 1px 1px 1px gray;
+  color: black;
+  padding: 15px;
+  font-weight: bold;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+}
+
 .detail-main .game-container .descripcion .buttons .carrito:hover {
-  background-color: rgb(124, 39, 39);
+  background-color: green;
+  color: white;
 }
 
 /***** End Contenido del detalle del producto *****/
@@ -1076,7 +1096,6 @@ body {
   font-weight: bold;
 }
 
-
 /***** End Edicion de producto *****/
 
 /***** End Contenido principal *****/
@@ -1093,8 +1112,8 @@ body {
 
 .footer .ul-footer {
   display: flex;
-  flex-direction:column;
-  justify-content:center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .footer .ul-footer .li-footer {
@@ -1120,29 +1139,53 @@ body {
 }
 
 /***** End Pie de página *****/
-/*****       ERROR 404   *****/
 
+/***** 404 *****/
 
-.title_error{
-  color:red;
-  font-size: 60px;
+.error-main {
+  padding-top: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;  
 }
 
-.parrafo_error{
-  color:white;
+.error-main .error-container {
+  width: 90vw;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 5px;
 }
 
-.enlace_a{
-  color:red;
+.error-main .error-container .title-error {
+  color: red;
+  font-size: 30px;
+}
+
+.error-main .error-container .parrafo-error {
+  color: black;
+  margin-bottom: 10px;
+}
+
+.error-main .error-container .enlace-a {
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 5px;
+  padding: 10px 10px 5px 10px; 
   text-decoration: none;
-  transition-property: all;
-  transition-duration: 1s;
+  color: red;
 }
-.enlace_a:hover{
-  color: blue;
-  
+
+.error-main .error-container .enlace-a:hover {
+  background-color: red;
+  color: white;
 }
-/*****    FIN del ERROR 404   *****/
+
+/***** End 404 *****/
 
 /***** Adaptacion responsiva *****/
 
@@ -1198,6 +1241,14 @@ body {
   .product-main .seccion .container .juego-container {
     width: 45%;
   }
+
+  .error-main .error-container {
+    width: 70vw;
+  }
+
+  .error-main .error-container .title-error {
+    font-size: 40px;
+  }
 }
 
 /***** End Tablet *****/
@@ -1249,7 +1300,7 @@ body {
     flex-direction: column;
     width: 40%;
   }
-  
+
   .create-main .create-container .create-form .detail {
     width: 90%;
   }
@@ -1258,13 +1309,21 @@ body {
     flex-direction: column;
     width: 40%;
   }
-  
+
   .edit-main .edit-container .edit-form .detail {
     width: 90%;
   }
 
   .footer .ul-footer {
     flex-direction: row;
+  }
+
+  .error-main .error-container {
+    width: 50vw;
+  }
+
+  .error-main .error-container .title-error {
+    font-size: 60px;
   }
 }
 

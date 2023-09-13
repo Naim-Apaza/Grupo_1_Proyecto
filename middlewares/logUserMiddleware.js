@@ -1,8 +1,15 @@
-const fs = require("fs")
-function logUserMiddleware (req,res,next){
-    fs.writeFileSync('logUser.txt','Se creo un regitro de usuario al ingresar en ' + req.url)
+// Middleware de usuarios
 
-    next()
+const fs = require("fs");
+const path = require("path")
+
+function logUserMiddleware(req, res, next) {
+  fs.appendFileSync(
+    path.join(__dirname, "../logs/logUser.txt"),
+    `Se creo un regitro de usuario al ingresar en ${req.url}.\n`
+  );
+
+  next();
 }
 
-module.exports=logUserMiddleware
+module.exports = logUserMiddleware;

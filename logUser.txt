@@ -1,1 +1,0 @@
-Se creo un regitro de usuario al ingresar en /register
