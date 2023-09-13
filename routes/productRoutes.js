@@ -8,7 +8,9 @@ const path = require("path")
 // Controladores
 
 const productController = require("../controllers/productController");
+//Middlewares
 
+const logProductMiddleware=require("../middlewares/logProductMiddleware")
 //multer
 
 const multerDiskStorage = multer.diskStorage({
@@ -32,7 +34,7 @@ router.get("/", productController.products);
 router.get("/detail/:id", productController.detail);
 router.post("/detail/:id", productController.modify);
 router.get("/create", productController.create);
-router.post("/",fileUpload.single("imagen"),productController.store)
+router.post("/create",  logProductMiddleware,fileUpload.single("imagen"),productController.store)
 router.get("/edit/:id", productController.edit);
 router.put("/edit",fileUpload.single("imagen"),productController.actualizar)
 

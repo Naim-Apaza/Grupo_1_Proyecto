@@ -3,15 +3,17 @@ const fs = require("fs")
 const express = require("express");
 const app = express();
 const methodOverride = require("method-override")
-
+var logMiddleware = require("./middlewares/logMiddleware")
 // Rutas
 const mainRoutes = require("./routes/mainRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 
+//post
 
+app.use(express.urlencoded({ extended:false}))
+app.use(express.json())
 // Variables
-
 const port = 3001;
 
 // Servidor
@@ -31,6 +33,9 @@ app.set("views", "./views");
 
 app.set("view engine", "ejs");
 
+//Middlewares
+
+app.use(logMiddleware);
 // Ruteo
 
 app.use("/", mainRoutes);
