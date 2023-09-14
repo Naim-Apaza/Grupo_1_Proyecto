@@ -1,4 +1,8 @@
 // Controlador de productos
+const fs = require("fs")
+const path = require("path")
+let productsjson = fs.readFileSync(path.join(__dirname,"../data/products.json"),"utf-8")
+let products = JSON.parse(productsjson)
 const controller = {
   detail: (req, res) => {
     res.render("productDetail");
@@ -57,6 +61,12 @@ const controller = {
   },
   modify: (req, res) => {
     console.log(req.body);
+  },
+  borrar: (req, res) => {
+    let productid = req.params.id
+    products = products.filter((e)=>{return e.id!=productid})
+    console.log("Se borro el Producto con id:",productid)
+    res.redirect("/")
   }
 };
 

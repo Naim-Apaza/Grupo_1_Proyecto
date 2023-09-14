@@ -37,5 +37,6 @@ router.get("/create", productController.create);
 router.post("/create",  logProductMiddleware,fileUpload.single("imagen"),productController.store)
 router.get("/edit/:id", productController.edit);
 router.put("/edit",fileUpload.single("imagen"),productController.actualizar)
+router.delete("/:id",productController.borrar)
 
 module.exports = router;
