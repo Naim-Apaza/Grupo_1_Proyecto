@@ -1,0 +1,1337 @@
+/***** Estilo General *****/
+
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap");
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/***** End Estilo General *****/
+
+/***** Cuerpo *****/
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2)
+    ),
+    url("../images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  padding-bottom: 14em;
+
+  font-family: "Sofia Sans", sans-serif;
+}
+
+.body-login {
+  width: 100vw;
+  height: auto;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2)
+    ),
+    url("../images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.body-register {
+  width: 100vw;
+  height: auto;
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2)
+    ),
+    url("../images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+/***** End Cuerpo *****/
+
+/***** Barra de navegacion *****/
+
+.header {
+  width: auto;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .header-logo-container {
+  width: 33%;
+}
+
+.header .header-logo-container img {
+  margin-left: 30px;
+  max-width: 5vw;
+}
+
+.header .navbar {
+  display: none;
+  width: auto;
+  display: flex;
+  margin-right: 30px;
+}
+
+.header .navbar .nav-link {
+  text-decoration: none;
+  display: flex;
+  color: red;
+  padding: 10px;
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+
+.header .navbar .nav-link:hover {
+  background-color: rgb(212, 212, 212);
+  color: black;
+  font-weight: bold;
+}
+
+.header .navbar .nav-link .link {
+  display: none;
+  color: inherit;
+  font-size: 0.9em;
+  font-weight: inherit;
+}
+
+.header .navbar .nav-link i {
+  display: none;
+  margin-left: 2px;
+}
+
+.header .menu-container {
+  background-color: red;
+  color: white;
+  margin-left: 0;
+  padding: 10px;
+}
+
+/***** End Barra de navegacion *****/
+
+/***** Contenido principal *****/
+
+/***** Contenido del registro *****/
+
+.back-container {
+  box-shadow: 1px 1px 1px 1px black;
+  background-color: black;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 15px;
+  width: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.back-container:hover {
+  background-color: white;
+  color: red;
+}
+
+.back-container .back-link {
+  margin: 0 auto;
+  color: inherit;
+  text-decoration: none;
+}
+
+.register-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: white;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  border-radius: 1em;
+  margin-bottom: 50px;
+}
+
+.register-main .register-title {
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px 0 20px;
+}
+
+.register-main .register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+}
+
+.register-main .register-container .form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.register-main .register-container .form-container .form-field {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
+}
+
+.register-main .register-container .form-container .main-field {
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
+}
+
+.register-main .register-container .form-container .info {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  color: gray;
+}
+
+.register-main .register-container .form-container .send-button {
+  cursor: pointer;
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.register-main .register-container .form-container .send-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+.register-main .register-container .form-footer {
+  border-top: 1px solid red;
+}
+
+.register-main .register-container .form-footer .text {
+  padding-top: 10px;
+}
+
+.register-main .register-container .form-footer .text .question {
+  font-weight: lighter;
+  color: gray;
+  font-size: 14px;
+}
+
+.register-main .register-container .form-footer .text .question .link {
+  color: black;
+  text-decoration: none;
+}
+
+.register-main .register-container .form-footer .text .question .link:hover {
+  font-weight: bold;
+  color: red;
+}
+
+/***** End Contenido del registro *****/
+
+/***** Contenido del login *****/
+
+.login-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: white;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  border-radius: 1em;
+  margin-top: 100px;
+}
+
+.login-main .login-title {
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px 0 20px;
+}
+
+.login-main .login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+}
+
+.login-main .login-container .form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.login-main .login-container .form-container .form-field {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
+}
+
+.login-main .login-container .form-container .send-button {
+  cursor: pointer;
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.login-main .login-container .form-container .send-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+.login-main .login-container .form-footer {
+  border-top: 1px solid red;
+}
+
+.login-main .login-container .form-footer .text {
+  padding-top: 10px;
+}
+
+.login-main .login-container .form-footer .text .question {
+  font-weight: lighter;
+  color: gray;
+  font-size: 14px;
+}
+
+.login-main .login-container .form-footer .text .question .link {
+  color: black;
+  text-decoration: none;
+}
+
+.login-main .login-container .form-footer .text .question .link:hover {
+  font-weight: bold;
+  color: red;
+}
+
+/***** End Contenido del login *****/
+
+/***** Contenido del detalle del producto *****/
+
+.detail-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.detail-main .game-title {
+  margin: 20px;
+  padding-bottom: 5px;
+  text-align: right;
+  border-bottom: 1px gray solid;
+  text-transform: uppercase;
+}
+
+.detail-main .game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 10px;
+}
+
+.detail-main .game-container .game-img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  margin: 10px;
+}
+
+.detail-main .game-container .descripcion {
+  width: 100%;
+  box-shadow: 2px 2px 2px 2px gray;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.detail-main .game-container .descripcion .tags {
+  justify-content: end;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-main .game-container .descripcion .tags .tag {
+  box-shadow: 0.8px 0.8px 0.8px 0.8px gray;
+  font-size: 0.9em;
+  text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 0.5em;
+}
+
+.detail-main .game-container .descripcion .tags .tag.play {
+  background-color: blue;
+  color: white;
+}
+
+.detail-main .game-container .descripcion .tags .tag.xbox {
+  background-color: green;
+  color: white;
+}
+
+.detail-main .game-container .descripcion .tags .tag.pc {
+  background-color: black;
+  color: white;
+}
+
+.detail-main .game-container .descripcion .detalles {
+  margin: 5px;
+}
+
+.detail-main .game-container .descripcion .detalles .precio {
+  text-align: right;
+  color: red;
+}
+
+.detail-main .game-container .descripcion .detalles .oferta {
+  text-align: right;
+  color: rgb(0, 255, 0);
+}
+
+.detail-main .game-container .descripcion .detalles .genero {
+  text-align: right;
+}
+
+.detail-main .game-container .descripcion .detalles .about-game {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: gray;
+}
+
+.detail-main .game-container .descripcion .buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.detail-main .game-container .descripcion .buttons .delete-container .delete-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: red;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.detail-main .game-container .descripcion .buttons .delete-container .delete-btn:hover {
+  background-color: rgb(121, 45, 45);
+}
+
+
+.detail-main .game-container .descripcion .buttons .carrito {
+  border: transparent;
+  border-radius: 5px;
+  background-color: rgb(0, 255, 0);
+  box-shadow: 1px 1px 1px 1px gray;
+  color: black;
+  padding: 15px;
+  font-weight: bold;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.detail-main .game-container .descripcion .buttons .carrito:hover {
+  background-color: green;
+  color: white;
+}
+
+/***** End Contenido del detalle del producto *****/
+
+/***** Carrito *****/
+
+.cart-main {
+  color: white;
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: black;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.cart-main .cart-title {
+  margin: 20px;
+  padding-bottom: 5px;
+  text-align: right;
+  border-bottom: 1px white solid;
+}
+
+.cart-main .cart-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  margin: 10px;
+}
+
+.cart-main .cart-container .products-table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.cart-main .cart-container .products-table .table-head th {
+  background-color: red;
+  border: red 1px solid;
+  padding: 10px;
+}
+
+.cart-main .cart-container .products-table .table-body td {
+  background-color: white;
+  border: none;
+  text-align: center;
+  color: gray;
+  padding: 10px;
+  width: 200px;
+  font-size: 0.8em;
+}
+
+.cart-main
+  .cart-container
+  .products-table
+  .table-body
+  .img-container
+  .game-img-cart {
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+  margin: 0 auto;
+  height: 100px;
+}
+
+.cart-main .cart-container .products-table .table-body td a {
+  text-decoration: none;
+  color: red;
+}
+
+.cart-main .cart-container .products-table .table-body .descuento {
+  color: rgb(0, 255, 0);
+}
+
+.cart-main .cart-container .products-table .table-body .final-price {
+  color: black;
+  font-weight: bold;
+}
+
+.cart-main .cart-footer {
+  display: flex;
+  padding: 15px;
+  margin: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-main .cart-footer .total {
+  color: black;
+  background-color: white;
+  font-size: 24px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cart-main .cart-footer .footer-buttons .pay-button {
+  border: transparent;
+  border-radius: 5px;
+  background-color: rgb(0, 255, 0);
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 2px;
+  cursor: pointer;
+  width: 200px;
+  color: inherit;
+  
+  transition: all 0.5s ease-in-out;
+}
+
+.cart-main .cart-footer .footer-buttons .pay-button:hover {
+  color: black;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px red;
+}
+
+.a_carrito{
+  text-decoration: none;
+  color: black;
+}
+
+/***** End Carrito *****/
+
+/***** Index *****/
+
+.index-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  box-shadow: inset 0px 11px 8px -10px red, inset 0px -11px 8px -10px red;
+}
+
+.index-main .seccion {
+  padding: 15px 15px 0 15px;
+}
+
+.index-main .seccion .title {
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  font-size: 1.5em;
+  width: 200px;
+  margin: 0 auto;
+  box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(255, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.index-main .seccion .container {
+  display: flex;
+  padding: 2em;
+  margin: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-main .seccion .container .juego-container {
+  background-color: white;
+  margin: 5px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.index-main .seccion .container .juego-container:hover {
+  background-color: transparent;
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 1px 1px 1px 1px red;
+}
+
+.index-main .seccion .container .juego-container .img-juego {
+  border-bottom: 0.1px red solid;
+  width: 100%;
+  height: auto;
+}
+
+.index-main .seccion .container .juego-container .desc-box {
+  padding: 10px;
+}
+
+.index-main .seccion .container .juego-container .desc-box .titulo-juego {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1em;
+}
+
+.index-main .seccion .container .juego-container .desc-box .titulo-juego:hover {
+  color: red;
+  font-weight: bold;
+}
+
+.index-main .seccion .container .juego-container .desc-box .oferta {
+  font-size: 12;
+  color: rgb(0, 255, 0);
+  font-weight: bold;
+}
+
+/***** End Index *****/
+
+/***** Productos *****/
+
+.product-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  box-shadow: inset 0px 11px 8px -10px red, inset 0px -11px 8px -10px red;
+}
+
+.product-main .seccion {
+  padding: 15px 15px 0 15px;
+}
+
+.product-main .seccion .container {
+  display: flex;
+  padding: 2em;
+  margin: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-main .seccion .container .juego-container {
+  background-color: white;
+  margin: 5px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.product-main .seccion .container .juego-container:hover {
+  background-color: transparent;
+  backdrop-filter: blur(8px);
+  color: white;
+  box-shadow: 1px 1px 1px 1px red;
+}
+
+.product-main .seccion .container .juego-container .img-juego {
+  border-bottom: 0.1px red solid;
+  width: 100%;
+  height: auto;
+}
+
+.product-main .seccion .container .juego-container .desc-box {
+  padding: 10px;
+}
+
+.product-main .seccion .container .juego-container .desc-box .titulo-juego {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1em;
+}
+
+.product-main
+  .seccion
+  .container
+  .juego-container
+  .desc-box
+  .titulo-juego:hover {
+  color: red;
+  font-weight: bold;
+}
+
+.product-main .seccion .container .juego-container .desc-box .oferta {
+  font-size: 12;
+  color: rgb(0, 255, 0);
+  font-weight: bold;
+}
+
+/***** End Productos *****/
+
+/***** Creacion de producto *****/
+
+.create-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-image: url("../images/banner-form.jpg");
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.create-main .create-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.create-main .create-header .header-logo {
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 100px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.create-main .create-container {
+  border-radius: 20px 20px 0 0;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  background-color: white;
+}
+
+.create-main .create-container .create-title {
+  text-align: end;
+  margin: 20px;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.create-main .create-container .create-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.create-main .create-container .create-form .field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.create-main .create-container .create-form .detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.create-main .create-container .create-form .detail .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-main .create-container .create-form .detail textarea {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.create-main .create-container .create-form .detail textarea:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.create-main .create-container .create-form .field .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-main .create-container .create-form .field .input {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.create-main .create-container .create-form .field .input:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.create-main .create-container .create-form .field select {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+}
+
+.create-main .create-container .create-form .crear-button {
+  cursor: pointer;
+  width: 90%;
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.create-main .create-container .create-form .crear-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+/***** End Creacion de producto *****/
+
+/***** Edicion de producto *****/
+
+.edit-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-image: url("../images/banner-form.jpg");
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.edit-main .edit-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.edit-main .edit-header .header-logo {
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 100px;
+  margin: 20px;
+  padding: 10px;
+}
+
+.edit-main .edit-container {
+  border-radius: 20px 20px 0 0;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  background-color: white;
+}
+
+.edit-main .edit-container .edit-title {
+  text-align: end;
+  margin: 20px;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.edit-main .edit-container .edit-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.edit-main .edit-container .edit-form .field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.edit-main .edit-container .edit-form .detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.edit-main .edit-container .edit-form .detail .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .detail textarea {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-main .edit-container .edit-form .detail textarea:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.edit-main .edit-container .edit-form .field .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .field .input {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-main .edit-container .edit-form .field .input:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.edit-main .edit-container .edit-form .field select {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+}
+
+.edit-main .edit-container .edit-form .editar-button {
+  cursor: pointer;
+  width: 90%;
+  background-color: black;
+  font-family: "Sofia Sans", sans-serif;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  margin-bottom: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.edit-main .edit-container .edit-form .editar-button:hover {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+/***** End Edicion de producto *****/
+
+/***** End Contenido principal *****/
+
+/***** Pie de página *****/
+
+.footer {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  padding: 15px;
+  bottom: 0;
+}
+
+.footer .ul-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer .ul-footer .li-footer {
+  list-style: none;
+  margin: 10px;
+}
+
+.footer .ul-footer .li-footer .enlace-footer {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+.footer .ul-footer .li-footer .enlace-footer:hover {
+  color: red;
+}
+
+.footer .copy {
+  text-align: center;
+  font-size: 12px;
+  font-weight: lighter;
+  color: gray;
+}
+
+/***** End Pie de página *****/
+
+/***** 404 *****/
+
+.error-main {
+  padding-top: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;  
+}
+
+.error-main .error-container {
+  width: 90vw;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 5px;
+}
+
+.error-main .error-container .title-error {
+  color: red;
+  font-size: 30px;
+}
+
+.error-main .error-container .parrafo-error {
+  color: black;
+  margin-bottom: 10px;
+}
+
+.error-main .error-container .enlace-a {
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 5px;
+  padding: 10px 10px 5px 10px; 
+  text-decoration: none;
+  color: red;
+}
+
+.error-main .error-container .enlace-a:hover {
+  background-color: red;
+  color: white;
+}
+
+/***** End 404 *****/
+
+/***** Adaptacion responsiva *****/
+
+/***** Tablet *****/
+
+@media (min-width: 361px) {
+  .header .navbar {
+    display: inherit;
+  }
+
+  .header .menu-container {
+    display: none;
+  }
+
+  .header .navbar .nav-link .link {
+    display: none;
+  }
+
+  .login-main {
+    width: 70vw;
+  }
+
+  .register-main {
+    width: 70vw;
+  }
+
+  .header .navbar .nav-link i {
+    display: inherit;
+  }
+
+  .detail-main .game-container .game-img {
+    width: 100%;
+  }
+
+  .detail-main .game-container .descripcion {
+    width: 100%;
+  }
+
+  .index-main .seccion .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .index-main .seccion .container .juego-container {
+    width: 45%;
+  }
+
+  .product-main .seccion .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .product-main .seccion .container .juego-container {
+    width: 45%;
+  }
+
+  .error-main .error-container {
+    width: 70vw;
+  }
+
+  .error-main .error-container .title-error {
+    font-size: 40px;
+  }
+}
+
+/***** End Tablet *****/
+
+/***** Computadoras *****/
+
+@media (min-width: 769px) {
+  body {
+    padding-bottom: 5em;
+  }
+
+  .header .navbar .nav-link .link {
+    display: inherit;
+  }
+
+  .login-main {
+    width: 40vw;
+  }
+
+  .register-main {
+    width: 40vw;
+  }
+
+  .detail-main .game-container {
+    flex-direction: row;
+  }
+
+  .detail-main .game-container .game-img {
+    width: 50%;
+  }
+
+  .detail-main .game-container .descripcion {
+    width: 50%;
+  }
+
+  .cart-main .cart-footer {
+    flex-direction: row;
+  }
+
+  .index-main .seccion .container .juego-container {
+    width: 23%;
+  }
+
+  .product-main .seccion .container .juego-container {
+    width: 23%;
+  }
+
+  .create-main .create-container .create-form .field {
+    flex-direction: column;
+    width: 40%;
+  }
+
+  .create-main .create-container .create-form .detail {
+    width: 90%;
+  }
+
+  .edit-main .edit-container .edit-form .field {
+    flex-direction: column;
+    width: 40%;
+  }
+
+  .edit-main .edit-container .edit-form .detail {
+    width: 90%;
+  }
+
+  .footer .ul-footer {
+    flex-direction: row;
+  }
+
+  .error-main .error-container {
+    width: 50vw;
+  }
+
+  .error-main .error-container .title-error {
+    font-size: 60px;
+  }
+}
+
+/***** End Computadoras *****/
+
+/***** End Adaptacion responsiva *****/
