@@ -8,6 +8,7 @@ var logMiddleware = require("./middlewares/logMiddleware")
 const mainRoutes = require("./routes/mainRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const userRoutes = require("./routes/userRouter")
 
 //post
 
@@ -41,7 +42,7 @@ app.use(logMiddleware);
 app.use("/", mainRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
-
+app.use("/users", userRoutes);
 
 
 //Error 404
