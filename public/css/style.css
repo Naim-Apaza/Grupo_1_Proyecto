@@ -616,14 +616,19 @@ body {
   cursor: pointer;
   width: 200px;
   color: inherit;
-
-  transition: all 0.2s ease-in-out;
+  
+  transition: all 0.5s ease-in-out;
 }
 
 .cart-main .cart-footer .footer-buttons .pay-button:hover {
   color: black;
   background-color: white;
   box-shadow: 1px 1px 1px 1px red;
+}
+
+.a_carrito{
+  text-decoration: none;
+  color: black;
 }
 
 /***** End Carrito *****/
