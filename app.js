@@ -3,12 +3,12 @@ const fs = require("fs")
 const express = require("express");
 const app = express();
 const methodOverride = require("method-override")
-var logMiddleware = require("./middlewares/logMiddleware")
+var logMiddleware = require("./src/middlewares/logMiddleware")
 // Rutas
-const mainRoutes = require("./routes/mainRoutes");
-const productRoutes = require("./routes/productRoutes");
-const cartRoutes = require("./routes/cartRoutes");
-const userRoutes = require("./routes/userRouter")
+const mainRoutes = require("./src/routes/mainRoutes");
+const productRoutes = require("./src/routes/productRoutes");
+const cartRoutes = require("./src/routes/cartRoutes");
+const userRoutes = require("./src/routes/userRouter")
 
 //post
 
@@ -28,14 +28,12 @@ app.use(methodOverride('_method'))
 // Configuracion de carpetas
 
 app.use(express.static("public"));
-app.set("views", "./views");
-
+app.set("views", "./src/views");
 // Configuracion de motor de plantillas
 
 app.set("view engine", "ejs");
 
 //Middlewares
-
 app.use(logMiddleware);
 // Ruteo
 
