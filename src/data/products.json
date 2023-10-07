@@ -53,5 +53,24 @@
     ],
     "image": "img.png",
     "description": "The Last of Us es un videojuego de terror, acción y aventura desarrollado por la compañía estadounidense Naughty Dog y distribuido por Sony Computer Entertainment para la consola PlayStation 3 en 2013."
+  },
+  {
+    "id": 4,
+    "name": "The Last Of Us Part I",
+    "price": 2000,
+    "discount": 20,
+    "device": [
+        "XBOX", 
+        "PC", 
+        "PLAYSTATION"
+    ],
+    "category": [
+        "Acción",
+        "Aventura",
+        "Terror", 
+        "TPS"
+    ],
+    "image": "img.png",
+    "description": "The Last of Us es un videojuego de terror, acción y aventura desarrollado por la compañía estadounidense Naughty Dog y distribuido por Sony Computer Entertainment para la consola PlayStation 3 en 2013."
   }
 ]

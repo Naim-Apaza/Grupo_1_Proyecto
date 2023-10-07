@@ -41,6 +41,6 @@ router.post(
 );
 router.get("/edit/:id", productController.edit);
 router.put("/edit/:id", fileUpload.single("imagen"), productController.actualizar);
-router.delete("/:id", productController.borrar);
+router.delete("/delete/:id", productController.borrar);
 
 module.exports = router;

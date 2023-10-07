@@ -1,19 +1,20 @@
 // Módulos
-const fs = require("fs")
+const fs = require("fs");
 const express = require("express");
 const app = express();
-const methodOverride = require("method-override")
-var logMiddleware = require("./src/middlewares/logMiddleware")
+const methodOverride = require("method-override");
+var logMiddleware = require("./src/middlewares/logMiddleware");
 // Rutas
 const mainRoutes = require("./src/routes/mainRoutes");
 const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
-const userRoutes = require("./src/routes/userRouter")
+const userRoutes = require("./src/routes/userRoutes");
 
-//post
+// Post
 
-app.use(express.urlencoded({ extended:false}))
-app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // Variables
 const port = 3001;
 
@@ -23,7 +24,7 @@ app.listen(port, () => console.log(`Servidor corriendo en el puerto ${port}`));
 
 // Configuracion HTTP
 
-app.use(methodOverride('_method'))
+app.use(methodOverride("_method"));
 
 // Configuracion de carpetas
 
@@ -33,8 +34,10 @@ app.set("views", "./src/views");
 
 app.set("view engine", "ejs");
 
-//Middlewares
+// Middlewares
+
 app.use(logMiddleware);
+
 // Ruteo
 
 app.use("/", mainRoutes);
@@ -42,9 +45,8 @@ app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
 
-
 //Error 404
 
-app.use((req,res,next)=> {
-   res.status(404).render("error404")
-})
+app.use((req, res, next) => {
+  res.status(404).render("error404");
+});
