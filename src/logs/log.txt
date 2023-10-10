@@ -576,3 +576,8 @@ Se ingresó a la página /users/register.
 Se ingresó a la página /users/register.
 Se ingresó a la página /.
 Se ingresó a la página /users/register.
+Se ingresó a la página /.
+Se ingresó a la página /users/register.
+Se ingresó a la página /users/register.
+Se ingresó a la página /users/register.
+Se ingresó a la página /users/login.
