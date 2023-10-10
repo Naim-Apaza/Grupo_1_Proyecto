@@ -8,14 +8,16 @@ const path = require("path");
 // Controladores
 
 const productController = require("../controllers/productController");
+
 //Middlewares
 
 const logProductMiddleware = require("../middlewares/logProductMiddleware");
-//multer
+
+// Multer
 
 const multerDiskStorage = multer.diskStorage({
   destination: (req, file, callback) => {
-    let folder = path.join(__dirname, "../public/images/products");
+    let folder = path.join(__dirname, "../../public/images/products");
     callback(null, folder);
   },
   filename: (req, file, callback) => {

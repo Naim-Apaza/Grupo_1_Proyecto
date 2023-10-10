@@ -5,9 +5,11 @@ const multer = require("multer");
 const logUserMiddleware = require("../middlewares/logUserMiddleware");
 const userController = require("../controllers/userController");
 
+// Multer
+
 const multerDiskStorage = multer.diskStorage({
   destination: (req, file, callback) => {
-    let folder = path.join(__dirname, "../public/images/users/");
+    let folder = path.join(__dirname, "../../public/images/users/");
     callback(null, folder);
   },
   filename: (req, file, callback) => {
@@ -18,6 +20,8 @@ const multerDiskStorage = multer.diskStorage({
 });
 
 let fileUpload = multer({ storage: multerDiskStorage });
+
+// Ruteos
 
 router.get("/login", userController.login);
 router.post("/login", userController.loadLogin);

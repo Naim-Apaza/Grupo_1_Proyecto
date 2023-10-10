@@ -3,19 +3,32 @@
 const path = require("path");
 const fs = require("fs");
 
+const userPath = path.join(__dirname, "../data/users.json");
+const usersJSON = fs.readFileSync(userPath);
+const users = JSON.parse(usersJSON);
+
 const controller = {
   register: (req, res) => {
     res.render("users/register");
   },
   saveRegister: (req, res) => {
-    let saveImage = req.file;
-    //console.log(saveImage)
-    if (saveImage !== undefined) {
-      let User = req.body;
-      console.log(User);
-      res.redirect("/products");
+    let saveImage = req.file.filename;
+
+    if (saveImage != undefined) {
+      // Agregar los datos del nuevo registro al arreglo de usuarios
+      users.push({
+        ...req.body,
+        fotocopia: saveImage,
+      });
+      // Convertir el objeto actualizado a formato JSON
+      const updatedJson = JSON.stringify(users, null, 2);
+      // Escribir los datos actualizados en el archivo JSON
+      fs.writeFileSync(userPath, updatedJson);
+      // Responder con algún mensaje o redirigir a otra página
+      res.redirect("/users/login");
     } else {
-      res.render("users/register");
+      console.log("Ocurrió un error guardando la imagen :(")
+      res.render("users/register")
     }
   },
   login: (req, res) => {
@@ -27,4 +40,4 @@ const controller = {
   },
 };
 
-module.exports = controller
+module.exports = controller;
