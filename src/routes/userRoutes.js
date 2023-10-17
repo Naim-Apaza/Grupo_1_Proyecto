@@ -1,12 +1,24 @@
+// Router
+
 const express = require("express");
 const router = express.Router();
-const path = require("path");
-const multer = require("multer");
-const logUserMiddleware = require("../middlewares/logUserMiddleware");
+
+// Controllador
+
 const userController = require("../controllers/userController");
+
+// Path
+
+const path = require("path");
+
+// Middlewares
+
+const logUserMiddleware = require("../middlewares/logUserMiddleware");
+const registerValidator = require("../middlewares/registerValidator");
 
 // Multer
 
+const multer = require("multer");
 const multerDiskStorage = multer.diskStorage({
   destination: (req, file, callback) => {
     let folder = path.join(__dirname, "../../public/images/users/");
@@ -28,7 +40,8 @@ router.post("/login", userController.loadLogin);
 router.get("/register", userController.register);
 router.post(
   "/register",
-  fileUpload.single("fotocopia"),
+  registerValidator,
+  fileUpload.single("userImage"),
   logUserMiddleware,
   userController.saveRegister
 );

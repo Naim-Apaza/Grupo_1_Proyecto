@@ -13,6 +13,11 @@
     <main class="register-main">
       <h1 class="register-title">Registro</h1>
       <div class="register-container">
+        <div class="errores">
+          <% errores.forEach(error => { %>
+            <p class="error"><%= error.msg %></p>
+          <% }) %>
+        </div>
         <form action="/users/register"  method="POST" enctype="multipart/form-data" class="form-container">
           <input
             class="form-field"
@@ -25,7 +30,7 @@
           <input
             class="form-field"
             type="text"
-            name="surname"
+            name="lastName"
             placeholder="Apellido/s"
             required
             maxlength="40"
@@ -40,7 +45,7 @@
             <input
             class="main-field"
             type="file"
-            name="fotocopia"
+            name="userImage"
             accept="image/*"
             required
           />

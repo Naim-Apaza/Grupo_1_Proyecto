@@ -3,12 +3,26 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
+const session = require('express-session')
+
+// Middlewares
+
 var logMiddleware = require("./src/middlewares/logMiddleware");
+
 // Rutas
+
 const mainRoutes = require("./src/routes/mainRoutes");
 const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const userRoutes = require("./src/routes/userRoutes");
+
+// Sesiones
+
+app.use(session({
+  secret: "Shhh, It's a secret",
+  resave: false,
+  saveUninitialized: false,
+}))
 
 // Post
 

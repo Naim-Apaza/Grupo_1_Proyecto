@@ -187,6 +187,16 @@ body {
   padding: 30px;
 }
 
+.register-main .register-container .errores {
+  border-radius: 1em;
+  background-color: red;
+}
+
+.register-main .register-container .errores .error {
+  padding: 10px;
+  color: white;
+}
+
 .register-main .register-container .form-container {
   display: flex;
   flex-direction: column;
@@ -292,6 +302,16 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 30px;
+}
+
+.login-main .login-container .errores {
+  border-radius: 1em;
+  background-color: red;
+}
+
+.login-main .login-container .errores .error {
+  padding: 10px;
+  color: white;
 }
 
 .login-main .login-container .form-container {
