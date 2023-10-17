@@ -18,7 +18,7 @@ const controller = {
     res.render("products", { usuario: req.session.userLogged });
   },
   create: (req, res) => {
-    res.render("productCreate");
+    res.render("productCreate", { usuario: req.session.userLogged });
   },
   store: (req, res) => {
     let imageFile = req.file;
@@ -36,7 +36,7 @@ const controller = {
 
     let productsToEdit = products.find((e) => e.id == idProduct);
 
-    res.render("productEdit");
+    res.render("productEdit", { usuario: req.session.userLogged, productsToEdit: productsToEdit});
   },
   actualizar: (req, res) => {
     let product = req.body;

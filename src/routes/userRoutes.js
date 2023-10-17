@@ -15,6 +15,7 @@ const path = require("path");
 
 const logUserMiddleware = require("../middlewares/logUserMiddleware");
 const registerValidator = require("../middlewares/registerValidator");
+const guestMiddleware = require("../middlewares/guestMiddleware"); 
 
 // Multer
 
@@ -35,9 +36,9 @@ let fileUpload = multer({ storage: multerDiskStorage });
 
 // Ruteos
 
-router.get("/login", userController.login);
+router.get("/login", guestMiddleware, userController.login);
 router.post("/login", userController.loadLogin);
-router.get("/register", userController.register);
+router.get("/register", guestMiddleware, userController.register);
 router.post(
   "/register",
   registerValidator,

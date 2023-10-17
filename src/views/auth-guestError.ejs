@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Encabezado -->
+  <%- include('./partials/head')%>
+  <body>
+    <main class="error-main">
+      <div class="error-container">
+        <% if (!usuario) { %>
+          <h1>
+                TENES QUE ESTAR LOGUEADO
+          </h1>
+          <% } else { %>
+            <h1>
+                ESTO ES SOLO PARA INVITADOS
+            </h1>
+         <% } %>
+        <a class="enlace-a" href="/products"><i class="fa-solid fa-arrow-left-long"></i></a>
+      </div>
+    </main>
+  </body>
+</html>

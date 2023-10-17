@@ -12,6 +12,7 @@ const productController = require("../controllers/productController");
 //Middlewares
 
 const logProductMiddleware = require("../middlewares/logProductMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 // Multer
 
@@ -34,14 +35,14 @@ let fileUpload = multer({ storage: multerDiskStorage });
 router.get("/", productController.products);
 
 router.get("/detail/:id", productController.detail);
-router.get("/create", productController.create);
+router.get("/create", authMiddleware, productController.create);
 router.post(
   "/create",
   logProductMiddleware,
   fileUpload.single("imagen"),
   productController.store
 );
-router.get("/edit/:id", productController.edit);
+router.get("/edit/:id", authMiddleware, productController.edit);
 router.put("/edit/:id", fileUpload.single("imagen"), productController.actualizar);
 router.delete("/delete/:id", productController.borrar);
 
