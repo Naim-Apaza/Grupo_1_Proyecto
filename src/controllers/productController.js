@@ -12,10 +12,10 @@ let products = JSON.parse(productsJSON);
 
 const controller = {
   detail: (req, res) => {
-    res.render("productDetail");
+    res.render("productDetail", { usuario: req.session.userLogged });
   },
   products: (req, res) => {
-    res.render("products");
+    res.render("products", { usuario: req.session.userLogged });
   },
   create: (req, res) => {
     res.render("productCreate");
@@ -36,7 +36,7 @@ const controller = {
 
     let productsToEdit = products.find((e) => e.id == idProduct);
 
-    res.render("productEdit", { productsToEdit: productsToEdit });
+    res.render("productEdit");
   },
   actualizar: (req, res) => {
     let product = req.body;

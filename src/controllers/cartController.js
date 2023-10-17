@@ -2,7 +2,7 @@
 
 const controller = {
   cart: (req, res) => {
-    res.render("productCart");
+    res.render("productCart", { usuario: req.session.userLogged });
   },
 };
 
