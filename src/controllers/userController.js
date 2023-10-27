@@ -16,6 +16,7 @@ const { validationResult } = require("express-validator");
 const userPath = path.join(__dirname, "../data/users.json");
 const usersJSON = fs.readFileSync(userPath);
 const users = JSON.parse(usersJSON);
+const db = require("../database/models/index.js");
 
 // Controlador de usuarios
 
