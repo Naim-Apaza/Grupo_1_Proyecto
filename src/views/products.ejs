@@ -10,39 +10,23 @@
     <main class="product-main">
       <section class="seccion">
         <div class="container">
-          <div class="juego-container">
-            <img class="img-juego" src="images/products/farcry.jpg" alt="img-juego" />
-            <div class="desc-box">
-              <a href="/products/detail/1" class="titulo-juego">Far Cry 6</a>
-              <p class="oferta">25% <i class="fa-solid fa-tag"></i></p>
-              <p class="precio">2.000$</p>
+          
+          <% for(let i = 0; i < productos.length;i++){ %>  
+            <div class="juego-container">
+              <img class="img-juego" src="/<%=productos[i].img_prod%>" alt="img-juego" />
+              <div class="desc-box">
+                  <a href="/products/detail/<%=productos[i].id_producto %> " class="titulo-juego"><%=productos[i].nombre %> </a>             
+                <% if(productos[i].descuento==0){%>
+                  <p>Sin Descuento</p>
+                  <% }else{ %>    
+                <p class="oferta"><%=productos[i].descuento %><i class="fa-solid fa-tag"></i></p>
+                <% } %>  
+                <p class="precio"><%=productos[i].precio %></p>
+              </div>
             </div>
+            <% } %>  
+
           </div>
-          <div class="juego-container">
-            <img class="img-juego" src="images/products/gta.jpg" alt="img-juego" />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">GTA V</a>
-              <p class="oferta">60% <i class="fa-solid fa-tag"></i></p>
-              <p class="precio">2.000$</p>
-            </div>
-          </div>
-          <div class="juego-container">
-            <img class="img-juego" src="images/products/re4.jpeg" alt="img-juego" />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">RE 4 Remake</a>
-              <p class="oferta">10% <i class="fa-solid fa-tag"></i></p>
-              <p class="precio">2.000$</p>
-            </div>
-          </div>
-          <div class="juego-container">
-            <img class="img-juego" src="images/products/tlou.jpg" alt="img-juego" />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">The Last of Us Part I</a>
-              <p class="oferta">20% <i class="fa-solid fa-tag"></i></p>
-              <p class="precio">2.000$</p>
-            </div>
-          </div>
-        </div>
       </section>
     </main>
 

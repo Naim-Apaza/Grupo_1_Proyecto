@@ -452,6 +452,10 @@ body {
   background-color: black;
   color: white;
 }
+.detail-main .game-container .descripcion .tags .tag.nintendo{
+  background-color: red;
+  color:white
+}
 
 .detail-main .game-container .descripcion .detalles {
   margin: 5px;

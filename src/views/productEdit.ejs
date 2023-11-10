@@ -14,7 +14,7 @@
       <div class="edit-container">
         <h1 class="edit-title">Editar</h1>
         <form
-          action="/products/edit?_method=PUT"
+          action="/products/edit/<%=productsToEdit.id_producto%>?_method=PUT"
           class="edit-form"
           method="post" 
           enctype="multipart/form-data"
@@ -26,7 +26,7 @@
               id="nombre"
               type="text"
               name="nombre"
-              value="<%= productsToEdit.name %>  "
+              value="<%= productsToEdit.nombre %>  "
               placeholder="Inserte un nombre..."
               required
             />
@@ -38,7 +38,7 @@
               type="text"
               id="precio"
               maxlength="5"
-              value="<%= productsToEdit.price %>"
+              value="<%= productsToEdit.precio %>"
               name="precio"
               placeholder="Introduzca el valor del juego..."
               required
@@ -51,7 +51,7 @@
               class="input"
               type="text"
               name="descuento"
-              value="<%= productsToEdit.discount %>"
+              value="<%= productsToEdit.descuento %>"
               placeholder="Introduzca el descuento (opcional)"
             />
           </div>
@@ -59,17 +59,23 @@
             <label class="label" for="plataforma">Plataformas</label>
             <select name="plataforma" size="3" multiple required
             id="plataforma">
-              <option value="pc">PC</option>
-              <option value="xbox">Xbox</option>
-              <option value="play">Playstation</option>
+            <% for(let j=0;j < plataforma.length;j++){ %> 
+              <% if(productsToEdit.plataformas.id_plataforma==plataforma[j].id_plataforma){ %> 
+                <option value="<%=plataforma[j].id_plataforma %>" selected><%=plataforma[j].nombre %></option>
+              <% }else{ %>
+                <option value="<%=plataforma[j].id_plataforma %>"><%=plataforma[j].nombre %></option>
+                <% } %>  
+            <% } %> 
             </select>
           </div>
           <div class="field">
             <label class="label" for="tag">Categoría</label>
             <select name="tag" size="3" multiple required id="tag">
-              <option value="accion">Acción</option>
-              <option value="fps">FPS</option>
-              <option value="aventura">Aventura</option>
+              <% for(let x=0;x < categoria.length;x++){ %> 
+              
+                <option value="<%=categoria[x].id_categoria%>"><%=categoria[x].nombre %></option>
+
+                <% } %>  
             </select>
           </div>
           <div class="field">
@@ -85,7 +91,7 @@
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ><%= productsToEdit.description %></textarea>
+            ><%= productsToEdit.descripcion %></textarea>
           </div>
           <button class="editar-button" type="submit">Editar</button>
         </form>

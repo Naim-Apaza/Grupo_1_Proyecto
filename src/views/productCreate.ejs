@@ -56,17 +56,17 @@
             <label class="label" for="plataforma">Plataformas</label>
             <select name="plataforma" size="3" multiple required
             id="plataforma">
-              <option value="pc">PC</option>
-              <option value="xbox">Xbox</option>
-              <option value="play">Playstation</option>
+            <% for(let j = 0; j < plataforma.length ; j++){ %>
+              <option value="<%=plataforma[j]. id_plataforma %>"><%=plataforma[j].nombre %> </option>
+            <% } %> 
             </select>
           </div>
           <div class="field">
             <label class="label" for="tag">Categoría</label>
             <select name="tag" size="3" multiple required id="tag">
-              <option value="accion">Acción</option>
-              <option value="fps">FPS</option>
-              <option value="aventura">Aventura</option>
+              <% for(let i = 0; i < categoria.length ; i++){ %>
+                <option value="<%=categoria[i].id_categoria %>"><%=categoria[i].nombre %> </option>
+              <% } %> 
             </select>
           </div>
           <div class="field">

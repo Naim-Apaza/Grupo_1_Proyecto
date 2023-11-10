@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const colms = {
+    const cols = {
         id_categoria: {
             primaryKey: true,
             autoIncrement: true,
@@ -13,10 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     };
     const config = {
         tableName: 'categorias',
-        timestamps: false
+        timestamps: false,
+        deleteAt: false,
     }
 
-    const Categoria = sequelize.define('Categoria', colms, config)
+    const Categoria = sequelize.define('Categoria', cols, config)
 
     /************************    RELACION DE MUCHOS A MUCHOS   ******************************/
     Categoria.associate = (modelo) => {

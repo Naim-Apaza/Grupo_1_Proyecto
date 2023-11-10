@@ -20,16 +20,12 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 0.00
         },
         img_prod: {
-            type: DataTypes.STRING(40),
+            type: DataTypes.STRING(200),
             allowNull: false
         },
         descuento: {
             type: DataTypes.TINYINT,
             allowNull: false
-        },
-        cant_desc: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            defaultValue: 0
         },
         // ******************************** CLAVE FORANEA  ********************************
         id_plataforma: {

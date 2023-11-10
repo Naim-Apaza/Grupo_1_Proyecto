@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
 
 // Middlewares
 
@@ -15,6 +16,10 @@ const mainRoutes = require("./src/routes/mainRoutes");
 const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const userRoutes = require("./src/routes/userRoutes");
+
+//COOKIES
+
+app.use(cookieParser());
 
 // Sesiones
 
@@ -52,8 +57,6 @@ app.set("view engine", "ejs");
 
 app.use(logMiddleware);
 
-// Ruteo
-
 app.use("/", mainRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
@@ -62,5 +65,6 @@ app.use("/users", userRoutes);
 //Error 404
 
 app.use((req, res, next) => {
-  res.status(404).render("error404");
+/*   console.log(req);
+ */  res.status(404).render("error404");
 });

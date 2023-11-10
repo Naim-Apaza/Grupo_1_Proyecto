@@ -8,36 +8,52 @@
 
     <!-- Contenido principal -->
     <main class="detail-main">
-      <h1 class="game-title">Far Cry 6</h1>
+      <h1 class="game-title"><%=producto.nombre %></h1>
       <div class="game-container">
-        <img src="/images/products/farcry.jpg" alt="juego" class="game-img" />
+        <img src="/<%=producto.img_prod %>" alt="juego" class="game-img" />
         <div class="descripcion">
           <div class="tags">
-            <div class="tag play">
-              <i class="fa-brands fa-playstation"></i>
-            </div>
-            <div class="tag xbox">
-              <i class="fa-brands fa-xbox"></i>
-            </div>
-            <div class="tag pc">
-              <i class="fa-solid fa-desktop"></i>
-            </div>
+            <% if(producto.id_plataforma==3){ %> 
+              <div class="tag play">
+                <i class="fa-brands fa-playstation"></i>
+              </div>
+              <% }else if(producto.id_plataforma==2){  %> 
+                <div class="tag play">
+                  <i class="fa-brands fa-playstation"></i>
+                </div>
+                <%  }else if(producto.id_plataforma==5){ %>  
+              <div class="tag xbox">
+                <i class="fa-brands fa-xbox"></i>
+              </div>
+              <%} else if(producto.id_plataforma==1){ %> 
+              <div class="tag pc">
+                <i class="fa-solid fa-desktop"></i>
+              </div>
+              <%} else if(producto.id_plataforma==4){ %> 
+              <div class="tag nintendo">
+                <i class="fa-solid fa-gamepad"></i>
+              </div>
+              <% } %> 
           </div>
           <div class="detalles">
-            <h1 class="precio">2.000$</h1>
-            <h2 class="oferta">25%</h2>
+            <h1 class="precio"><%=producto.precio%>$</h1>
+            <% if(producto.descuento==0){ %> 
+              <h2 class="oferta">Sin Descuento</h2>
+              <% }else{ %> 
+              <h2 class="oferta"><%=producto.descuento%>%</h2>
+              <% } %>  
+              
             <h3 class="genero">FPS ACCIÓN AVENTURA</h3>
             <p class="about-game">
-              El juego se desarrolla en Yara, una isla caribeña ficticia que
-              yace bajo una dictadura liderada por "El Presidente" Antón
-              Castillo quien está preparando a su hijo, Diego, para que continúe
-              con su mandato. El jugador encarna al guerrillero Dani Rojas,
-              quien busca derrocar a Castillo y a su régimen.
+              <%=producto.descripcion %>
             </p>
           </div>
           <div class="buttons">
-            <form action="/products/6?_method=DELETE" method="post" class="delete-container">
+            <form action="/products/delete/<%=producto.id_producto%>?_method=DELETE" method="post" class="delete-container">
               <button class="delete-btn" type="submit">Borrar</button>
+            </form>
+            <form action="/products/edit/<%=producto.id_producto%>" method="get" class="delete-container">
+              <button class="delete-btn" type="submit">Editar</button>
             </form>
             <button class="carrito">
               Agregar al carrito

@@ -23,5 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
     const ProductoCategoria = sequelize.define('ProductoCategoria', colms, config);
   
+
+    
     return ProductoCategoria;
 }

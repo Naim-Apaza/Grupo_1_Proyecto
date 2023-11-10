@@ -36,14 +36,6 @@
     "image": "lau.png"
   },
   {
-    "name": "PREBA 1",
-    "surname": "PRUEBA 1",
-    "correo": "Prueba1@gmail.com",
-    "password": "$2a$10$DJPs3jntgFSClo4Kjke2eeFS7KX81kiqmo/t7lbKp.PpDvIOVvTq2",
-    "repass": "$2a$10$DJPs3jntgFSClo4Kjke2eeFS7KX81kiqmo/t7lbKp.PpDvIOVvTq2",
-    "fotocopia": "user-1696970076345.jpg"
-  },
-  {
     "id": 5,
     "firstName": "usuario",
     "lastName": "dasdasd",
@@ -62,10 +54,11 @@
   },
   {
     "id": 6,
-    "firstName": "otra",
-    "lastName": "prueba",
-    "email": "prueba@prueba.com",
-    "password": "$2a$10$OUDNqK2h58dmGRYtmOQ2h.7HBQ9tAZOQEeytCy84qur25ky3n3hxC",
-    "userImage": "user-1697510322314.jpg"
+    "firstName": "Roberto",
+    "lastName": "Llampa",
+    "email": "i@gmail.com",
+    "password": "$2a$10$in5OIvTP2csq5Hi9bg6x4u.ocmqaRdalv9jr9yNRw12PhhAQ.JYUS",
+    "category": "admin",
+    "userImage": "user-1699362050256.jpg"
   }
 ]
