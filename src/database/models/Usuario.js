@@ -22,10 +22,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(255),
             allowNull: false
         },
+        img_usuario: {
+            type: DataTypes.STRING(50),
+            allowNull: false
+        }
+        ,
         /************************** CLAVE FORANEA *****************************/
         id_rol: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         }
     };
     const config = {
