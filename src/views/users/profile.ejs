@@ -22,10 +22,40 @@
             <a href="/users/<%= usuario.id_usuario%>">
               <button class="edit-btn">Editar</button>
             </a>
+            <button class="edit-btn" onclick="togglePasswordForm()">Cambiar contraseña</button>
+          </div>
+          <div id="passwordForm" style="display: none;">
+            <form action="/users/change-password" method="POST">
+              <div class="form-group">
+                <label for="currentPassword">Contraseña actual</label>
+                <input type="password" id="currentPassword" name="currentPassword" required>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">Nueva contraseña</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirmar contraseña</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+              </div>
+              <button type="submit" class="edit-btn">Cambiar contraseña</button>
+            </form>
           </div>
         </div>
       </div>
     </main>
+    <script>
+      function togglePasswordForm() {
+        const passwordForm = document.getElementById('passwordForm');
+        if (passwordForm.style.display === 'none') {
+          passwordForm.style.display = 'block';
+        } else {
+          passwordForm.style.display = 'none';
+        }
+      }
+    </script>
+
     <%- include('../partials/footer') %>
+    
   </body>
 </html>

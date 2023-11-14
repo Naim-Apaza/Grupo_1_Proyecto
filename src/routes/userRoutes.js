@@ -36,6 +36,7 @@ const multerDiskStorage = multer.diskStorage({
 let fileUpload = multer({ storage: multerDiskStorage });
 
 // Ruteos
+router.post("/change-password", authMiddleware, userController.changePassword);
 router.get("/profile", authMiddleware,userController.mostrarPerfil);
 router.get("/login", guestMiddleware, userController.login);
 router.post("/login", guestMiddleware,userController.loadLogin);
