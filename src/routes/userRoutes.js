@@ -16,6 +16,7 @@ const path = require("path");
 const logUserMiddleware = require("../middlewares/logUserMiddleware");
 const registerValidator = require("../middlewares/registerValidator");
 const guestMiddleware = require("../middlewares/guestMiddleware"); 
+const authMiddleware = require("../middlewares/authMiddleware");
 
 // Multer
 
@@ -35,12 +36,13 @@ const multerDiskStorage = multer.diskStorage({
 let fileUpload = multer({ storage: multerDiskStorage });
 
 // Ruteos
-router.get("/profile", userController.mostrarPerfil);
+router.get("/profile", authMiddleware,userController.mostrarPerfil);
 router.get("/login", guestMiddleware, userController.login);
-router.post("/login", userController.loadLogin);
+router.post("/login", guestMiddleware,userController.loadLogin);
 router.get("/register", guestMiddleware, userController.register);
 router.post(
   "/register",
+  guestMiddleware,
   registerValidator,
   fileUpload.single("userImage"),
   logUserMiddleware,

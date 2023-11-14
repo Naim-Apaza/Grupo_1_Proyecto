@@ -1,24 +1,22 @@
 // Controlador de productos
 
-const fs = require("fs");
-const path = require("path");
 const db = require("../database/models/index.js");
-const Producto = require("../database/models/Producto.js");
-const Op = db.Sequelize.Op;
 
 const controller = {
-  detail: (req, res) => {
-    db.Producto.findByPk(req.params.id)
-      .then(function (producto) {
-        res.render("productDetail", {
-          producto: producto,
-          usuario: req.session.userLogged,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-        res.render("error404");
+  detail: async (req, res) => {
+    try {
+      const producto = await db.Producto.findByPk(req.params.id);
+      const plataforma = await db.Plataforma.findByPk(producto.id_plataforma)
+
+      res.render("productDetail", {
+        producto: producto,
+        plataforma: plataforma,
+        usuario: req.session.userLogged,
       });
+    } catch (error) {
+      console.log(error);
+      res.render("error404");
+    }
   },
   products: (req, res) => {
     db.Producto.findAll({
@@ -57,13 +55,13 @@ const controller = {
       });
   },
   store: (req, res) => {
-    let imageFile = req.file;
+    let imageFile = req.file.filename;
     if (imageFile !== undefined) {
       db.Producto.create({
         nombre: req.body.nombre,
         descripcion: req.body.detalle,
         precio: req.body.precio,
-        img_prod: req.file.filename,
+        img_prod: imageFile,
         descuento: req.body.descuento,
         id_plataforma: req.body.plataforma,
       });
@@ -97,7 +95,6 @@ const controller = {
         console.log(error);
         res.render("error404");
       });
-    
   },
   actualizar: (req, res) => {
     db.Producto.update(

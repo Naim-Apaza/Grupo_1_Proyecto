@@ -1,8 +1,3 @@
-// Modulos de control de archivos
-
-const path = require("path");
-const fs = require("fs");
-
 // Encriptador
 
 const bcrypt = require("bcryptjs");
@@ -13,9 +8,6 @@ const { validationResult } = require("express-validator");
 
 // Usuarios
 
-const userPath = path.join(__dirname, "../data/users.json");
-const usersJSON = fs.readFileSync(userPath);
-const users = JSON.parse(usersJSON);
 const db = require("../database/models/index.js");
 
 // Controlador de usuarios
@@ -25,20 +17,21 @@ const controller = {
     res.render("users/register", { errores: [] });
   },
 
-  saveRegister: async function(req, res) {
+  saveRegister: (req, res) => {
     let errors = validationResult(req);
     let saveImage = req.file.filename;
     if (errors.isEmpty()) {
       try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const usuario = await db.Usuario.create({
+        const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+        const usuario = {
           nombre: req.body.name,
           apellido: req.body.lastName,
           correo: req.body.correo,
           clave: hashedPassword,
           img_usuario: saveImage,
-          id_rol: null
-        });
+          id_rol: 1,
+        };
+        db.Usuario.create(usuario);
         res.redirect("/users/login");
       } catch (error) {
         console.error(error);
@@ -51,10 +44,10 @@ const controller = {
   login: (req, res) => {
     res.render("users/login", { error: null });
   },
-  loadLogin: async function(req, res) {
+  loadLogin: async function (req, res) {
     try {
       const usuario = await db.Usuario.findOne({
-        where: { correo: req.body.correo }
+        where: { correo: req.body.correo },
       });
       if (usuario) {
         const validarPass = await bcrypt.compare(
@@ -66,7 +59,9 @@ const controller = {
           req.session.userLogged = usuario;
           res.redirect("/");
         } else {
-          res.render("users/login", { error: "Las credenciales son inválidas." });
+          res.render("users/login", {
+            error: "Las credenciales son inválidas.",
+          });
         }
       } else {
         res.render("users/login", { error: "No existe este usuario." });
@@ -76,27 +71,15 @@ const controller = {
       res.render("users/login");
     }
   },
-  create: async function(req, res) {
-    try {
-      const usuario = await db.Usuario.create({
-        nombre: req.body.name,
-        apellido: req.body.lastName,
-        correo: req.body.correo,
-        clave: req.body.password,
-        img_usuario: req.file.filename,
-        id_rol: null
-      });
-      return res.redirect("/user/login");
-    } catch (error) {
-      console.error(error);
-      return res.render("users/register");
-    }
+  mostrarPerfil: async (req, res) => {
+    const usuario = await db.Usuario.findOne({
+      where: { 
+        correo: req.session.userLogged.correo
+      }
+    })
+    const rol = await db.Rol.findByPk(usuario.id_rol)
+    res.render("users/profile", { usuario: usuario, rol: rol});
   },
-
-  mostrarPerfil: (req, res) => {
-    res.render("profile", { usuario: req.session.userLogged });
-  },
-  };
-
+};
 
 module.exports = controller;

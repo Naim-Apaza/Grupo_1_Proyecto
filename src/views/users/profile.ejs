@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Encabezado -->
+  <%- include('../partials/head')%>
+  <body>
+    <!-- Barra de navegacion -->
+    <%- include('../partials/header') %>
+
+    <main class="profile-main">
+      <h1 class="profile-title">
+        Perfil
+      </h1>
+      <div class="profile-container">
+        <img src="/images/users/<%= usuario.img_usuario%>" alt="usuario" class="user-img" />
+        <div class="profile-info">
+          <h3 class="tag">Rol: <%= rol.nombre %></h3>
+          <h3 class="tag">Nombre/s: <%= usuario.nombre %></h3>
+          <h3 class="tag">Apellido/s: <%= usuario.apellido %></h3>
+          <h3 class="tag">Correo: <%= usuario.correo %></h3>
+          <h3 class="tag">Contraseña: **********</h3>
+          <div class="buttons">
+            <a href="/users/<%= usuario.id_usuario%>">
+              <button class="edit-btn">Editar</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

@@ -1,28 +1,28 @@
 // Controlador del index
-const fs = require("fs");
-const path = require("path");
 const db = require("../database/models/index.js");
-const Op = db.Sequelize.Op;
 
 const controller = {
-  index: (req, res) => {
-    db.Producto.findAll({
-      where: {
-        cant_desc: { [db.Sequelize.Op.gt]: 0 },
-      },
-      order: [["cant_desc", "DESC"]],
-      limit: 8,
-    })
-      .then(function (productos) {
-        res.render("index", {
-          productos: productos,
-          usuario: req.session.userLogged,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-        res.render("error404");
+  index: async (req, res) => {
+    try {
+      const productos = await db.Producto.findAll({
+        where: {
+          cant_desc: { [db.Sequelize.Op.gt]: 0 },
+        },
+        order: [["cant_desc", "DESC"]],
+        limit: 8,
       });
+
+      const plataformas = await db.Plataforma.findAll()
+
+      res.render("index", {
+        productos: productos,
+        plataformas: plataformas,
+        usuario: req.session.userLogged,
+      });
+    } catch (error) {
+      console.log("Error:" + error);
+      res.render("error404");
+    }
   },
 };
 
