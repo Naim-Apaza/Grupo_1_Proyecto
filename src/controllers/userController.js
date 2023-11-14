@@ -24,35 +24,24 @@ const controller = {
   register: (req, res) => {
     res.render("users/register", { errores: [] });
   },
-  saveRegister: (req, res) => {
+
+  saveRegister: async function(req, res) {
     let errors = validationResult(req);
     let saveImage = req.file.filename;
-
     if (errors.isEmpty()) {
-      if (saveImage != undefined) {
-        //Hash de la contraseña
-        const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-
-        // Agregar los datos del nuevo registro al arreglo de usuarios
-        users.push({
-          id: 6,
-          firstName: req.body.name,
-          lastName: req.body.lastName,
-          email: req.body.correo,
-          password: hashedPassword,
-          userImage: saveImage,
+      try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const usuario = await db.Usuario.create({
+          nombre: req.body.name,
+          apellido: req.body.lastName,
+          correo: req.body.correo,
+          clave: hashedPassword,
+          img_usuario: saveImage,
+          id_rol: null
         });
-
-        // Convertir el objeto actualizado a formato JSON
-        const updatedJson = JSON.stringify(users, null, 2);
-
-        // Escribir los datos actualizados en el archivo JSON
-        fs.writeFileSync(userPath, updatedJson);
-
-        // Responder con algún mensaje o redirigir a otra página
         res.redirect("/users/login");
-      } else {
-        console.log("Ocurrió un error guardando la imagen :(");
+      } catch (error) {
+        console.error(error);
         res.render("users/register");
       }
     } else {
@@ -62,23 +51,52 @@ const controller = {
   login: (req, res) => {
     res.render("users/login", { error: null });
   },
-  loadLogin: (req, res) => {
-    let usuario = users.find((user) => user['email'] === req.body.correo);
-
-    if (usuario) {
-      let validarPass = bcrypt.compareSync(req.body.password, usuario.password);
-
-      if (validarPass) {
-        delete usuario.password;
-        req.session.userLogged = usuario
-        res.redirect("/");
+  loadLogin: async function(req, res) {
+    try {
+      const usuario = await db.Usuario.findOne({
+        where: { correo: req.body.correo }
+      });
+      if (usuario) {
+        const validarPass = await bcrypt.compare(
+          req.body.password,
+          usuario.clave
+        );
+        if (validarPass) {
+          delete usuario.clave;
+          req.session.userLogged = usuario;
+          res.redirect("/");
+        } else {
+          res.render("users/login", { error: "Las credenciales son inválidas." });
+        }
+      } else {
+        res.render("users/login", { error: "No existe este usuario." });
       }
-
-      res.render('users/login', { error: 'Las credenciales son inválidas.'})
+    } catch (error) {
+      console.error(error);
+      res.render("users/login");
     }
-
-    res.render('users/login', { error: 'No existe este usuario.' })
   },
-};
+  create: async function(req, res) {
+    try {
+      const usuario = await db.Usuario.create({
+        nombre: req.body.name,
+        apellido: req.body.lastName,
+        correo: req.body.correo,
+        clave: req.body.password,
+        img_usuario: req.file.filename,
+        id_rol: null
+      });
+      return res.redirect("/user/login");
+    } catch (error) {
+      console.error(error);
+      return res.render("users/register");
+    }
+  },
+
+  mostrarPerfil: (req, res) => {
+    res.render("profile", { usuario: req.session.userLogged });
+  },
+  };
+
 
 module.exports = controller;
