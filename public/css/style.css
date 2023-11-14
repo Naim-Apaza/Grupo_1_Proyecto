@@ -436,19 +436,21 @@ body {
 .profile-main .profile-container .profile-info .buttons .edit-btn {
   border: transparent;
   border-radius: 5px;
-  background-color: white;
+  background-color: black;
   box-shadow: 1px 1px 1px 1px gray;
-  color: black;
+  color: white;
   padding: 15px;
   font-family: "Sofia Sans", sans-serif;
   font-size: 1em;
   margin: 2px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .profile-main .profile-container .profile-info .buttons .edit-btn:hover {
-  background-color: red;
-  color: white;
+  background-color: white;
+  font-weight: bold;
+  color: black;
 }
 
 /***** End Perfil *****/
@@ -526,9 +528,9 @@ body {
   background-color: black;
   color: white;
 }
-.detail-main .game-container .descripcion .tags .tag.nintendo{
+.detail-main .game-container .descripcion .tags .tag.nintendo {
   background-color: red;
-  color:white
+  color: white;
 }
 
 .detail-main .game-container .descripcion .detalles {
@@ -558,14 +560,19 @@ body {
 .detail-main .game-container .descripcion .buttons {
   margin-top: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
   margin: 0 auto;
 }
 
-.detail-main .game-container .descripcion .buttons .delete-container .delete-btn {
+.detail-main
+  .game-container
+  .descripcion
+  .buttons
+  .delete-container
+  .delete-btn {
   border: transparent;
   border-radius: 5px;
   background-color: red;
@@ -578,7 +585,12 @@ body {
   cursor: pointer;
 }
 
-.detail-main .game-container .descripcion .buttons .delete-container .delete-btn:hover {
+.detail-main
+  .game-container
+  .descripcion
+  .buttons
+  .delete-container
+  .delete-btn:hover {
   background-color: rgb(121, 45, 45);
 }
 
@@ -596,9 +608,9 @@ body {
 }
 
 .detail-main .game-container .descripcion .buttons .edit-btn:hover {
+  font-weight: bold;
   background-color: rgb(219, 219, 219);
 }
-
 
 .detail-main .game-container .descripcion .buttons .carrito {
   border: transparent;
@@ -732,7 +744,7 @@ body {
   cursor: pointer;
   width: 200px;
   color: inherit;
-  
+
   transition: all 0.5s ease-in-out;
 }
 
@@ -742,7 +754,7 @@ body {
   box-shadow: 1px 1px 1px 1px red;
 }
 
-.a_carrito{
+.a_carrito {
   text-decoration: none;
   color: black;
 }
@@ -1269,7 +1281,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 
 .error-main .error-container {
@@ -1296,7 +1308,7 @@ body {
   margin: 0 auto;
   background-color: black;
   border-radius: 5px;
-  padding: 10px 10px 5px 10px; 
+  padding: 10px 10px 5px 10px;
   text-decoration: none;
   color: red;
 }
@@ -1357,9 +1369,9 @@ body {
     width: 100%;
   }
 
-.detail-main .game-container .descripcion .buttons {
-  flex-direction: column;
-}
+  .detail-main .game-container .descripcion .buttons {
+    flex-direction: column;
+  }
 
   .index-main .seccion .container {
     flex-direction: row;
@@ -1430,6 +1442,10 @@ body {
 
   .detail-main .game-container .descripcion {
     width: 50%;
+  }
+
+  .detail-main .game-container .descripcion .buttons {
+    flex-direction: row;
   }
 
   .cart-main .cart-footer {
