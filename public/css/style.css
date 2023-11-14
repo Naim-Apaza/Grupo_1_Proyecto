@@ -558,6 +558,7 @@ body {
 .detail-main .game-container .descripcion .buttons {
   margin-top: 20px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   text-align: center;
   align-items: center;
@@ -1344,6 +1345,10 @@ body {
     width: 100%;
   }
 
+  .profile-main .profile-container .profile-info {
+    flex-direction: column;
+  }
+
   .detail-main .game-container .game-img {
     width: 100%;
   }
@@ -1351,6 +1356,10 @@ body {
   .detail-main .game-container .descripcion {
     width: 100%;
   }
+
+.detail-main .game-container .descripcion .buttons {
+  flex-direction: column;
+}
 
   .index-main .seccion .container {
     flex-direction: row;
