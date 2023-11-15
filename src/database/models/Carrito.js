@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         total: {
-            type: DataTypes.DECIMAL(7, 2).UNSIGNED,
+            type: DataTypes.DECIMAL(9, 2).UNSIGNED,
             defaultValue: 0.00
         },
         // ******************************** CLAVE FORANEA ********************************

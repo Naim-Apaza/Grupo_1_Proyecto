@@ -11,49 +11,83 @@
       <section class="seccion">
         <h1 class="title">Ofertas</h1>
         <div class="container">
-           
-          <% for(let i = 0;i< productos.length;i++ ){ %>  
-            <div class="juego-container">
-              <img class="img-juego" src="/images/products/<%=productos[i].img_prod %>" alt="img-juego" />
-              <div class="desc-box">
-                <a href="/products/detail/<%=productos[i].id_producto%>" class="titulo-juego"><%=productos[i].nombre %></a>
-                <p class="oferta"><%=productos[i].cant_desc %>  % <i class="fa-solid fa-tag"></i></p>
-                <p class="precio"><%=productos[i].precio %>$</p>
-              </div>
+          <% for(let i = 0;i < productos.length;i++ ){ %>
+          <div class="juego-container">
+            <img
+              class="img-juego"
+              src="/images/products/<%=productos[i].img_prod%>"
+              alt="img-juego"
+            />
+            <div class="desc-box">
+              <a
+                href="/products/detail/<%=productos[i].id_producto%>"
+                class="titulo-juego">
+                <%= productos[i].nombre + ' - ' %>
+                <% for( let j = 0; j < plataformas.length; j++ ) { %>
+                  <%= plataformas[j].id_plataforma == productos[i].id_plataforma ? plataformas[j].nombre : ''%>
+                <% } %>
+                </a>
+              <% if(productos[i].cant_desc > 0) { %>
+              <p class="oferta">
+                <%=productos[i].cant_desc %>% <i class="fa-solid fa-tag"></i>
+              </p>
+              <p class="precio">
+                $<%=productos[i].precio - (productos[i].precio /
+                productos[i].cant_desc) %>
+              </p>
+              <% } else { %>
+              <p class="precio"><%=productos[i].precio %>$</p>
+              <% } %>
             </div>
-            <% } %> 
-
+          </div>
+          <% } %>
         </div>
       </section>
       <section class="seccion">
         <h1 class="title">Novedades</h1>
         <div class="container">
           <div class="juego-container">
-            <img class="img-juego" src="images/products/farcry.jpg" alt="img-juego" />
+            <img
+              class="img-juego"
+              src="images/products/farcry.jpg"
+              alt="img-juego"
+            />
             <div class="desc-box">
               <a href="#" class="titulo-juego">Far Cry 6</a>
-              <p class="precio">$2.000</p>
+              <p class="precio">$2000</p>
             </div>
           </div>
           <div class="juego-container">
-            <img class="img-juego" src="images/products/gta.jpg" alt="img-juego" />
+            <img
+              class="img-juego"
+              src="images/products/gta.jpg"
+              alt="img-juego"
+            />
             <div class="desc-box">
               <a href="#" class="titulo-juego">GTA V</a>
-              <p class="precio">2.000$</p>
+              <p class="precio">$2000</p>
             </div>
           </div>
           <div class="juego-container">
-            <img class="img-juego" src="images/products/re4.jpeg" alt="img-juego" />
+            <img
+              class="img-juego"
+              src="images/products/re4.jpeg"
+              alt="img-juego"
+            />
             <div class="desc-box">
               <a href="#" class="titulo-juego">RE 4 Remake</a>
-              <p class="precio">2.000$</p>
+              <p class="precio">$2000</p>
             </div>
           </div>
           <div class="juego-container">
-            <img class="img-juego" src="images/products/tlou.jpg" alt="img-juego" />
+            <img
+              class="img-juego"
+              src="images/products/tlou.jpg"
+              alt="img-juego"
+            />
             <div class="desc-box">
               <a href="#" class="titulo-juego">The Last of Us Part I</a>
-              <p class="precio">2.000$</p>
+              <p class="precio">$2000</p>
             </div>
           </div>
         </div>

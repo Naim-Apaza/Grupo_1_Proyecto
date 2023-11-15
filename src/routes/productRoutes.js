@@ -34,10 +34,11 @@ let fileUpload = multer({ storage: multerDiskStorage });
 
 router.get("/", productController.products);
 
-router.get("/detail/:id", productController.detail);
+router.get("/detail/:id", authMiddleware, productController.detail);
 router.get("/create", authMiddleware, productController.create);
 router.post(
   "/create",
+  authMiddleware,
   logProductMiddleware,
   fileUpload.single("imagen"),
   productController.store
@@ -45,6 +46,5 @@ router.post(
 router.get("/edit/:id", authMiddleware, productController.edit);
 router.put("/edit/:id", fileUpload.single("imagen"), productController.actualizar);
 router.delete("/delete/:id", productController.borrar);
-router.post("/search",productController.search); 
 
 module.exports = router;

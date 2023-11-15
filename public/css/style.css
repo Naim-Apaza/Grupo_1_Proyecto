@@ -382,6 +382,82 @@ body {
 
 /***** End Contenido del login *****/
 
+/***** Perfil *****/
+
+.profile-main {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0 auto;
+  width: 90vw;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px rgba(255, 0, 0, 0.5);
+  border-radius: 1em;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.profile-main .profile-title {
+  margin: 20px;
+  padding-bottom: 5px;
+  text-align: right;
+  border-bottom: 1px gray solid;
+  text-transform: uppercase;
+}
+
+.profile-main .profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 10px;
+}
+
+.profile-main .profile-container .user-img {
+  background-color: black;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  margin: 10px;
+}
+
+.profile-main .profile-container .profile-info {
+  width: 100%;
+  box-shadow: 2px 2px 2px 2px gray;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.profile-main .profile-container .profile-info .buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.profile-main .profile-container .profile-info .buttons .edit-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: black;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-main .profile-container .profile-info .buttons .edit-btn:hover {
+  background-color: white;
+  font-weight: bold;
+  color: black;
+}
+
+/***** End Perfil *****/
+
 /***** Contenido del detalle del producto *****/
 
 .detail-main {
@@ -455,9 +531,9 @@ body {
   background-color: black;
   color: white;
 }
-.detail-main .game-container .descripcion .tags .tag.nintendo{
+.detail-main .game-container .descripcion .tags .tag.nintendo {
   background-color: red;
-  color:white
+  color: white;
 }
 
 .detail-main .game-container .descripcion .detalles {
@@ -487,13 +563,19 @@ body {
 .detail-main .game-container .descripcion .buttons {
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
   margin: 0 auto;
 }
 
-.detail-main .game-container .descripcion .buttons .delete-container .delete-btn {
+.detail-main
+  .game-container
+  .descripcion
+  .buttons
+  .delete-container
+  .delete-btn {
   border: transparent;
   border-radius: 5px;
   background-color: red;
@@ -506,10 +588,32 @@ body {
   cursor: pointer;
 }
 
-.detail-main .game-container .descripcion .buttons .delete-container .delete-btn:hover {
+.detail-main
+  .game-container
+  .descripcion
+  .buttons
+  .delete-container
+  .delete-btn:hover {
   background-color: rgb(121, 45, 45);
 }
 
+.detail-main .game-container .descripcion .buttons .edit-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: black;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.detail-main .game-container .descripcion .buttons .edit-btn:hover {
+  font-weight: bold;
+  background-color: rgb(219, 219, 219);
+}
 
 .detail-main .game-container .descripcion .buttons .carrito {
   border: transparent;
@@ -643,7 +747,7 @@ body {
   cursor: pointer;
   width: 200px;
   color: inherit;
-  
+
   transition: all 0.5s ease-in-out;
 }
 
@@ -653,7 +757,7 @@ body {
   box-shadow: 1px 1px 1px 1px red;
 }
 
-.a_carrito{
+.a_carrito {
   text-decoration: none;
   color: black;
 }
@@ -1180,7 +1284,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 
 .error-main .error-container {
@@ -1207,7 +1311,7 @@ body {
   margin: 0 auto;
   background-color: black;
   border-radius: 5px;
-  padding: 10px 10px 5px 10px; 
+  padding: 10px 10px 5px 10px;
   text-decoration: none;
   color: red;
 }
@@ -1248,12 +1352,28 @@ body {
     display: inherit;
   }
 
+  .profile-main .profile-container .user-img {
+    width: 100%;
+  }
+
+  .profile-main .profile-container .profile-info {
+    width: 100%;
+  }
+
+  .profile-main .profile-container .profile-info {
+    flex-direction: column;
+  }
+
   .detail-main .game-container .game-img {
     width: 100%;
   }
 
   .detail-main .game-container .descripcion {
     width: 100%;
+  }
+
+  .detail-main .game-container .descripcion .buttons {
+    flex-direction: column;
   }
 
   .index-main .seccion .container {
@@ -1304,6 +1424,17 @@ body {
     width: 40vw;
   }
 
+  .profile-main .profile.container {
+    flex-direction: row;
+  }
+
+  .profile-main .profile-container .user-img {
+    width: 50%;
+  }
+  .profile-main .profile-container .profile-info {
+    width: 50%;
+  }
+
   .detail-main .game-container {
     flex-direction: row;
   }
@@ -1314,6 +1445,10 @@ body {
 
   .detail-main .game-container .descripcion {
     width: 50%;
+  }
+
+  .detail-main .game-container .descripcion .buttons {
+    flex-direction: row;
   }
 
   .cart-main .cart-footer {

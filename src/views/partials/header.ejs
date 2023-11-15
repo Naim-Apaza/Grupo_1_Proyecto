@@ -32,16 +32,22 @@
       <h1 class="link">Registarse</h1>
       <i class="fa-solid fa-user-pen"></i>
     </a>
+    <% } else { %> 
+      <% if(usuario.id_rol == 1) {%>
+    <a class="nav-link" href="/users/profile">
+      <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
+      <i class="fa-solid fa-user"></i>
+    </a>
     <% } else { %>
-      <a class="nav-link" href="/products/create">
-        <h1 class="link">Crear Producto</h1>
-        <i class="fa-solid fa-screwdriver-wrench"></i>
-      </a>
-      <a class="nav-link" href="#">
-        <h1 class="link">Hola, <%= usuario.firstName + ' ' + usuario.lastName %>.</h1>
-        <i class="fa-solid fa-user"></i>
-      </a>
-      <% } %>
+    <a class="nav-link" href="/products/create">
+      <h1 class="link">Crear Producto</h1>
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+    </a>
+    <a class="nav-link" href="/users/profile">
+      <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
+      <i class="fa-solid fa-user"></i>
+    </a>
+    <% }} %>
   </nav>
   <div class="menu-container">
     <i class="fa-solid fa-bars"></i>

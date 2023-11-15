@@ -8,54 +8,62 @@
 
     <!-- Contenido principal -->
     <main class="detail-main">
-      <h1 class="game-title"><%=producto.nombre %></h1>
+      <h1 class="game-title"><%= producto.nombre + ' - '+ plataforma.nombre%></h1>
       <div class="game-container">
-        <% console.log(producto.img_prod) %> 
-        <img src="/images/products/<%=producto.img_prod %>" alt="juego" class="game-img" />
+        <img
+          src="/images/products/<%= producto.img_prod %>"
+          alt="juego"
+          class="game-img"
+        />
         <div class="descripcion">
           <div class="tags">
-            <% if(producto.id_plataforma==3){ %> 
-              <div class="tag play">
-                <i class="fa-brands fa-playstation"></i>
-              </div>
-              <% }else if(producto.id_plataforma==2){  %> 
-                <div class="tag play">
-                  <i class="fa-brands fa-playstation"></i>
-                </div>
-                <%  }else if(producto.id_plataforma==5){ %>  
-              <div class="tag xbox">
-                <i class="fa-brands fa-xbox"></i>
-              </div>
-              <%} else if(producto.id_plataforma==1){ %> 
-              <div class="tag pc">
-                <i class="fa-solid fa-desktop"></i>
-              </div>
-              <%} else if(producto.id_plataforma==4){ %> 
-              <div class="tag nintendo">
-                <i class="fa-solid fa-gamepad"></i>
-              </div>
-              <% } %> 
+            <% if(plataforma.id_plataforma==1){ %>
+            <div class="tag pc">
+              <i class="fa-solid fa-desktop"></i>
+            </div>
+            <% }else if(plataforma.id_plataforma==2){ %>
+            <div class="tag play">
+              <i class="fa-brands fa-playstation"></i>
+            </div>
+            <% }else if(plataforma.id_plataforma==3){ %>
+            <div class="tag xbox">
+              <i class="fa-brands fa-xbox"></i>
+            </div>
+            <%} else if(plataforma.id_plataforma==4){ %>
+            <div class="tag play">
+              <i class="fa-brands fa-playstation"></i>
+            </div>
+            <%} else if(plataforma.id_plataforma==5){ %>
+            <div class="tag nintendo">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <% } %>
           </div>
           <div class="detalles">
-            <h1 class="precio"><%=producto.precio%>$</h1>
-            <% if(producto.descuento==0){ %> 
-              <h2 class="oferta">Sin Descuento</h2>
-              <% }else{ %> 
-              <h2 class="oferta"><%=producto.cant_desc%>%</h2>
-              <% } %>  
-              
+            <% if(producto.cant_desc > 0) { %>
+            <h1 class="precio">
+              $<%= producto.precio - (producto.precio / producto.cant_desc) %>
+            </h1>
+            <h2 class="oferta"><%= producto.cant_desc %>%</h2>
+            <% } else { %>
+            <h1 class="precio">$<%= producto.precio %></h1>
+            <% } %>
             <h3 class="genero">FPS ACCIÓN AVENTURA</h3>
-            <p class="about-game">
-              <%=producto.descripcion %>
-            </p>
+            <p class="about-game"><%=producto.descripcion %></p>
           </div>
           <div class="buttons">
-            <form action="/products/delete/<%=producto.id_producto%>?_method=DELETE" method="post" class="delete-container">
+            <% if(usuario.id_rol == 2) { %>
+              <form
+              action="/products/delete/<%=producto.id_producto%>?_method=DELETE"
+              method="post"
+              class="delete-container"
+            >
               <button class="delete-btn" type="submit">Borrar</button>
             </form>
-            <form action="/products/edit/<%=producto.id_producto%>" method="get" class="delete-container">
-              <button class="delete-btn" type="submit">Editar</button>
-            </form>
+              <a href="/products/edit/<%= producto.id_producto%>">
+                <button class="edit-btn">Editar</button>
+              </a>
+              <% } %>
             <button class="carrito">
               Agregar al carrito
               <i class="fa-solid fa-cart-shopping"></i>

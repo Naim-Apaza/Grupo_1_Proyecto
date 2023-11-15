@@ -2,8 +2,6 @@
 const fs = require("fs");
 const path = require("path");
 const db = require("../database/models/index.js");
-const Producto = require("../database/models/Producto.js");
-const Op = db.Sequelize.Op;
 
 const controller = {
   detail: (req, res) => {
@@ -22,7 +20,7 @@ const controller = {
         console.log(error);
         res.render("error404");
       });
-  },
+    },
   products: (req, res) => {
     db.Producto.findAll({
       include: [{ association: "plataformas" }],
@@ -110,7 +108,6 @@ const controller = {
         console.log(error);
         res.render("error404");
       });
-    
   },
   actualizar: (req, res) => {
     db.Producto.update(
