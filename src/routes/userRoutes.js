@@ -41,8 +41,7 @@ router.post("/login", userController.loadLogin);
 router.get("/register", guestMiddleware, userController.register);
 router.post(
   "/register",
-  registerValidator,
-  fileUpload.single("userImage"),
+  fileUpload.single("userImage"),registerValidator,
   logUserMiddleware,
   userController.saveRegister
 );

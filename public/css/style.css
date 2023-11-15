@@ -192,6 +192,9 @@ body {
   background-color: red;
 }
 
+.register-main .register-container .errorText {
+  color:red;
+}
 .register-main .register-container .errores .error {
   padding: 10px;
   color: white;
@@ -204,7 +207,7 @@ body {
 }
 
 .register-main .register-container .form-container .form-field {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-family: "Sofia Sans", sans-serif;
   border: none;
   outline: none;
@@ -227,7 +230,7 @@ body {
 }
 
 .register-main .register-container .form-container .info {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   margin-top: 10px;
   color: gray;
 }

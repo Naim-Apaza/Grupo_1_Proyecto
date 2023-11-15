@@ -10,7 +10,8 @@
     <main class="detail-main">
       <h1 class="game-title"><%=producto.nombre %></h1>
       <div class="game-container">
-        <img src="/<%=producto.img_prod %>" alt="juego" class="game-img" />
+        <% console.log(producto.img_prod) %> 
+        <img src="/images/products/<%=producto.img_prod %>" alt="juego" class="game-img" />
         <div class="descripcion">
           <div class="tags">
             <% if(producto.id_plataforma==3){ %> 
@@ -40,7 +41,7 @@
             <% if(producto.descuento==0){ %> 
               <h2 class="oferta">Sin Descuento</h2>
               <% }else{ %> 
-              <h2 class="oferta"><%=producto.descuento%>%</h2>
+              <h2 class="oferta"><%=producto.cant_desc%>%</h2>
               <% } %>  
               
             <h3 class="genero">FPS ACCIÓN AVENTURA</h3>

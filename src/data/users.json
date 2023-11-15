@@ -60,5 +60,21 @@
     "password": "$2a$10$in5OIvTP2csq5Hi9bg6x4u.ocmqaRdalv9jr9yNRw12PhhAQ.JYUS",
     "category": "admin",
     "userImage": "user-1699362050256.jpg"
+  },
+  {
+    "id": 6,
+    "firstName": "Roberto",
+    "lastName": "Llampa",
+    "email": "u@gmail.com",
+    "password": "$2a$10$4d9X9hoTaXapUB.chU2Ya.iOQdQVc.pBqOxmS2C3P16VJnzzH3xBq",
+    "userImage": "user-1700054909196.jpg"
+  },
+  {
+    "id": 6,
+    "firstName": "Roberto",
+    "lastName": "Llampa",
+    "email": "io@gmail.com",
+    "password": "$2a$10$WXfG4RPdQRCe4RbE1fkC.eV5V9zcyKsdvTtfw7BhBSKg66sMEIx26",
+    "userImage": "user-1700058619777.jpg"
   }
 ]

@@ -7,7 +7,7 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 
 // Middlewares
-
+var cookieAuthMiddleware = require("./src/middlewares/cookieAuthMiddleware")
 var logMiddleware = require("./src/middlewares/logMiddleware");
 
 // Rutas
@@ -56,6 +56,8 @@ app.set("view engine", "ejs");
 // Middlewares
 
 app.use(logMiddleware);
+app.use(cookieAuthMiddleware);
+
 
 app.use("/", mainRoutes);
 app.use("/products", productRoutes);

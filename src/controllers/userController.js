@@ -26,8 +26,10 @@ const controller = {
   },
   saveRegister: (req, res) => {
     let errors = validationResult(req);
-    let saveImage = req.file.filename;
-
+    /* res.send(errors) */
+    
+  let saveImage = req.file;
+   
     if (errors.isEmpty()) {
       if (saveImage != undefined) {
         //Hash de la contraseña
@@ -40,7 +42,7 @@ const controller = {
           lastName: req.body.lastName,
           email: req.body.correo,
           password: hashedPassword,
-          userImage: saveImage,
+          userImage: saveImage.filename,
         });
 
         // Convertir el objeto actualizado a formato JSON
@@ -56,7 +58,7 @@ const controller = {
         res.render("users/register");
       }
     } else {
-      res.render("users/register", { errores: errors.array() });
+      res.render("users/register", { errores: errors.mapped(),old: req.body });
     }
   },
   login: (req, res) => {

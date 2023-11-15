@@ -14,7 +14,7 @@
            
           <% for(let i = 0;i< productos.length;i++ ){ %>  
             <div class="juego-container">
-              <img class="img-juego" src="<%=productos[i].img_prod %>" alt="img-juego" />
+              <img class="img-juego" src="/images/products/<%=productos[i].img_prod %>" alt="img-juego" />
               <div class="desc-box">
                 <a href="/products/detail/<%=productos[i].id_producto%>" class="titulo-juego"><%=productos[i].nombre %></a>
                 <p class="oferta"><%=productos[i].cant_desc %>  % <i class="fa-solid fa-tag"></i></p>

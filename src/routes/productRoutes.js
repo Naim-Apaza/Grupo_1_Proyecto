@@ -45,5 +45,6 @@ router.post(
 router.get("/edit/:id", authMiddleware, productController.edit);
 router.put("/edit/:id", fileUpload.single("imagen"), productController.actualizar);
 router.delete("/delete/:id", productController.borrar);
+router.post("/search",productController.search); 
 
 module.exports = router;

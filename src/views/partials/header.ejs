@@ -2,8 +2,14 @@
 
 <header class="header">
   <div class="header-logo-container">
+    <a href="/">
     <img src="/images/gz-logo.png" alt="logo-header" />
+    </a>
   </div>
+  <form action="/products/search" method="post">
+    <input type="text" class="searcher" name="searcher" placeholder="Buscar...">
+    <button class="searcher_form" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
   <nav class="navbar">
     <a class="nav-link" href="/">
       <h1 class="link">Home</h1>
