@@ -92,18 +92,53 @@ body {
   max-width: 5vw;
 }
 
+.header .search-form {
+  display: flex;
+  margin: 0 auto;
+}
+
+.header .search-form .search-input {
+  font-family: "Sofia Sans", sans-serif;
+  width: 80%;
+  border: 1px solid red;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+  font-size: 0.7em;
+  margin-right: 1px;
+}
+
+.header .search-form .search-buttom {
+  display: none;
+  cursor: pointer;
+  border: none;
+  background-color: black;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.header .search-form .search-buttom:hover {
+  background-color: red;
+  color: white;
+}
+
 .header .navbar {
   display: none;
-  width: auto;
-  display: flex;
-  margin-right: 30px;
+  width: 50%;
+  margin-right: 20px;
 }
 
 .header .navbar .nav-link {
+  margin-left: 0;
+  font-size: 0.6em;
   text-decoration: none;
   display: flex;
   color: red;
-  padding: 10px;
   transition: all 0.2s;
   border-radius: 5px;
 }
@@ -115,15 +150,16 @@ body {
 }
 
 .header .navbar .nav-link .link {
+  font-size: 0.6em;
   display: none;
   color: inherit;
-  font-size: 0.9em;
   font-weight: inherit;
+  padding-right: 5px;
 }
 
 .header .navbar .nav-link i {
   display: none;
-  margin-left: 2px;
+  padding-left: 1px;
 }
 
 .header .menu-container {
@@ -193,7 +229,7 @@ body {
 }
 
 .register-main .register-container .errorText {
-  color:red;
+  color: red;
 }
 .register-main .register-container .errores .error {
   padding: 10px;
@@ -861,6 +897,10 @@ body {
   padding: 15px 15px 0 15px;
 }
 
+.product-main .seccion .search-title {
+  color: white;
+}
+
 .product-main .seccion .container {
   display: flex;
   padding: 2em;
@@ -868,6 +908,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.product-main .seccion .container .none-title {
+  color: white;
 }
 
 .product-main .seccion .container .juego-container {
@@ -1332,8 +1376,27 @@ body {
     display: inherit;
   }
 
+  .header .search-form .search-input {
+    font-size: 0.8em;
+  }
+
+  .header .search-form .search-buttom {
+    display: none;
+  }
+
   .header .menu-container {
     display: none;
+  }
+
+  .header .navbar {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .header .navbar .nav-link {
+    font-size: 0.6em;
+    padding: 5px;
+    margin: 0 auto;
   }
 
   .header .navbar .nav-link .link {
@@ -1412,7 +1475,21 @@ body {
     padding-bottom: 5em;
   }
 
+  .header .navbar {
+    display: flex;
+  }
+
+  .header .navbar .nav-link {
+    font-size: 0.9em;
+    padding: 5px;
+  }
+
   .header .navbar .nav-link .link {
+    font-size: 0.9em;
+    display: inherit;
+  }
+
+  .header .search-form .search-buttom {
     display: inherit;
   }
 

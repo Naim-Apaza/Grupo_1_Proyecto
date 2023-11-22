@@ -33,7 +33,7 @@ let fileUpload = multer({ storage: multerDiskStorage });
 // Ruteos
 
 router.get("/", productController.products);
-
+router.post("/", productController.search)
 router.get("/detail/:id", authMiddleware, productController.detail);
 router.get("/create", authMiddleware, productController.create);
 router.post(
@@ -44,7 +44,7 @@ router.post(
   productController.store
 );
 router.get("/edit/:id", authMiddleware, productController.edit);
-router.put("/edit/:id", fileUpload.single("imagen"), productController.actualizar);
-router.delete("/delete/:id", productController.borrar);
+router.put("/edit/:id", authMiddleware, fileUpload.single("imagen"), productController.actualizar);
+router.delete("/delete/:id", authMiddleware, productController.borrar);
 
 module.exports = router;

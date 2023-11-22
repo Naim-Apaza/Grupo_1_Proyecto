@@ -1,16 +1,11 @@
 // Controlador de productos
-const fs = require("fs");
-const path = require("path");
 const db = require("../database/models/index.js");
+const { Op } = require("sequelize");
 
 const controller = {
   detail: (req, res) => {
     db.Producto.findByPk(req.params.id)
       .then(function (producto) {
-       /*  res.status(200).json({
-          data:producto,
-          status:200
-        }) */
         res.render("productDetail", {
           producto: producto,
           usuario: req.session.userLogged,
@@ -20,26 +15,23 @@ const controller = {
         console.log(error);
         res.render("error404");
       });
-    },
-  products: (req, res) => {
-    db.Producto.findAll({
-      include: [{ association: "plataformas" }],
-    })
-      .then(function (productos) {
-       /*  return res.status(200).json({
-          total:productos.length,
-          data:productos,
-          status:200
-        }) */
-        res.render("products", {
-          productos: productos,
-          usuario: req.session.userLogged,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-        res.render("error404");
+  },
+  products: async (req, res) => {
+    try {
+      const productos = await db.Producto.findAll({});
+
+      const plataformas = await db.Plataforma.findAll();
+
+      res.render("products", {
+        titulo: null,
+        productos: productos,
+        plataformas: plataformas,
+        usuario: req.session.userLogged,
       });
+    } catch (error) {
+      console.log("Error:" + error);
+      res.render("error404");
+    }
   },
   create: (req, res) => {
     db.Categoria.findAll()
@@ -63,13 +55,8 @@ const controller = {
       });
   },
   store: (req, res) => {
-    /* res.status(200).json({
-      data:req.body,
-      status:200
-    }) */
     let imageFile = req.file;
-/*     res.send(req.file.filename)
- */    if (imageFile !== undefined) {
+    if (imageFile !== undefined) {
       db.Producto.create({
         nombre: req.body.nombre,
         descripcion: req.body.detalle,
@@ -129,32 +116,33 @@ const controller = {
     res.redirect("/products");
   },
   borrar: (req, res) => {
-    
-    /*     res.send(req.params.id)
-     */ db.Producto.destroy({
+    db.Producto.destroy({
       where: {
         id_producto: req.params.id,
       },
     }).then(function (response) {
-      /* return res.json(response) */
       res.redirect("/");
     });
   },
-  search: async (req,res) => {
-   let titulo = req.body.searcher 
-   let products = await db.Producto.findAll({
-    where:{
-      nombre:{[Op.like]:`%${titulo}%`} 
+  search: async (req, res) => {
+    try {
+      let titulo = req.body.searcher;
+      let products = await db.Producto.findAll({
+        where: {
+          nombre: { [Op.like]: `%${titulo}%` },
+        },
+      });
+
+      return res.render("products", {
+        titulo: titulo,
+        productos: products,
+        usuario: req.session.userLogged,
+      });
+    } catch (error) {
+      console.log(error);
+      res.render("error404");
     }
-   })
-
-
-   return res.render("search",
-   {
-    productos:products,
-    usuario:req.session.userLogged,
-   }) 
-  }
+  },
 };
 
 module.exports = controller;

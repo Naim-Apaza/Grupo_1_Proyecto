@@ -19,9 +19,6 @@
           <h3 class="tag">Correo: <%= usuario.correo %></h3>
           <h3 class="tag">Contraseña: **********</h3>
           <div class="buttons">
-            <a href="/users/<%= usuario.id_usuario%>">
-              <button class="edit-btn">Editar</button>
-            </a>
             <button class="edit-btn" onclick="togglePasswordForm()">Cambiar contraseña</button>
           </div>
           <div id="passwordForm" style="display: none;">
