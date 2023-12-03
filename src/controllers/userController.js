@@ -19,32 +19,18 @@ const controller = {
 
   saveRegister: (req, res) => {
     let errors = validationResult(req);
-
-    /* res.send(errors) */
-    
-  let saveImage = req.file;
-   
-
-
-    if (errors.isEmpty()) {
+    let saveImage = req.file;
+    if (errors.isEmpty() && saveImage != null) {
       try {
         const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
-        // Agregar los datos del nuevo registro al arreglo de usuarios
-        users.push({
-          id: 6,
-          firstName: req.body.name,
-          lastName: req.body.lastName,
-          email: req.body.correo,
-          password: hashedPassword,
-          userImage: saveImage.filename,
+        db.Usuario.create({
+          nombre: req.body.name,
+          apellido: req.body.lastName,
+          correo: req.body.correo,
+          clave: hashedPassword,
+          img_usuario: saveImage.filename,
         });
-
-        // Convertir el objeto actualizado a formato JSON
-        const updatedJson = JSON.stringify(users, null, 2);
-
-        // Escribir los datos actualizados en el archivo JSON
-        fs.writeFileSync(userPath, updatedJson);
 
         // Responder con algún mensaje o redirigir a otra página
         res.redirect("/users/login");
@@ -53,7 +39,7 @@ const controller = {
         res.render("users/register");
       }
     } else {
-      res.render("users/register", { errores: errors.mapped(),old: req.body });
+      res.render("users/register", { errores: errors.mapped(), old: req.body });
     }
   },
   login: (req, res) => {
@@ -88,27 +74,27 @@ const controller = {
   },
   mostrarPerfil: async (req, res) => {
     const usuario = await db.Usuario.findOne({
-      where: { 
-        correo: req.session.userLogged.correo
-      }
-    })
-    const rol = await db.Rol.findByPk(usuario.id_rol)
-    res.render("users/profile", { usuario: usuario, rol: rol});
+      where: {
+        correo: req.session.userLogged.correo,
+      },
+    });
+    const rol = await db.Rol.findByPk(usuario.id_rol);
+    res.render("users/profile", { usuario: usuario, rol: rol });
   },
 
   changePassword: async (req, res) => {
     try {
       const usuario = await db.Usuario.findOne({
         where: {
-          correo: req.session.userLogged.correo
-        }
+          correo: req.session.userLogged.correo,
+        },
       });
-  
+
       const validarPass = await bcrypt.compare(
         req.body.currentPassword,
         usuario.clave
       );
-  
+
       if (validarPass) {
         const hashedPassword = bcrypt.hashSync(req.body.newPassword, 10);
         await db.Usuario.update(
@@ -120,7 +106,7 @@ const controller = {
         res.render("users/profile", {
           usuario: usuario,
           rol: rol,
-          error: "La contraseña actual es incorrecta."
+          error: "La contraseña actual es incorrecta.",
         });
       }
     } catch (error) {
@@ -128,11 +114,10 @@ const controller = {
       res.render("users/profile", {
         usuario: usuario,
         rol: rol,
-        error: "Ha ocurrido un error al cambiar la contraseña."
+        error: "Ha ocurrido un error al cambiar la contraseña.",
       });
     }
   },
-  
 };
 
 module.exports = controller;
