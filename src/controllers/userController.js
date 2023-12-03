@@ -30,6 +30,7 @@ const controller = {
           correo: req.body.correo,
           clave: hashedPassword,
           img_usuario: saveImage.filename,
+          id_rol: 1
         });
 
         // Responder con algún mensaje o redirigir a otra página
