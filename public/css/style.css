@@ -472,10 +472,15 @@ body {
   margin: 0 auto;
 }
 
-.profile-main .profile-container .profile-info .buttons .edit-btn {
+.profile-main
+  .profile-container
+  .profile-info
+  .buttons
+  .logout-container
+  .logout-btn {
   border: transparent;
   border-radius: 5px;
-  background-color: black;
+  background-color: red;
   box-shadow: 1px 1px 1px 1px gray;
   color: white;
   padding: 15px;
@@ -486,10 +491,34 @@ body {
   transition: all 0.2s ease;
 }
 
-.profile-main .profile-container .profile-info .buttons .edit-btn:hover {
-  background-color: white;
+.profile-main
+  .profile-container
+  .profile-info
+  .buttons
+  .logout-container
+  .logout-btn:hover {
+  background-color: black;
   font-weight: bold;
+}
+
+.profile-main .profile-container .profile-info .buttons .edit-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px gray;
   color: black;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-main .profile-container .profile-info .buttons .edit-btn:hover {
+  background-color: black;
+  font-weight: bold;
+  color: white;
 }
 
 /***** End Perfil *****/

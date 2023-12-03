@@ -57,6 +57,7 @@ const controller = {
         );
         if (validarPass) {
           delete usuario.clave;
+          delete usuario.id_rol;
           req.session.userLogged = usuario;
           res.redirect("/");
         } else {
@@ -78,8 +79,13 @@ const controller = {
         correo: req.session.userLogged.correo,
       },
     });
-    const rol = await db.Rol.findByPk(usuario.id_rol);
-    res.render("users/profile", { usuario: usuario, rol: rol });
+    res.render("users/profile", { usuario: usuario });
+  },
+
+  logout: async (req, res) => {
+    req.session.destroy(() => {
+      res.redirect("/users/login")
+    })
   },
 
   changePassword: async (req, res) => {
