@@ -13,6 +13,7 @@ const productController = require("../controllers/productController");
 
 const logProductMiddleware = require("../middlewares/logProductMiddleware");
 const authMiddleware = require("../middlewares/authMiddleware");
+const productMiddleware = require("../middlewares/productValidator");
 
 // Multer
 
@@ -41,10 +42,11 @@ router.post(
   authMiddleware,
   logProductMiddleware,
   fileUpload.single("imagen"),
+  productMiddleware,
   productController.store
 );
 router.get("/edit/:id", authMiddleware, productController.edit);
-router.put("/edit/:id", authMiddleware, fileUpload.single("imagen"), productController.actualizar);
+router.put("/edit/:id", authMiddleware, fileUpload.single("imagen"), productMiddleware, productController.actualizar);
 router.delete("/delete/:id", authMiddleware, productController.borrar);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 // Controlador de productos
 const db = require("../database/models/index.js");
 const { Op } = require("sequelize");
+const { validationResult } = require('express-validator');
 
 const controller = {
   detail: (req, res) => {
@@ -56,18 +57,28 @@ const controller = {
   },
   store: (req, res) => {
     let imageFile = req.file;
-    if (imageFile !== undefined) {
-      db.Producto.create({
-        nombre: req.body.nombre,
-        descripcion: req.body.detalle,
-        precio: req.body.precio,
-        img_prod: req.file.filename,
-        cant_desc: req.body.descuento,
-        id_plataforma: req.body.plataforma,
+    let resultValidation = validationResult(req);
+    let errores = resultValidation.mapped();
+    if (resultValidation.isEmpty()) {
+      if (imageFile !== undefined) {
+        db.Producto.create({
+          nombre: req.body.nombre,
+          descripcion: req.body.detalle,
+          precio: req.body.precio,
+          img_prod: req.file.filename,
+          cant_desc: req.body.descuento,
+          id_plataforma: req.body.plataforma,
+        });
+        res.redirect("/");
+      } else {
+        res.render("productCreate");
+      }
+    }else{
+      res.render("productCreate", {
+        error: errores,
+        usuario: req.session.userLogged, 
+        old: req.body
       });
-      res.redirect("/");
-    } else {
-      res.render("productCreate");
     }
   },
   edit: (req, res) => {
@@ -97,23 +108,35 @@ const controller = {
       });
   },
   actualizar: (req, res) => {
-    db.Producto.update(
-      {
-        nombre: req.body.nombre,
-        precio: req.body.precio,
-        cant_desc: req.body.descuento,
-        descripcion: req.body.detalle,
-        img_prod: req.file.filename,
-        id_plataforma: req.body.plataforma,
-      },
-      {
-        where: {
-          id_producto: req.params.id,
+    let resultValidation = validationResult(req);
+    let errores = resultValidation.mapped();
+    if (resultValidation.isEmpty()) {
+      db.Producto.update(
+        {
+          nombre: req.body.nombre,
+          precio: req.body.precio,
+          cant_desc: req.body.descuento,
+          descripcion: req.body.detalle,
+          img_prod: req.file.filename,
+          id_plataforma: req.body.plataforma,
         },
-      }
-    );
+        {
+          where: {
+            id_producto: req.params.id,
+          },
+        }
+      );
 
-    res.redirect("/products");
+      res.redirect("/products");
+    }else{
+      res.render('productEdit', {
+        categoria: categoria,
+        plataforma: plataforma,
+        usuario: req.session.userLogged,
+        productsToEdit: productsToEdit,
+        error: errores
+      })
+    }
   },
   borrar: (req, res) => {
     db.Producto.destroy({
