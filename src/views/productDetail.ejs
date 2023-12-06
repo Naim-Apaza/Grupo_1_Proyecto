@@ -8,7 +8,7 @@
 
     <!-- Contenido principal -->
     <main class="detail-main">
-      <h1 class="game-title"><%= producto.nombre + ' - '+ plataforma.nombre%></h1>
+      <h1 class="game-title"><%= producto.nombre%></h1>
       <div class="game-container">
         <img
           src="/images/products/<%= producto.img_prod %>"
@@ -17,23 +17,24 @@
         />
         <div class="descripcion">
           <div class="tags">
-            <% if(plataforma.id_plataforma==1){ %>
+            <% console.log(producto) %> 
+            <% if(producto.id_plataforma==1){ %>
             <div class="tag pc">
               <i class="fa-solid fa-desktop"></i>
             </div>
-            <% }else if(plataforma.id_plataforma==2){ %>
+            <% }else if(producto.id_plataforma==2){ %>
             <div class="tag play">
               <i class="fa-brands fa-playstation"></i>
             </div>
-            <% }else if(plataforma.id_plataforma==3){ %>
+            <% }else if(producto.id_plataforma==3){ %>
             <div class="tag xbox">
               <i class="fa-brands fa-xbox"></i>
             </div>
-            <%} else if(plataforma.id_plataforma==4){ %>
+            <%} else if(producto.id_plataforma==4){ %>
             <div class="tag play">
               <i class="fa-brands fa-playstation"></i>
             </div>
-            <%} else if(plataforma.id_plataforma==5){ %>
+            <%} else if(producto.id_plataforma==5){ %>
             <div class="tag nintendo">
               <i class="fa-solid fa-gamepad"></i>
             </div>

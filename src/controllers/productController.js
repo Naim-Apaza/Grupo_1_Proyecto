@@ -4,18 +4,23 @@ const { Op } = require("sequelize");
 const { validationResult } = require('express-validator');
 
 const controller = {
-  detail: (req, res) => {
-    db.Producto.findByPk(req.params.id)
-      .then(function (producto) {
-        res.render("productDetail", {
-          producto: producto,
-          usuario: req.session.userLogged,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-        res.render("error404");
+  detail:async (req, res) => {
+    
+    try {
+      const productos = await db.Producto.findByPk(req.params.id);
+
+      const plataformas = await db.Plataforma.findAll();
+
+      res.render("productDetail", {
+        titulo: null,
+        producto: productos,
+        plataforma: plataformas,
+        usuario: req.session.userLogged,
       });
+    } catch (error) {
+      console.log("Error:" + error);
+      res.render("error404");
+    }
   },
   products: async (req, res) => {
     try {
@@ -34,7 +39,8 @@ const controller = {
       res.render("error404");
     }
   },
-  create: (req, res) => {
+  create:(req, res) => {
+    
     db.Categoria.findAll()
       .then(function (categoria) {
         db.Plataforma.findAll()
