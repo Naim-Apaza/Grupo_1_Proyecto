@@ -35,9 +35,13 @@
             <label class="label" for="precio">Precio</label>
             <input
               class="input"
-              type="text"
+              type="number"
+              step="any"
               id="precio"
-              maxlength="5"
+              maxlength="7"
+              minlength="1"
+              max="99999"
+              min="0"
               value="<%= productsToEdit.precio %>"
               name="precio"
               placeholder="Introduzca el valor del juego..."
@@ -49,8 +53,12 @@
             <input
             id="descuento"
               class="input"
-              type="text"
+              type="number"
               name="descuento"
+              min="0"
+              max="100"
+              maxlength="3"
+              minlength="1"
               value="<%= productsToEdit.cant_desc %>"
               placeholder="Introduzca el descuento (opcional)"
             />

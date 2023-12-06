@@ -34,9 +34,13 @@
             <label class="label" for="precio">Precio</label>
             <input
               class="input"
-              type="text"
+              type="number"
               id="precio"
-              maxlength="5"
+              maxlength="7"
+              minlength="1"
+              max="99999"
+              min="0"
+              step="any"
               name="precio"
               placeholder="Introduzca el valor del juego..."
               required
@@ -45,28 +49,40 @@
           <div class="field">
             <label class="label" for="descuento">Descuento</label>
             <input
-            id="descuento"
+              id="descuento"
               class="input"
-              type="text"
+              type="number"
+              maxlength="3"
+              min="0"
+              max="100"
               name="descuento"
-              placeholder="Introduzca el descuento (opcional)"
+              placeholder="Introduzca el porcentaje de descuento (opcional)"
+              value="0"
             />
           </div>
           <div class="field">
-            <label class="label" for="plataforma">Plataformas</label>
-            <select name="plataforma" size="3" multiple required
-            id="plataforma">
-            <% for(let j = 0; j < plataforma.length ; j++){ %>
-              <option value="<%=plataforma[j]. id_plataforma %>"><%=plataforma[j].nombre %> </option>
-            <% } %> 
+            <label class="label" for="plataforma">Plataforma</label>
+            <select
+              name="plataforma"
+              required
+              id="plataforma"
+              size="4"
+            >
+              <% for(let j = 0; j < plataforma.length ; j++){ %>
+              <option value="<%= plataforma[j].id_plataforma %>">
+                <%=plataforma[j].nombre %>
+              </option>
+              <% } %>
             </select>
           </div>
           <div class="field">
-            <label class="label" for="tag">Categoría</label>
-            <select name="tag" size="3" multiple required id="tag">
+            <label class="label" for="tag">Categorías</label>
+            <select name="tag" required id="tag">
               <% for(let i = 0; i < categoria.length ; i++){ %>
-                <option value="<%=categoria[i].id_categoria %>"><%=categoria[i].nombre %> </option>
-              <% } %> 
+              <option value="<%=categoria[i].id_categoria %>">
+                <%=categoria[i].nombre %>
+              </option>
+              <% } %>
             </select>
           </div>
           <div class="field">
