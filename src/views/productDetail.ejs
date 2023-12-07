@@ -17,7 +17,6 @@
         />
         <div class="descripcion">
           <div class="tags">
-            <% console.log(producto) %> 
             <% if(producto.id_plataforma==1){ %>
             <div class="tag pc">
               <i class="fa-solid fa-desktop"></i>
@@ -49,7 +48,7 @@
             <% } else { %>
             <h1 class="precio">$<%= producto.precio %></h1>
             <% } %>
-            <h3 class="genero">FPS ACCIÓN AVENTURA</h3>
+            <h3 class="genero"><%= ></h3>
             <p class="about-game"><%=producto.descripcion %></p>
           </div>
           <div class="buttons">

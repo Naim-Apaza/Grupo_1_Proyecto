@@ -82,7 +82,7 @@
           </div>
           <div class="field">
             <label class="label" for="tag">Categorías</label>
-            <select name="tag" required id="tag">
+            <select name="tag" multiple id="tag">
               <% for(let i = 0; i < categoria.length ; i++){ %>
               <option value="<%=categoria[i].id_categoria %>">
                 <%=categoria[i].nombre %>
