@@ -930,6 +930,17 @@ body {
   color: white;
 }
 
+.product-main .seccion .title {
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  font-size: 1.5em;
+  width: 200px;
+  margin: 0 auto;
+  box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(255, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
 .product-main .seccion .container {
   display: flex;
   padding: 2em;
@@ -1054,6 +1065,14 @@ body {
   padding: 10px;
 }
 
+.create-main .create-container .create-form .field-img {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
 .create-main .create-container .create-form .detail {
   width: 100%;
   display: flex;
@@ -1084,7 +1103,7 @@ body {
 }
 
 .create-main .create-container .create-form .detail textarea:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
@@ -1110,11 +1129,38 @@ body {
 }
 
 .create-main .create-container .create-form .field .input:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
 .create-main .create-container .create-form .field select {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+}
+
+.create-main .create-container .create-form .field-img .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-main .create-container .create-form .field-img .img {
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px 1px red;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.create-main .create-container .create-form .field-img .input {
   margin-bottom: 30px;
   font-family: "Sofia Sans", sans-serif;
   border: none;
@@ -1212,6 +1258,14 @@ body {
   padding: 10px;
 }
 
+.edit-main .edit-container .edit-form .field-img {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
 .edit-main .edit-container .edit-form .detail {
   width: 100%;
   display: flex;
@@ -1242,7 +1296,7 @@ body {
 }
 
 .edit-main .edit-container .edit-form .detail textarea:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
@@ -1252,6 +1306,33 @@ body {
   color: red;
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .field-img .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .field-img .img {
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px 1px red;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.edit-main .edit-container .edit-form .field-img .input {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
 }
 
 .edit-main .edit-container .edit-form .field .input {
@@ -1268,7 +1349,7 @@ body {
 }
 
 .edit-main .edit-container .edit-form .field .input:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
@@ -1574,11 +1655,21 @@ body {
     width: 40%;
   }
 
+  .create-main .create-container .create-form .field-img {
+    flex-direction: column;
+    width: 40%;
+  }
+
   .create-main .create-container .create-form .detail {
     width: 90%;
   }
 
   .edit-main .edit-container .edit-form .field {
+    flex-direction: column;
+    width: 40%;
+  }
+
+  .edit-main .edit-container .edit-form .field-img {
     flex-direction: column;
     width: 40%;
   }

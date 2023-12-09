@@ -10,18 +10,18 @@ const controller = {
         },
         order: [["cant_desc", "DESC"]],
         limit: 8,
+        include: [{
+          model: db.Plataforma,
+          as: "plataformas"
+        }]
       });
-
-      const plataformas = await db.Plataforma.findAll()
 
       res.render("index", {
         productos: productos,
-        plataformas: plataformas,
         usuario: req.session.userLogged,
       });
     } catch (error) {
-      console.log("Error:" + error);
-      res.render("error404");
+      res.render("error", { error: error });
     }
   },
 };

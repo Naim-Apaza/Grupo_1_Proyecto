@@ -7,7 +7,10 @@ const controller = {
   detail: async (req, res) => {
     try {
       const producto = await db.Producto.findByPk(req.params.id, {
-        include: [{ model: db.Plataforma, as: "plataformas"}, { model: db.Categoria, as: "categorias"}]
+        include: [
+          { model: db.Plataforma, as: "plataformas" },
+          { model: db.Categoria, as: "categorias" },
+        ],
       });
 
       res.render("productDetail", {
@@ -15,54 +18,50 @@ const controller = {
         usuario: req.session.userLogged,
       });
     } catch (error) {
-      console.log("Error:" + error);
-      res.render("error404");
+      res.render("error", { error: error });
     }
   },
   products: async (req, res) => {
     try {
-      const productos = await db.Producto.findAll({});
-
-      const plataformas = await db.Plataforma.findAll();
+      const productos = await db.Producto.findAll({
+        include: [
+          {
+            model: db.Plataforma,
+            as: "plataformas",
+          },
+        ],
+      });
 
       res.render("products", {
         titulo: null,
         productos: productos,
-        plataformas: plataformas,
         usuario: req.session.userLogged,
       });
     } catch (error) {
-      console.log("Error:" + error);
-      res.render("error404");
+      res.render("error", { error: error });
     }
   },
-  create: (req, res) => {
-    db.Categoria.findAll()
-      .then(function (categoria) {
-        db.Plataforma.findAll()
-          .then(function (plataforma) {
-            res.render("productCreate", {
-              categoria: categoria,
-              plataforma: plataforma,
-              usuario: req.session.userLogged,
-            });
-          })
-          .catch(function (error) {
-            console.log(error);
-            res.render("error404");
-          });
-      })
-      .catch(function (error) {
-        console.log(error);
-        res.render("error404");
+  create: async (req, res) => {
+    try {
+      const categorias = await db.Categoria.findAll();
+      const plataformas = await db.Plataforma.findAll();
+
+      res.render("productCreate", {
+        usuario: req.session.userLogged,
+        categorias: categorias,
+        plataformas: plataformas,
+        imagen: null,
+        old: null
       });
+    } catch (error) {
+      res.render("error", { error: error });
+    }
   },
   store: async (req, res) => {
-    let imageFile = req.file;
-    let resultValidation = validationResult(req);
-    let errores = resultValidation.mapped();
-    if (resultValidation.isEmpty()) {
-      if (imageFile !== undefined) {
+    try {
+      let resultValidation = validationResult(req);
+      let errores = resultValidation.mapped();
+      if (resultValidation.isEmpty()) {
         const producto = await db.Producto.create({
           nombre: req.body.nombre,
           descripcion: req.body.detalle,
@@ -77,48 +76,28 @@ const controller = {
         }
         res.redirect("/");
       } else {
-        db.Categoria.findAll()
-          .then(function (categoria) {
-            db.Plataforma.findAll()
-              .then(function (plataforma) {
-                res.render("productCreate", {
-                  categoria: categoria,
-                  plataforma: plataforma,
-                  usuario: req.session.userLogged,
-                  error: errores,
-                });
-              })
-              .catch(function (error) {
-                console.log(error);
-                res.render("error404");
-              });
-          })
-          .catch(function (error) {
-            console.log(error);
-            res.render("error404");
-          });
-      }
-    } else {
-      db.Categoria.findAll()
-        .then(function (categoria) {
-          db.Plataforma.findAll()
-            .then(function (plataforma) {
-              res.render("productCreate", {
-                categoria: categoria,
-                plataforma: plataforma,
-                usuario: req.session.userLogged,
-                error: errores,
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-              res.render("error404");
-            });
+        const categorias = db.Categoria.findAll();
+        const plataformas = db.Plataforma.findAll();
+        const seleccionadas = req.body.tag
+        const categoriasFiltradas = await categorias.filter(
+          (categoria) =>
+            !seleccionadas.find(
+              (prodCategoria) =>
+                prodCategoria.id_categoria === categoria.id_categoria
+            )
+        );
+
+        res.render("productCreate", {
+          usuario: req.session.userLogged,
+          categorias: categoriasFiltradas,
+          plataformas: plataformas,
+          errores: errores,
+          imagen: req.file.filename,
+          old: req.body
         })
-        .catch(function (error) {
-          console.log(error);
-          res.render("error404");
-        });
+      }
+    } catch (error) {
+      res.render("error", {error: error})
     }
   },
   edit: async (req, res) => {
@@ -139,45 +118,28 @@ const controller = {
         ],
       });
 
-      if (categorias && plataformas && producto) {
-        const categoriasFiltradas = categorias.filter(
-          (categoria) =>
-            !producto.categorias.find(
-              (prodCategoria) =>
-                prodCategoria.id_categoria === categoria.id_categoria
-            )
-        );
+      const categoriasFiltradas = await categorias.filter(
+        (categoria) =>
+          !producto.categorias.find(
+            (prodCategoria) =>
+              prodCategoria.id_categoria === categoria.id_categoria
+          )
+      );
 
-        res.render("productEdit", {
-          categorias: categoriasFiltradas,
-          plataformas: plataformas,
-          usuario: req.session.userLogged,
-          producto: producto,
-        });
-      }
+      res.render("productEdit", {
+        categorias: categoriasFiltradas,
+        plataformas: plataformas,
+        usuario: req.session.userLogged,
+        producto: producto,
+      });
     } catch (error) {
-      console.log(error);
-      res.render("error404");
+      res.render("error", { error: error });
     }
   },
   actualizar: async (req, res) => {
     let resultValidation = validationResult(req);
     let errores = resultValidation.mapped();
     const id = req.params.id;
-    const categorias = await db.Categoria.findAll();
-    const plataformas = await db.Plataforma.findAll();
-    const producto = await db.Producto.findByPk(id, {
-      include: [
-        {
-          model: db.Plataforma,
-          as: "plataformas",
-        },
-        {
-          model: db.Categoria,
-          as: "categorias",
-        },
-      ],
-    });
     if (resultValidation.isEmpty()) {
       const actualizado = await db.Producto.update(
         {
@@ -196,7 +158,6 @@ const controller = {
       );
       for (let i = 0; i < req.body.tag.length; i++) {
         const element = req.body.tag[i];
-        
       }
       // for (let i = 0; i < producto.categorias.length; i++) {
       //   const element = producto.categorias[i].id_categoria;
@@ -208,53 +169,67 @@ const controller = {
       // }
 
       if (actualizado) {
-        res.redirect("/products");
+        res.redirect("/detail/" + id);
       }
     } else {
-      if (categorias && plataformas) {
-        const categoriasFiltradas = categorias.filter(
-          (categoria) =>
-            !producto.categorias.find(
-              (prodCategoria) =>
-                prodCategoria.id_categoria === categoria.id_categoria
-            )
-        );
-        res.render("productEdit", {
-          categorias: categoriasFiltradas,
-          plataformas: plataformas,
-          usuario: req.session.userLogged,
-          producto: req.body,
-          error: errores,
-        });
-      }
+      const plataformas = await db.Plataforma.findAll();
+      const categorias = await db.Categoria.findAll();
+      const seleccionadas = req.body.tag;
+      const categoriasFiltradas = categorias.filter(
+        (categoria) =>
+          !seleccionadas.find(
+            (prodCategoria) =>
+              prodCategoria.id_categoria === categoria.id_categoria
+          )
+      );
+
+      res.render("productEdit", {
+        categorias: categoriasFiltradas,
+        plataformas: plataformas,
+        usuario: req.session.userLogged,
+        producto: req.body,
+        img: req.file.filename,
+        id: id,
+        error: errores,
+      });
     }
   },
-  borrar: (req, res) => {
-    db.Producto.destroy({
-      where: {
-        id_producto: req.params.id,
-      },
-    })
-    .then(() => res.redirect("/products"))
-    .catch((error) => console.log(error));
+  borrar: async (req, res) => {
+    try {
+      const productoBorrado = await db.Producto.destroy({
+        where: {
+          id_producto: req.params.id,
+        },
+      });
+      if (productoBorrado) {
+        return res.json(productoBorrado);
+      }
+    } catch (error) {
+      res.render("error", { error: error });
+    }
   },
   search: async (req, res) => {
     try {
-      let titulo = req.body.searcher;
-      let products = await db.Producto.findAll({
+      const titulo = req.body.searcher;
+      const productos = await db.Producto.findAll({
         where: {
           nombre: { [Op.like]: `%${titulo}%` },
         },
+        include: [
+          {
+            model: db.Plataforma,
+            as: "plataformas",
+          },
+        ],
       });
 
-      return res.render("products", {
+      res.render("products", {
         titulo: titulo,
-        productos: products,
+        productos: productos,
         usuario: req.session.userLogged,
       });
     } catch (error) {
-      console.log(error);
-      res.render("error404");
+      res.render("error", { error: error });
     }
   },
 };

@@ -1,13 +1,13 @@
-
 window.addEventListener("load", function () {
 
-    let UlErrores = document.querySelector(".ul_errores_div")
+    let UlErrores = document.querySelector(".errores")
     let formulario = document.querySelector("form.create-form")
     let errores = []
-    let nombre = document.querySelector(".name_input")
-    let precio = document.querySelector(".precio_input")
-    let descripcion = document.querySelector(".descripcion_input")
-    let img = document.querySelector(".file_input")
+    let nombre = document.querySelector("#nombre")
+    let precio = document.querySelector("#precio")
+    let descripcion = document.querySelector("#descripcion")
+    let descuento = document.querySelector("#descuento")
+    let img = document.querySelector("#imagen")
     let permitidos_extention = ["image/jpg", "image/jpeg", "image/png", "image/gif"]
     let extension;
 
@@ -18,21 +18,25 @@ window.addEventListener("load", function () {
 
     formulario.addEventListener("submit", function (event) {
        errores = [];
-        if (nombre.value == "") {
+        if (nombre.value == "" || nombre.value == null) {
             errores.push("Campo nombre obligatorio")
         } else if (nombre.value.length < 5) {
             errores.push("Debe tener por lo menos 5 caracteres")
         }
-    
-        /* console.log(precio.value) */
 
-        if(precio.value == ""){
+        if (descuento.value == "" || descripcion.value == null) {
+            errores.push("Campo descuento obligatorio")
+        } else if (descuento.value > 100 || descuento.value < 0) {
+            errores.push("Debe tener un descuento entre 0 y 100")
+        }
+    
+        if(precio.value == "" || precio.value == null){
             errores.push("Campo de precio Obligatorio")
-        }else if(precio.value < 500){
-            errores.push("debe el precio ser por lo menos 500 pesos")
+        }else if(precio.value < 0 && precio.value > 9999.99){
+            errores.push("Debe tener un precio valido")
         }
 
-        if (descripcion.value == "") {
+        if (descripcion.value == "" || descripcion.value == null) {
             errores.push("Campo de descripcion obligatorio")
         } else if (descripcion.value.length < 20) {
             errores.push("Debe tener por lo menos 20 caracteres")

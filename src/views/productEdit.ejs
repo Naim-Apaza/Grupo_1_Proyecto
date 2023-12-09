@@ -14,7 +14,7 @@
       <div class="edit-container">
         <h1 class="edit-title">Editar</h1>
         <form
-          action="/products/edit/<%=producto.id_producto%>?_method=PUT"
+          action="/products/edit/<%= producto.id_producto || id %>?_method=PUT"
           class="edit-form"
           method="post"
           enctype="multipart/form-data"
@@ -59,15 +59,15 @@
               max="100"
               maxlength="3"
               minlength="1"
-              value="<%= producto.cant_desc %>"
+              value="<%= producto.cant_desc || producto.descuento%>"
               placeholder="Introduzca el descuento (opcional)"
             />
           </div>
           <div class="field">
             <label class="label" for="plataforma">Plataformas</label>
-            <select name="plataforma" required id="plataforma">
+            <select name="plataforma" size="5" required id="plataforma">
               <% for(let i = 0;i < plataformas.length;i++) { %> 
-                <% if(producto.plataformas.id_plataforma == plataformas[i].id_plataforma) { %>
+                <% if(producto.plataformas.id_plataforma == plataformas[i].id_plataforma || producto.plataforma == plataformas[i].id_plataforma) { %>
                   <option value="<%= plataformas[i].id_plataforma %>" selected>
                     <%=plataformas[i].nombre %>
                   </option>
@@ -82,22 +82,32 @@
           <div class="field">
             <label class="label" for="tag">Categoría</label>
             <select name="tag" multiple required id="tag">
-              <% producto.categorias.forEach((seleccionada) => { %>
-               <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
-              <% }) %>
+              <% if (producto.tag) { %>
+                <% producto.tag.forEach((seleccionada) => { %>
+                  <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
+                 <% }) %>
+              <% } else { %>
+                <% producto.categorias.forEach((categoria) => { %>
+                  <option value="<%= categoria.id_categoria %>" selected><%= categoria.nombre %></option>
+                 <% }) %>
+              <% } %>
               <% categorias.forEach((categoria) => { %>
                <option value="<%= categoria.id_categoria %>"><%= categoria.nombre %></option>
               <% }) %>
             </select>
           </div>
-          <div class="field">
+          <div class="field-img">
             <label class="label" for="imagen">Imagen</label>
+            <% if (producto.img_prod || imagen) { %>
+              <img class="img" src="/images/products/<%= producto.img_prod || imagen %>" alt="<%= producto.nombre %>">
+            <% } else { %>
+              <img class="img" src="" alt="">
+            <% } %>
             <input
               class="input"
               type="file"
               name="imagen"
               id="imagen"
-              value="<%= producto.image %>"
             />
           </div>
           <div class="detail">
@@ -109,15 +119,17 @@
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ><%= producto.descripcion %>
+            ><%= producto.descripcion || producto.detalle %>
             </textarea>
           </div>
-          <button class="editar-button" type="submit">Editar</button>
+          <button class="editar-button" type="submit">Guardar cambios</button>
         </form>
       </div>
     </main>
 
     <!-- Footer -->
     <%- include('./partials/footer') %>
+    <script src="/js/createProduct.js"></script>
+    <script src="/js/imgView.js"></script>
   </body>
 </html>
