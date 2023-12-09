@@ -2,19 +2,16 @@
 const db = require("../database/models/index.js");
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
-const { render } = require("ejs");
 
 const controller = {
   detail: async (req, res) => {
     try {
-      const productos = await db.Producto.findByPk(req.params.id);
-
-      const plataformas = await db.Plataforma.findAll();
+      const producto = await db.Producto.findByPk(req.params.id, {
+        include: [{ model: db.Plataforma, as: "plataformas"}, { model: db.Categoria, as: "categorias"}]
+      });
 
       res.render("productDetail", {
-        titulo: null,
-        producto: productos,
-        plataforma: plataformas,
+        producto: producto,
         usuario: req.session.userLogged,
       });
     } catch (error) {
@@ -125,44 +122,35 @@ const controller = {
     }
   },
   edit: async (req, res) => {
-    // db.Categoria.findAll()
-    //   .then((categoria) => {
-    //     db.Plataforma.findAll().then(function (plataforma) {
-    //       db.Producto.findByPk(req.params.id, {
-    //         include: [{ association: "plataformas" }],
-    //       })
-    //         .then(function (productsToEdit) {
-    //           res.render("productEdit", {
-    //             categoria: categoria,
-    //             plataforma: plataforma,
-    //             usuario: req.session.userLogged,
-    //             productsToEdit: productsToEdit,
-    //           });
-    //         })
-    //         .catch(function (error) {
-    //           console.log(error);
-    //           res.render("error404");
-    //         });
-    //     });
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     res.render("error404");
-    //   });
     try {
       const id = req.params.id;
       const categorias = await db.Categoria.findAll();
       const plataformas = await db.Plataforma.findAll();
-      const productosCategorias = await db.ProductoCategoria.findAll();
       const producto = await db.Producto.findByPk(id, {
-        include: [{ association: "plataformas" }],
+        include: [
+          {
+            model: db.Plataforma,
+            as: "plataformas",
+          },
+          {
+            model: db.Categoria,
+            as: "categorias",
+          },
+        ],
       });
 
       if (categorias && plataformas && producto) {
+        const categoriasFiltradas = categorias.filter(
+          (categoria) =>
+            !producto.categorias.find(
+              (prodCategoria) =>
+                prodCategoria.id_categoria === categoria.id_categoria
+            )
+        );
+
         res.render("productEdit", {
-          categorias: categorias,
+          categorias: categoriasFiltradas,
           plataformas: plataformas,
-          pivot: productosCategorias,
           usuario: req.session.userLogged,
           producto: producto,
         });
@@ -172,11 +160,26 @@ const controller = {
       res.render("error404");
     }
   },
-  actualizar: (req, res) => {
+  actualizar: async (req, res) => {
     let resultValidation = validationResult(req);
     let errores = resultValidation.mapped();
+    const id = req.params.id;
+    const categorias = await db.Categoria.findAll();
+    const plataformas = await db.Plataforma.findAll();
+    const producto = await db.Producto.findByPk(id, {
+      include: [
+        {
+          model: db.Plataforma,
+          as: "plataformas",
+        },
+        {
+          model: db.Categoria,
+          as: "categorias",
+        },
+      ],
+    });
     if (resultValidation.isEmpty()) {
-      db.Producto.update(
+      const actualizado = await db.Producto.update(
         {
           nombre: req.body.nombre,
           precio: req.body.precio,
@@ -187,20 +190,43 @@ const controller = {
         },
         {
           where: {
-            id_producto: req.params.id,
+            id_producto: id,
           },
         }
       );
+      for (let i = 0; i < req.body.tag.length; i++) {
+        const element = req.body.tag[i];
+        
+      }
+      // for (let i = 0; i < producto.categorias.length; i++) {
+      //   const element = producto.categorias[i].id_categoria;
+      //   await db.ProductoCategoria.destroy({
+      //     where: {
+      //       id: element,
+      //     },
+      //   });
+      // }
 
-      res.redirect("/products");
+      if (actualizado) {
+        res.redirect("/products");
+      }
     } else {
-      res.render("productEdit", {
-        categoria: categoria,
-        plataforma: plataforma,
-        usuario: req.session.userLogged,
-        productsToEdit: productsToEdit,
-        error: errores,
-      });
+      if (categorias && plataformas) {
+        const categoriasFiltradas = categorias.filter(
+          (categoria) =>
+            !producto.categorias.find(
+              (prodCategoria) =>
+                prodCategoria.id_categoria === categoria.id_categoria
+            )
+        );
+        res.render("productEdit", {
+          categorias: categoriasFiltradas,
+          plataformas: plataformas,
+          usuario: req.session.userLogged,
+          producto: req.body,
+          error: errores,
+        });
+      }
     }
   },
   borrar: (req, res) => {
@@ -208,9 +234,9 @@ const controller = {
       where: {
         id_producto: req.params.id,
       },
-    }).then(function (response) {
-      res.redirect("/");
-    });
+    })
+    .then(() => res.redirect("/products"))
+    .catch((error) => console.log(error));
   },
   search: async (req, res) => {
     try {

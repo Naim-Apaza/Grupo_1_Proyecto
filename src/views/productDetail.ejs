@@ -17,23 +17,23 @@
         />
         <div class="descripcion">
           <div class="tags">
-            <% if(producto.id_plataforma==1){ %>
+            <% if(producto.id_plataforma == 1){ %>
             <div class="tag pc">
               <i class="fa-solid fa-desktop"></i>
             </div>
-            <% }else if(producto.id_plataforma==2){ %>
+            <% }else if(producto.id_plataforma == 2){ %>
             <div class="tag play">
               <i class="fa-brands fa-playstation"></i>
             </div>
-            <% }else if(producto.id_plataforma==3){ %>
+            <% }else if(producto.id_plataforma == 3){ %>
             <div class="tag xbox">
               <i class="fa-brands fa-xbox"></i>
             </div>
-            <%} else if(producto.id_plataforma==4){ %>
+            <%} else if(producto.id_plataforma == 4){ %>
             <div class="tag play">
               <i class="fa-brands fa-playstation"></i>
             </div>
-            <%} else if(producto.id_plataforma==5){ %>
+            <%} else if(producto.id_plataforma == 5){ %>
             <div class="tag nintendo">
               <i class="fa-solid fa-gamepad"></i>
             </div>
@@ -48,7 +48,11 @@
             <% } else { %>
             <h1 class="precio">$<%= producto.precio %></h1>
             <% } %>
-            <h3 class="genero"><%= ></h3>
+            <h3 class="genero">
+              <% producto.categorias.forEach(categoria => { %>
+               <%= categoria.nombre %>
+              <% }) %>
+            </h3>
             <p class="about-game"><%=producto.descripcion %></p>
           </div>
           <div class="buttons">
