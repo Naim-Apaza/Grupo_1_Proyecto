@@ -115,3 +115,10 @@ Se ingresó a la página /products/edit/1.
 Se ingresó a la página /products/edit/1.
 Se ingresó a la página /products/edit/1.
 Se ingresó a la página /products/edit/1.
+Se ingresó a la página /.
+Se ingresó a la página /products/detail/1.
+Se ingresó a la página /users/login.
+Se ingresó a la página /users/login.
+Se ingresó a la página /.
+Se ingresó a la página /products/detail/1.
+Se ingresó a la página /products/detail/1.
