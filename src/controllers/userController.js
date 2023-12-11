@@ -18,9 +18,9 @@ const controller = {
   },
 
   saveRegister: (req, res) => {
-    let errors = validationResult(req);
+    let errores = validationResult(req);
     let saveImage = req.file;
-    if (errors.isEmpty() && saveImage != null) {
+    if (errores.isEmpty() && saveImage != null) {
       try {
         const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
@@ -40,7 +40,7 @@ const controller = {
         res.render("users/register");
       }
     } else {
-      res.render("users/register", { errores: errors.mapped(), old: req.body });
+      res.render("users/register", { errores: errores.mapped(), old: req.body });
     }
   },
   login: (req, res) => {

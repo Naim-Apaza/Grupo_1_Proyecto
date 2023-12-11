@@ -51,17 +51,17 @@ const controller = {
         categorias: categorias,
         plataformas: plataformas,
         imagen: null,
-        old: null
+        errores: null,
+        old: null,
       });
     } catch (error) {
       res.render("error", { error: error });
     }
   },
   store: async (req, res) => {
-    try {
-      let resultValidation = validationResult(req);
-      let errores = resultValidation.mapped();
-      if (resultValidation.isEmpty()) {
+    let errores = validationResult(req);
+    if (errores.isEmpty()) {
+      try {
         const producto = await db.Producto.create({
           nombre: req.body.nombre,
           descripcion: req.body.detalle,
@@ -70,40 +70,46 @@ const controller = {
           cant_desc: req.body.descuento,
           id_plataforma: req.body.plataforma,
         });
+
         for (let i = 0; i < req.body.tag.length; i++) {
           const tag = req.body.tag[i];
-          producto.addCategorias(Number(tag));
+          await producto.addCategorias(Number(tag));
         }
+
         res.redirect("/");
-      } else {
-        const categorias = db.Categoria.findAll();
-        const plataformas = db.Plataforma.findAll();
-        const seleccionadas = req.body.tag
-        const categoriasFiltradas = await categorias.filter(
+      } catch (error) {
+        res.render("error", { error: error });
+      }
+    } else {
+      const categorias = await db.Categoria.findAll();
+      const plataformas = await db.Plataforma.findAll();
+      const seleccionadas = req.body.tag;
+      let categoriasFiltradas;
+      if (seleccionadas != undefined) {
+        categoriasFiltradas = categorias.filter(
           (categoria) =>
             !seleccionadas.find(
               (prodCategoria) =>
                 prodCategoria.id_categoria === categoria.id_categoria
             )
         );
-
-        res.render("productCreate", {
-          usuario: req.session.userLogged,
-          categorias: categoriasFiltradas,
-          plataformas: plataformas,
-          errores: errores,
-          imagen: req.file.filename,
-          old: req.body
-        })
       }
-    } catch (error) {
-      res.render("error", {error: error})
+
+      res.render("productCreate", {
+        usuario: req.session.userLogged,
+        categorias:
+        categoriasFiltradas != null ? categoriasFiltradas : categorias,
+        plataformas: plataformas,
+        errores: errores.mapped(),
+        imagen: req.file != undefined ? req.file.filename : "204.jpg",
+        old: req.body,
+      });
     }
   },
   edit: async (req, res) => {
     try {
       const id = req.params.id;
-      const categorias = await db.Categoria.findAll();
+      let categorias = await db.Categoria.findAll();
       const plataformas = await db.Plataforma.findAll();
       const producto = await db.Producto.findByPk(id, {
         include: [
@@ -118,7 +124,7 @@ const controller = {
         ],
       });
 
-      const categoriasFiltradas = await categorias.filter(
+      const categoriasFiltradas = categorias.filter(
         (categoria) =>
           !producto.categorias.find(
             (prodCategoria) =>
@@ -130,67 +136,93 @@ const controller = {
         categorias: categoriasFiltradas,
         plataformas: plataformas,
         usuario: req.session.userLogged,
+        old: null,
         producto: producto,
+        errores: null,
+        seleccionadas: null,
+        imagen: '204.jpg'
       });
     } catch (error) {
       res.render("error", { error: error });
     }
   },
   actualizar: async (req, res) => {
-    let resultValidation = validationResult(req);
-    let errores = resultValidation.mapped();
+    let errores = validationResult(req);
     const id = req.params.id;
-    if (resultValidation.isEmpty()) {
-      const actualizado = await db.Producto.update(
-        {
-          nombre: req.body.nombre,
-          precio: req.body.precio,
-          cant_desc: req.body.descuento,
-          descripcion: req.body.detalle,
-          img_prod: req.file.filename,
-          id_plataforma: req.body.plataforma,
-        },
-        {
-          where: {
-            id_producto: id,
-          },
-        }
-      );
-      for (let i = 0; i < req.body.tag.length; i++) {
-        const element = req.body.tag[i];
+    const oldProduct = await db.Producto.findOne({
+      where: {
+        id_producto: id
       }
-      // for (let i = 0; i < producto.categorias.length; i++) {
-      //   const element = producto.categorias[i].id_categoria;
-      //   await db.ProductoCategoria.destroy({
-      //     where: {
-      //       id: element,
-      //     },
-      //   });
-      // }
+    })
+    if (errores.isEmpty()) {
+      try {
+        const producto = await db.Producto.update(
+          {
+            nombre: req.body.nombre,
+            precio: req.body.precio,
+            cant_desc: req.body.descuento,
+            descripcion: req.body.detalle,
+            img_prod: req.file != null ? req.file.filename : oldProduct.img_prod,
+            id_plataforma: req.body.plataforma,
+          },
+          {
+            where: {
+              id_producto: id,
+            },
+          }
+        );
+        
+        for (let i = 0; i < producto.categorias.length; i++) {
+          const idCategoria = producto.categorias[i].id_categoria;
+          await db.ProductoCategoria.destroy({
+            where: {
+              id: idCategoria,
+            },
+          });
+        }
 
-      if (actualizado) {
-        res.redirect("/detail/" + id);
+        for (let i = 0; i < req.body.tag.length; i++) {
+          const idCategoria = req.body.tag[i];
+          await producto.addCategorias(Number(idCategoria))
+        }
+
+        res.redirect("/products/detail/" + id);
+      } catch (error) {
+        res.render("error", { error: error})
       }
     } else {
       const plataformas = await db.Plataforma.findAll();
       const categorias = await db.Categoria.findAll();
       const seleccionadas = req.body.tag;
-      const categoriasFiltradas = categorias.filter(
+      let categoriasFiltradas;
+      let categoriasSeleccionadas;
+      if (seleccionadas != undefined) {
+        categoriasFiltradas = categorias.filter(
+          (categoria) =>
+            !seleccionadas.find(
+              (prodCategoria) =>
+                prodCategoria.id_categoria === categoria.id_categoria
+            )
+        );
+      }
+      categoriasSeleccionadas = categorias.filter(
         (categoria) =>
-          !seleccionadas.find(
+          seleccionadas.find(
             (prodCategoria) =>
               prodCategoria.id_categoria === categoria.id_categoria
           )
       );
 
       res.render("productEdit", {
-        categorias: categoriasFiltradas,
+        categorias: categoriasFiltradas != null ? categoriasFiltradas : categorias,
         plataformas: plataformas,
         usuario: req.session.userLogged,
-        producto: req.body,
-        img: req.file.filename,
+        seleccionadas: categoriasSeleccionadas,
+        old: req.body,
+        producto: null,
+        imagen: req.file != undefined ? req.file.filename : oldProduct.img_prod,
         id: id,
-        error: errores,
+        errores: errores.mapped(),
       });
     }
   },

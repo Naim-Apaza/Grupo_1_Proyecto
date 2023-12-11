@@ -13,8 +13,16 @@
       </div>
       <div class="edit-container">
         <h1 class="edit-title">Editar</h1>
+        <div class="errores-container">
+          <ul class="errores"></ul>
+          <% if (errores) { %>
+            <% for( let e = 0; e < errores.length; e++ ) { %>
+              <li class="error"><%= errores[e].msg %></li>
+            <% } %>
+          <% } %>
+        </div>
         <form
-          action="/products/edit/<%= producto.id_producto || id %>?_method=PUT"
+          action="/products/edit/<%= producto != null ? producto.id_producto : id%>?_method=PUT"
           class="edit-form"
           method="post"
           enctype="multipart/form-data"
@@ -26,7 +34,7 @@
               id="nombre"
               type="text"
               name="nombre"
-              value="<%= producto.nombre %>  "
+              value="<%= old != null ? old.nombre : producto.nombre %>"
               placeholder="Inserte un nombre..."
               required
             />
@@ -42,7 +50,7 @@
               minlength="1"
               max="99999"
               min="0"
-              value="<%= producto.precio %>"
+              value="<%= old != null ? old.precio : producto.precio %>"
               name="precio"
               placeholder="Introduzca el valor del juego..."
               required
@@ -59,31 +67,43 @@
               max="100"
               maxlength="3"
               minlength="1"
-              value="<%= producto.cant_desc || producto.descuento%>"
+              value="<%= old != null ? old.descuento : producto.cant_desc %>"
               placeholder="Introduzca el descuento (opcional)"
             />
           </div>
           <div class="field">
             <label class="label" for="plataforma">Plataformas</label>
-            <select name="plataforma" size="5" required id="plataforma">
+            <select name="plataforma" size="5" id="plataforma">
               <% for(let i = 0;i < plataformas.length;i++) { %> 
-                <% if(producto.plataformas.id_plataforma == plataformas[i].id_plataforma || producto.plataforma == plataformas[i].id_plataforma) { %>
-                  <option value="<%= plataformas[i].id_plataforma %>" selected>
-                    <%=plataformas[i].nombre %>
-                  </option>
+                <% if (old != null) { %>
+                  <% if(old.plataforma == plataformas[i].id_plataforma) { %>
+                    <option value="<%= plataformas[i].id_plataforma %>" selected>
+                      <%= plataformas[i].nombre %>
+                    </option>
+                  <% } else { %>
+                    <option value="<%= plataformas[i].id_plataforma %>">
+                      <%= plataformas[i].nombre %>
+                    </option>
+                  <% } %> 
                 <% } else { %>
-                  <option value="<%= plataformas[i].id_plataforma %>">
-                    <%=plataformas[i].nombre %>
-                  </option>
-                <% } %> 
+                  <% if(producto != null && producto.id_plataforma == plataformas[i].id_plataforma) { %>
+                    <option value="<%= plataformas[i].id_plataforma %>" selected>
+                      <%= plataformas[i].nombre %>
+                    </option>
+                  <% } else { %>
+                    <option value="<%= plataformas[i].id_plataforma %>">
+                      <%= plataformas[i].nombre %>
+                    </option>
+                  <% } %> 
+                <% } %>
               <% } %>
             </select>
           </div>
           <div class="field">
             <label class="label" for="tag">Categoría</label>
-            <select name="tag" multiple required id="tag">
-              <% if (producto.tag) { %>
-                <% producto.tag.forEach((seleccionada) => { %>
+            <select name="tag" multiple id="tag">
+              <% if (old != null) { %>
+                <% seleccionadas.forEach((seleccionada) => { %>
                   <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
                  <% }) %>
               <% } else { %>
@@ -98,10 +118,12 @@
           </div>
           <div class="field-img">
             <label class="label" for="imagen">Imagen</label>
-            <% if (producto.img_prod || imagen) { %>
-              <img class="img" src="/images/products/<%= producto.img_prod || imagen %>" alt="<%= producto.nombre %>">
+            <% if (producto != null) { %>
+              <img class="img" src="/images/products/<%= producto.img_prod %>" alt="<%= producto.nombre %>">
+            <% } else if (imagen != null) { %>
+              <img class="img" src="/images/products/<%= imagen %>" alt="<%= old.nombre %>">
             <% } else { %>
-              <img class="img" src="" alt="">
+              <img class="img" src="/images/products/204.jpg" alt="<%= old != null ? old.nombre : producto.nombre %>">
             <% } %>
             <input
               class="input"
@@ -119,8 +141,7 @@
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ><%= producto.descripcion || producto.detalle %>
-            </textarea>
+            ><%= old != null ? old.detalle : producto.descripcion %></textarea>
           </div>
           <button class="editar-button" type="submit">Guardar cambios</button>
         </form>

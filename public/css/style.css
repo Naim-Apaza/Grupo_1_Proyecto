@@ -1048,6 +1048,21 @@ body {
   border-bottom: 1px solid gray;
 }
 
+.create-main .create-container .errores-container {
+  border-radius: 1em;
+  background-color: red;
+  margin: 10px;
+}
+
+.create-main .create-container .errores-container .errores {
+  list-style-type: none;
+}
+
+.create-main .create-container .errores-container .errores .error {
+  padding: 10px;
+  color: white;
+}
+
 .create-main .create-container .create-form {
   display: flex;
   flex-direction: row;
@@ -1239,6 +1254,21 @@ body {
   margin: 20px;
   padding: 10px;
   border-bottom: 1px solid gray;
+}
+
+.edit-main .edit-container .errores-container {
+  border-radius: 1em;
+  background-color: red;
+  margin: 10px;
+}
+
+.edit-main .edit-container .errores-container .errores {
+  list-style-type: none;
+}
+
+.edit-main .edit-container .errores-container .errores .error {
+  padding: 10px;
+  color: white;
 }
 
 .edit-main .edit-container .edit-form {
