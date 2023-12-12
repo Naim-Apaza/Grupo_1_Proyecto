@@ -16,8 +16,8 @@
         <div class="errores-container">
           <ul class="errores"></ul>
           <% if (errores) { %>
-            <% for( let e = 0; e < errores.length; e++ ) { %>
-              <li class="error"><%= errores[e].msg %></li>
+            <% for(let error in errores) { %>
+              <li class="error"><%= errores[error].msg %></li>
             <% } %>
           <% } %>
         </div>
@@ -95,8 +95,8 @@
           <div class="field">
             <label class="label" for="tag">Categorías</label>
             <select name="tag" multiple id="tag">
-              <% if (old != null) { %>
-                <% old.tag.forEach((seleccionada) => { %>
+              <% if (old != null && seleccionadas != undefined) { %>
+                <% seleccionadas.forEach((seleccionada) => { %>
                   <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
                  <% }) %>
               <% } %>
@@ -137,7 +137,7 @@
 
     <!-- Footer -->
     <%- include('./partials/footer') %>
-    <script src="/js/createProduct.js"></script>
+    <script src="/js/createProductValidator.js"></script>
     <script src="/js/imgView.js"></script>
   </body>
 </html>

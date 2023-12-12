@@ -23,10 +23,10 @@
                 <div class="desc-box">
                     <a href="/products/detail/<%=productos[i].id_producto %> " class="titulo-juego"><%= productos[i].nombre + " - " + productos[i].plataformas.nombre%> </a>             
                   <% if(productos[i].cant_desc == 0){%>
-                    <p class="precio">$<%=productos[i].precio %></p>
+                    <p class="precio">$<%= (productos[i].precio).toFixed(2) %></p>
                     <% }else{ %>    
                   <p class="oferta"><%= productos[i].cant_desc %>% <i class="fa-solid fa-tag"></i></p>
-                  <p class="precio">$<%= productos[i].precio - (productos[i].precio * (productos[i].cant_desc / 100)) %></p>
+                  <p class="precio">$<%= (productos[i].precio - (productos[i].precio * (productos[i].cant_desc / 100))).toFixed(2) %></p>
                   <% } %>  
                 </div>
               </div>

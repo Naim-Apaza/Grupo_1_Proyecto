@@ -16,8 +16,8 @@
         <div class="errores-container">
           <ul class="errores"></ul>
           <% if (errores) { %>
-            <% for( let e = 0; e < errores.length; e++ ) { %>
-              <li class="error"><%= errores[e].msg %></li>
+            <% for(let error in errores) { %>
+              <li class="error"><%= errores[error].msg %></li>
             <% } %>
           <% } %>
         </div>
@@ -36,7 +36,6 @@
               name="nombre"
               value="<%= old != null ? old.nombre : producto.nombre %>"
               placeholder="Inserte un nombre..."
-              required
             />
           </div>
           <div class="field">
@@ -53,7 +52,6 @@
               value="<%= old != null ? old.precio : producto.precio %>"
               name="precio"
               placeholder="Introduzca el valor del juego..."
-              required
             />
           </div>
           <div class="field">
@@ -102,11 +100,11 @@
           <div class="field">
             <label class="label" for="tag">Categoría</label>
             <select name="tag" multiple id="tag">
-              <% if (old != null) { %>
+              <% if (old != null && seleccionadas != null) { %>
                 <% seleccionadas.forEach((seleccionada) => { %>
                   <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
                  <% }) %>
-              <% } else { %>
+              <% } else if (producto != null){ %>
                 <% producto.categorias.forEach((categoria) => { %>
                   <option value="<%= categoria.id_categoria %>" selected><%= categoria.nombre %></option>
                  <% }) %>
@@ -141,7 +139,7 @@
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ><%= old != null ? old.detalle : producto.descripcion %></textarea>
+            ><%= old != undefined ? old.detalle : producto.descripcion %></textarea>
           </div>
           <button class="editar-button" type="submit">Guardar cambios</button>
         </form>
@@ -150,7 +148,7 @@
 
     <!-- Footer -->
     <%- include('./partials/footer') %>
-    <script src="/js/createProduct.js"></script>
+    <script src="/js/editProductValidator.js"></script>
     <script src="/js/imgView.js"></script>
   </body>
 </html>

@@ -29,10 +29,10 @@
                   <%=productos[i].cant_desc %>% <i class="fa-solid fa-tag"></i>
                 </p>
                 <p class="precio">
-                  <p class="precio">$<%= productos[i].precio - (productos[i].precio * (productos[i].cant_desc / 100)) %></p>
+                  <p class="precio">$<%= (productos[i].precio - (productos[i].precio * (productos[i].cant_desc / 100))).toFixed(2) %></p>
                 </p>
               <% } else { %>
-                <p class="precio">$<%= productos[i].precio %></p>
+                <p class="precio">$<%= (productos[i].precio).toFixed(2) %></p>
               <% } %>
             </div>
           </div>

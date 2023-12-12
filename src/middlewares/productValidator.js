@@ -26,9 +26,10 @@ module.exports = [
     })
     .withMessage("El descuento debe ser un numero entero entre 1 y 100."),
   body("detalle")
-    .isLength({ min: 20, max: 255 })
+    .notEmpty()
+    .isLength({ min: 20 })
     .withMessage(
-      "El detalle de tener como minimo 20 caracteres y como maximo 255."
+      "El detalle debe tener como minimo 20 caracteres."
     ),
   body("plataforma")
     .notEmpty()

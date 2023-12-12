@@ -112,7 +112,6 @@ const controller = {
       } else {
         res.render("users/profile", {
           usuario: usuario,
-          rol: rol,
           error: "La contraseña actual es incorrecta.",
         });
       }
@@ -120,7 +119,6 @@ const controller = {
       console.error(error);
       res.render("users/profile", {
         usuario: usuario,
-        rol: rol,
         error: "Ha ocurrido un error al cambiar la contraseña.",
       });
     }

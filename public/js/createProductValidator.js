@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
   let erroresList = document.querySelector(".errores");
-  let formulario = document.querySelector("form.create-form");
+  let formulario = document.querySelector("form");
   let errores = [];
   let nombre = document.querySelector("#nombre");
   let precio = document.querySelector("#precio");
@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
       errores.push("Debe tener por lo menos 20 caracteres");
     }
 
-    if (extension == undefined) {
+    if (extension == undefined || extension == null) {
       errores.push("Campo de imagen obligatorio");
     } else if (!extensionesPermitidas.includes(extension)) {
       errores.push("Debe ser un archivo valido (JPG, JPEG, PNG, GIF)");
