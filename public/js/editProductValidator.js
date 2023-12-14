@@ -59,6 +59,7 @@ window.addEventListener("load", function () {
       if (!extensionesPermitidas.includes(extension)) {
         errores.push("Debe ser un archivo valido (JPG, JPEG, PNG, GIF)");
       }
+      
       if (errores.length > 0) {
         erroresList.innerHTML = "";
         for (let i = 0; i < errores.length; i++) {

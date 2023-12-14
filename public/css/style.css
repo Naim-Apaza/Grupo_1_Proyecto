@@ -242,6 +242,14 @@ body {
   padding: 5px;
 }
 
+.register-main .register-container .form-container .img {
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px 1px red;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
 .register-main .register-container .form-container .form-field {
   margin-bottom: 10px;
   font-family: "Sofia Sans", sans-serif;
@@ -461,6 +469,78 @@ body {
   box-shadow: 2px 2px 2px 2px gray;
   border-radius: 10px;
   padding: 15px;
+}
+
+.profile-main .profile-container .profile-info .password-container {
+  display: none;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .form-group
+  .form-label {
+  font-weight: bold;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .change-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: black;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+}
+
+  .profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .form-group
+  .input {
+  margin-bottom: 10px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
 }
 
 .profile-main .profile-container .profile-info .buttons {

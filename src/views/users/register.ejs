@@ -54,17 +54,20 @@
             value="<%= locals.old && old.correo ? old.correo : '' %>"
           />
 
+          <legend class="info">Foto de perfil</legend>
+
+          <img src="/images/products/<%= imagen != null ? imagen : "204.jpg" %>" alt="imagenUsuario" class="img">
           <% if(locals.errores && errores.userImage){ %>
           <p class="errorText"><%= errores.userImage.msg %></p>
           <% } %>
           <input
-            class="main-field"
+            class="form-field"
             type="file"
             name="userImage"
+            id="imagen"
             accept="image/*"
           />
 
-          <legend class="info">Foto de perfil</legend>
           <% if(locals.errores && errores.password){ %>
           <p class="errorText"><%= errores.password.msg %></p>
           <% } %>
@@ -99,4 +102,6 @@
       </div>
     </main>
   </body>
+
+  <script src="/js/imgView.js"></script>
 </html>

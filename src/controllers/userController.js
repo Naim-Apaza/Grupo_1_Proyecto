@@ -14,33 +14,36 @@ const db = require("../database/models/index.js");
 
 const controller = {
   register: (req, res) => {
-    res.render("users/register", { errores: [] });
+    res.render("users/register", { errores: [], imagen: null });
   },
 
-  saveRegister: (req, res) => {
+  saveRegister: async (req, res) => {
     let errores = validationResult(req);
     let saveImage = req.file;
-    if (errores.isEmpty() && saveImage != null) {
+    if (errores.isEmpty()) {
       try {
-        const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+        const hashedPassword = await bcrypt.hashSync(req.body.password, 10);
 
-        db.Usuario.create({
+        const producto = await db.Usuario.create({
           nombre: req.body.name,
           apellido: req.body.lastName,
           correo: req.body.correo,
           clave: hashedPassword,
-          img_usuario: saveImage.filename,
-          id_rol: 1
+          img_usuario: saveImage != undefined ? saveImage.filename : "204.jpg",
+          id_rol: 1,
         });
 
         // Responder con algún mensaje o redirigir a otra página
         res.redirect("/users/login");
       } catch (error) {
-        console.error(error);
-        res.render("users/register");
+        res.render("error", { error: error });
       }
     } else {
-      res.render("users/register", { errores: errores.mapped(), old: req.body });
+      res.render("users/register", {
+        errores: errores.mapped(),
+        old: req.body,
+        imagen: saveImage != null ? saveImage.filename : "204.jpg",
+      });
     }
   },
   login: (req, res) => {
@@ -67,26 +70,30 @@ const controller = {
           });
         }
       } else {
-        res.render("users/login", { error: "No existe este usuario." });
+        res.render("users/login", { error: "Correo incorrecto." });
       }
     } catch (error) {
-      console.error(error);
-      res.render("users/login");
+      res.render("error", { error: error });
     }
   },
   mostrarPerfil: async (req, res) => {
-    const usuario = await db.Usuario.findOne({
-      where: {
-        correo: req.session.userLogged.correo,
-      },
-    });
-    res.render("users/profile", { usuario: usuario });
+    try {
+      const usuario = await db.Usuario.findOne({
+        where: {
+          correo: req.session.userLogged.correo,
+        },
+      });
+
+      res.render("users/profile", { usuario: usuario });
+    } catch (error) {
+      res.render("error", { error: error });
+    }
   },
 
   logout: async (req, res) => {
     req.session.destroy(() => {
-      res.redirect("/users/login")
-    })
+      res.redirect("/users/login");
+    });
   },
 
   changePassword: async (req, res) => {
@@ -116,11 +123,7 @@ const controller = {
         });
       }
     } catch (error) {
-      console.error(error);
-      res.render("users/profile", {
-        usuario: usuario,
-        error: "Ha ocurrido un error al cambiar la contraseña.",
-      });
+      res.render("error", { error: error });
     }
   },
 };

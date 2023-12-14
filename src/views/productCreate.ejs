@@ -108,7 +108,7 @@
           <div class="field-img">
             <label class="label" for="imagen">Imagen</label>
             <% if (old != null || imagen != null) { %>
-              <img class="img" src="/images/products/<%= old.img_prod || imagen %>" alt="<%= old.nombre %>">
+              <img class="img" src="/images/products/<%= imagen %>" alt="<%= old.nombre %>">
             <% } else { %>
               <img class="img" src="/images/products/204.jpg" alt="imagenProducto">
             <% } %>

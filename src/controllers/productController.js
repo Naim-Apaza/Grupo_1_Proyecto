@@ -68,7 +68,7 @@ const controller = {
           nombre: req.body.nombre,
           descripcion: req.body.detalle,
           precio: req.body.precio,
-          img_prod: req.file.filename,
+          img_prod: req.file != undefined ? req.file.filename : "204.jpg",
           cant_desc: req.body.descuento,
           id_plataforma: req.body.plataforma,
         });
