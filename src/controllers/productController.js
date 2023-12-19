@@ -62,6 +62,8 @@ const controller = {
   },
   store: async (req, res) => {
     let imageFile = req.file;
+/*     console.log(req.body)
+ */
     let resultValidation = validationResult(req);
     let errores = resultValidation.mapped();
     if (resultValidation.isEmpty()) {
@@ -73,7 +75,7 @@ const controller = {
           img_prod: req.file.filename,
           cant_desc: req.body.descuento,
           id_plataforma: req.body.plataforma,
-        });
+         });
         for (let i = 0; i < req.body.tag.length; i++) {
           const tag = req.body.tag[i];
           producto.addCategorias(Number(tag));

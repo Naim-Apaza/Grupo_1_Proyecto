@@ -31,8 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         id_plataforma: {
             type: DataTypes.INTEGER,
             allowNull: false
-        }
-
+        },
+       
     };
     const config = {
         tableName: 'productos',

@@ -16,6 +16,10 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 
+//Api
+
+const productRouter = require("./src/routes/Api/ProductRouter")
+
 //COOKIES
 
 app.use(cookieParser());
@@ -56,10 +60,14 @@ app.set("view engine", "ejs");
 
 app.use(logMiddleware);
 
+//Rutas
 app.use("/", mainRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
+
+//Apis
+app.use("/Api", productRouter);
 
 //Error 404
 
