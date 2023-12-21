@@ -62,8 +62,8 @@ const controller = {
   },
   store: async (req, res) => {
     let imageFile = req.file;
-/*     console.log(req.body)
- */
+    console.log(req.file)
+
     let resultValidation = validationResult(req);
     let errores = resultValidation.mapped();
     if (resultValidation.isEmpty()) {
