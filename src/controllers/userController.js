@@ -14,7 +14,7 @@ const db = require("../database/models/index.js");
 
 const controller = {
   register: (req, res) => {
-    res.render("users/register", { errores: [], imagen: null });
+    res.render("users/register", { imagen: null });
   },
 
   saveRegister: async (req, res) => {
@@ -29,7 +29,8 @@ const controller = {
           apellido: req.body.lastName,
           correo: req.body.correo,
           clave: hashedPassword,
-          img_usuario: saveImage != undefined ? saveImage.filename : "204.jpg",
+          img_usuario:
+            saveImage != undefined ? saveImage.filename : "default.jpg",
           id_rol: 1,
         });
 
@@ -42,7 +43,7 @@ const controller = {
       res.render("users/register", {
         errores: errores.mapped(),
         old: req.body,
-        imagen: saveImage != null ? saveImage.filename : "204.jpg",
+        imagen: saveImage != undefined ? saveImage.filename : "default.jpg",
       });
     }
   },
@@ -66,11 +67,15 @@ const controller = {
           res.redirect("/");
         } else {
           res.render("users/login", {
-            error: "Las credenciales son inválidas.",
+            old: req.body,
+            error: "Contraseña incorrecta.",
           });
         }
       } else {
-        res.render("users/login", { error: "Correo incorrecto." });
+        res.render("users/login", {
+          old: req.body,
+          error: "No existe un usuario con este correo.",
+        });
       }
     } catch (error) {
       res.render("error", { error: error });

@@ -3,6 +3,9 @@ const { body } = require("express-validator");
 module.exports = [
   body("nombre")
     .notEmpty()
+    .withMessage(
+      "El nombre es obligatorio"
+    )
     .isLength({ min: 5, max: 60 })
     .withMessage(
       "El titulo del juego debe tener como minimo 5 caracteres y como maximo 60"
@@ -27,6 +30,9 @@ module.exports = [
     .withMessage("El descuento debe ser un numero entero entre 1 y 100."),
   body("detalle")
     .notEmpty()
+    .withMessage(
+      "La descripción es obligatoria"
+    )
     .isLength({ min: 20 })
     .withMessage(
       "El detalle debe tener como minimo 20 caracteres."
@@ -40,11 +46,11 @@ module.exports = [
       throw new Error("Debe seleccionar una imagen.");
     }
     value = req.file.originalname;
-    const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+    const allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
     const fileExtension = value.split(".").pop().toLowerCase();
     if (!allowedExtensions.includes(fileExtension)) {
       req.file.path = undefined;
-      throw new Error("La imagen debe ser JPG, JPEG, PNG o GIF.");
+      throw new Error("La imagen debe ser JPG, JPEG, PNG, WEBP o GIF.");
     }
 
     return true;

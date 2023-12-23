@@ -52,9 +52,7 @@ const controller = {
         categorias: categorias,
         plataformas: plataformas,
         imagen: null,
-        errores: null,
         seleccionadas: null,
-        old: null,
       });
     } catch (error) {
       res.render("error", { error: error });
@@ -143,11 +141,8 @@ const controller = {
         categorias: categoriasFiltradas,
         plataformas: plataformas,
         usuario: req.session.userLogged,
-        old: null,
         producto: producto,
         errores: null,
-        seleccionadas: null,
-        imagen: "204.jpg",
       });
     } catch (error) {
       res.render("error", { error: error });
@@ -201,7 +196,6 @@ const controller = {
         }
 
         res.redirect("/products/detail/" + id);
-
       } catch (error) {
         console.log(error);
         res.render("error", { error: error });
@@ -231,8 +225,8 @@ const controller = {
         usuario: req.session.userLogged,
         seleccionadas: categoriasSeleccionadas,
         old: req.body,
-        producto: null,
         imagen: req.file != undefined ? req.file.filename : oldProduct.img_prod,
+        producto: oldProduct,
         id: id,
         errores: errores.mapped(),
       });
@@ -246,14 +240,12 @@ const controller = {
         },
       });
       await fs.unlink(`../../images/products/${producto.img_prod}`);
-      const productoBorrado = await db.Producto.destroy({
+      await db.Producto.destroy({
         where: {
           id_producto: req.params.id,
         },
       });
-      if (productoBorrado == 1) {
-        res.redirect("/products");
-      }
+      res.redirect("/products");
     } catch (error) {
       res.render("error", { error: error });
     }

@@ -13,6 +13,8 @@
     <main class="register-main">
       <h1 class="register-title">Registro</h1>
       <div class="register-container">
+        <ul class="errores">
+        </ul>
         <form
           action="/users/register"
           method="POST"
@@ -20,45 +22,48 @@
           class="form-container"
         >
           <% if(locals.errores && errores.name){ %>
-          <p class="errorText"><%= errores.name.msg %></p>
+            <p class="errorText"><%= errores.name.msg %></p>
           <% } %>
           <input
             class="form-field"
             type="text"
             name="name"
+            id="name"
             placeholder="Nombre/s"
             maxlength="40"
             value="<%= locals.old && old.name ? old.name : '' %>"
           />
 
           <% if(locals.errores && errores.lastName){ %>
-          <p class="errorText"><%= errores.lastName.msg %></p>
+            <p class="errorText"><%= errores.lastName.msg %></p>
           <% } %>
           <input
             class="form-field"
             type="text"
             name="lastName"
+            id="lastName"
             placeholder="Apellido/s"
             maxlength="40"
             value="<%= locals.old && old.lastName ? old.lastName : '' %>"
           />
 
           <% if(locals.errores && errores.correo){ %>
-          <p class="errorText"><%= errores.correo.msg %></p>
+            <p class="errorText"><%= errores.correo.msg %></p>
           <% } %>
           <input
             class="form-field"
             type="email"
             name="correo"
+            id="correo"
             placeholder="Correo electrónico"
             value="<%= locals.old && old.correo ? old.correo : '' %>"
           />
 
           <legend class="info">Foto de perfil</legend>
 
-          <img src="/images/products/<%= imagen != null ? imagen : "204.jpg" %>" alt="imagenUsuario" class="img">
+          <img src="/images/users/<%= imagen != null ? imagen : "default.jpg" %>" alt="imagenUsuario" class="img">
           <% if(locals.errores && errores.userImage){ %>
-          <p class="errorText"><%= errores.userImage.msg %></p>
+            <p class="errorText"><%= errores.userImage.msg %></p>
           <% } %>
           <input
             class="form-field"
@@ -69,12 +74,13 @@
           />
 
           <% if(locals.errores && errores.password){ %>
-          <p class="errorText"><%= errores.password.msg %></p>
+            <p class="errorText"><%= errores.password.msg %></p>
           <% } %>
           <input
             class="main-field"
             type="password"
             name="password"
+            id="password"
             placeholder="Contraseña"
             minlength="8"
             maxlength="32"
@@ -86,6 +92,7 @@
             type="password"
             name="repass"
             placeholder="Repita la contraseña"
+            id="repass"
             minlength="8"
             maxlength="32"
           />
@@ -103,5 +110,6 @@
     </main>
   </body>
 
-  <script src="/js/imgView.js"></script>
+  <script src="/js/registerUserValidator.js"></script>
+  <script src="/js/imgViewUser.js"></script>
 </html>

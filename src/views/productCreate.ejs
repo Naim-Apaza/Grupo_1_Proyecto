@@ -15,11 +15,6 @@
         <h1 class="create-title">Crear</h1>
         <div class="errores-container">
           <ul class="errores"></ul>
-          <% if (errores) { %>
-            <% for(let error in errores) { %>
-              <li class="error"><%= errores[error].msg %></li>
-            <% } %>
-          <% } %>
         </div>
         <form
           action="/products/create"
@@ -35,8 +30,11 @@
               type="text"
               name="nombre"
               placeholder="Inserte un nombre..."
-              value="<%= old != null? old.nombre : '' %>"
+              value="<%= locals.old && old.nombre ? old.nombre : '' %>"
             />
+            <% if(locals.errores && errores.nombre) { %>
+              <p class="error-field"><%= errores.nombre.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="precio">Precio</label>
@@ -51,8 +49,11 @@
               step="any"
               name="precio"
               placeholder="Introduzca el valor del juego..."
-              value="<%= old != null? old.precio : 0 %>"
+              value="<%= locals.old &&  old.precio ? old.precio : 0 %>"
             />
+            <% if(locals.errores && errores.precio) { %>
+              <p class="error-field"><%= errores.precio.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="descuento">Descuento</label>
@@ -65,13 +66,16 @@
               max="100"
               name="descuento"
               placeholder="Introduzca el porcentaje de descuento (opcional)"
-              value="<%= old != null ? old.descuento : 0 %>"
+              value="<%= locals.old && old.descuento ? old.descuento : 0 %>"
             />
+            <% if(locals.errores && errores.descuento) { %>
+              <p class="error-field"><%= errores.descuento.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="plataforma">Plataforma</label>
             <select name="plataforma" size="5" id="plataforma">
-              <% if (old != null) { %>
+              <% if (locals.old && old.plataforma) { %>
                 <% for(let i = 0;i < plataformas.length;i++) { %> 
                   <% if(old.plataforma == plataformas[i].id_plataforma) { %>
                     <option value="<%= plataformas[i].id_plataforma %>" selected>
@@ -91,11 +95,14 @@
                 <% } %>
               <% } %>
             </select>
+            <% if(locals.errores && errores.plataforma) { %>
+              <p class="error-field"><%= errores.plataforma.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="tag">Categorías</label>
             <select name="tag" multiple id="tag">
-              <% if (old != null && seleccionadas != undefined) { %>
+              <% if (locals.seleccionadas && locals.categorias) { %>
                 <% seleccionadas.forEach((seleccionada) => { %>
                   <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
                  <% }) %>
@@ -104,10 +111,13 @@
                <option value="<%= categoria.id_categoria %>"><%= categoria.nombre %></option>
               <% }) %>
             </select>
+            <% if(locals.errores && errores.tag) { %>
+              <p class="error-field"><%= errores.tag.msg %></p>
+            <% } %>
           </div>
           <div class="field-img">
             <label class="label" for="imagen">Imagen</label>
-            <% if (old != null || imagen != null) { %>
+            <% if (locals.old && locals.imagen &&old.nombre ) { %>
               <img class="img" src="/images/products/<%= imagen %>" alt="<%= old.nombre %>">
             <% } else { %>
               <img class="img" src="/images/products/204.jpg" alt="imagenProducto">
@@ -118,6 +128,9 @@
               name="imagen"
               id="imagen"
             />
+            <% if(locals.errores && errores.imagen) { %>
+              <p class="error-field"><%= errores.imagen.msg %></p>
+            <% } %>
           </div>
           <div class="detail">
             <label for="detalle" class="label">Descripción</label>
@@ -128,7 +141,10 @@
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ><%= old != null ? old.detalle : ''%></textarea>
+            ><%= locals.old && old.detalle ? old.detalle : ''%></textarea>
+            <% if(locals.errores && errores.detalle) { %>
+              <p class="error-field"><%= errores.detalle.msg %></p>
+            <% } %>
           </div>
           <button class="crear-button" type="submit">Crear</button>
         </form>
@@ -137,7 +153,7 @@
 
     <!-- Footer -->
     <%- include('./partials/footer') %>
-    <script src="/js/createProductValidator.js"></script>
-    <script src="/js/imgView.js"></script>
+      <script src="/js/imgViewProduct.js"></script>
+      <script src="/js/createProductValidator.js"></script>
   </body>
 </html>

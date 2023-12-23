@@ -15,14 +15,9 @@
         <h1 class="edit-title">Editar</h1>
         <div class="errores-container">
           <ul class="errores"></ul>
-          <% if (errores) { %>
-            <% for(let error in errores) { %>
-              <li class="error"><%= errores[error].msg %></li>
-            <% } %>
-          <% } %>
         </div>
         <form
-          action="/products/edit/<%= producto != null ? producto.id_producto : id%>?_method=PUT"
+          action="/products/edit/<%= locals.producto && producto.id_producto ? producto.id_producto : locals.id %>?_method=PUT"
           class="edit-form"
           method="post"
           enctype="multipart/form-data"
@@ -34,9 +29,12 @@
               id="nombre"
               type="text"
               name="nombre"
-              value="<%= old != null ? old.nombre : producto.nombre %>"
+              value="<%= locals.old && old.nombre ? old.nombre : producto.nombre %>"
               placeholder="Inserte un nombre..."
             />
+            <% if(locals.errores && errores.nombre) { %>
+              <p class="error-field"><%= errores.nombre.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="precio">Precio</label>
@@ -49,10 +47,13 @@
               minlength="1"
               max="99999"
               min="0"
-              value="<%= old != null ? old.precio : producto.precio %>"
+              value="<%= locals.old && old.precio ? old.precio : producto.precio %>"
               name="precio"
               placeholder="Introduzca el valor del juego..."
             />
+            <% if(locals.errores && errores.precio) { %>
+              <p class="error-field"><%= errores.precio.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="descuento">Descuento</label>
@@ -65,15 +66,18 @@
               max="100"
               maxlength="3"
               minlength="1"
-              value="<%= old != null ? old.descuento : producto.cant_desc %>"
+              value="<%= locals.old && old.descuento ? old.descuento : producto.cant_desc %>"
               placeholder="Introduzca el descuento (opcional)"
             />
+            <% if(locals.errores && errores.descuento) { %>
+              <p class="error-field"><%= errores.descuento.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="plataforma">Plataformas</label>
             <select name="plataforma" size="5" id="plataforma">
               <% for(let i = 0;i < plataformas.length;i++) { %> 
-                <% if (old != null) { %>
+                <% if (locals.old && old.plataforma) { %>
                   <% if(old.plataforma == plataformas[i].id_plataforma) { %>
                     <option value="<%= plataformas[i].id_plataforma %>" selected>
                       <%= plataformas[i].nombre %>
@@ -96,11 +100,14 @@
                 <% } %>
               <% } %>
             </select>
+            <% if(locals.errores && errores.plataforma) { %>
+              <p class="error-field"><%= errores.plataforma.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="tag">Categoría</label>
             <select name="tag" multiple id="tag">
-              <% if (old != null && seleccionadas != null) { %>
+              <% if (locals.seleccionadas) { %>
                 <% seleccionadas.forEach((seleccionada) => { %>
                   <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
                  <% }) %>
@@ -113,15 +120,18 @@
                <option value="<%= categoria.id_categoria %>"><%= categoria.nombre %></option>
               <% }) %>
             </select>
+            <% if(locals.errores && errores.tag) { %>
+              <p class="error-field"><%= errores.tag.msg %></p>
+            <% } %>
           </div>
           <div class="field-img">
             <label class="label" for="imagen">Imagen</label>
             <% if (producto != null) { %>
               <img class="img" src="/images/products/<%= producto.img_prod %>" alt="<%= producto.nombre %>">
-            <% } else if (imagen != null) { %>
+            <% } else if (locals.imagen && locals.old && old.nombre) { %>
               <img class="img" src="/images/products/<%= imagen %>" alt="<%= old.nombre %>">
             <% } else { %>
-              <img class="img" src="/images/products/204.jpg" alt="<%= old != null ? old.nombre : producto.nombre %>">
+              <img class="img" src="/images/products/204.jpg" alt="<%= locals.old && old.nombre ? old.nombre : producto.nombre %>">
             <% } %>
             <input
               class="input"
@@ -129,6 +139,9 @@
               name="imagen"
               id="imagen"
             />
+            <% if(locals.errores && errores.imagen) { %>
+              <p class="error-field"><%= errores.imagen.msg %></p>
+            <% } %>
           </div>
           <div class="detail">
             <label for="detalle" class="label">Descripción</label>
@@ -139,7 +152,10 @@
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ><%= old != undefined ? old.detalle : producto.descripcion %></textarea>
+            ><%= locals.old && old.detalle ? old.detalle : producto.descripcion %></textarea>
+            <% if(locals.errores && errores.detalle) { %>
+              <p class="error-field"><%= errores.detalle.msg %></p>
+            <% } %>
           </div>
           <button class="editar-button" type="submit">Guardar cambios</button>
         </form>
@@ -149,6 +165,6 @@
     <!-- Footer -->
     <%- include('./partials/footer') %>
     <script src="/js/editProductValidator.js"></script>
-    <script src="/js/imgView.js"></script>
+    <script src="/js/imgViewProduct.js"></script>
   </body>
 </html>
