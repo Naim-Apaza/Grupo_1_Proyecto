@@ -11,26 +11,28 @@
       <section class="seccion">
         <% if(titulo != null) { %>
           <h1 class="search-title">Resultados de "<%= titulo %>" - <%= productos.length %></h1>
-          <% } %>
+        <% } else { %>
+          <h1 class="title">Todos los juegos</h1>
+        <% } %>
         <div class="container">
           
           <% if(productos.length > 0) { %>
             <% for(let i = 0; i < productos.length;i++){ %>  
               <div class="juego-container">
-                <img class="img-juego" src="/images/products/<%=productos[i].img_prod%>" alt="img-juego" />
+                <img class="img-juego" src="/images/products/<%= productos[i].img_prod %>" alt="img-juego" />
                 <div class="desc-box">
-                    <a href="/products/detail/<%=productos[i].id_producto %> " class="titulo-juego"><%= productos[i].nombre %> </a>             
+                    <a href="/products/detail/<%= productos[i].id_producto %> " class="titulo-juego"><%= productos[i].nombre + " - " + productos[i].plataformas.nombre%> </a>             
                   <% if(productos[i].cant_desc == 0){%>
-                    <p class="precio">$<%=productos[i].precio %></p>
-                    <% }else{ %>    
-                  <p class="oferta"><%=productos[i].cant_desc %>% <i class="fa-solid fa-tag"></i></p>
-                  <p class="precio">$<%=productos[i].precio - (productos[i].precio / productos[i].cant_desc) %></p>
+                    <p class="precio">$<%= (Number(productos[i].precio)).toFixed(2) %></p>
+                  <% }else{ %>    
+                    <p class="oferta"><%= productos[i].cant_desc %>% <i class="fa-solid fa-tag"></i></p>
+                    <p class="precio">$<%= (productos[i].precio - (productos[i].precio * (productos[i].cant_desc / 100))).toFixed(2) %></p>
                   <% } %>  
                 </div>
               </div>
               <% } %>  
             <% } else { %>
-              <h1 class="none-title">No se han encontrado productos.</h1>
+              <h2 class="none-title">No se han encontrado productos.</h2>
             <% } %>
 
           </div>

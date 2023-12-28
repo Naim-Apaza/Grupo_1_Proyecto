@@ -20,9 +20,9 @@ body {
   height: 100vh;
   background: linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.2),
-      rgba(0, 0, 0, 0.2),
-      rgba(255, 0, 0, 0.2)
+      rgba(255, 0, 0, 0.1),
+      rgba(255, 255, 255, 0.5),
+      rgba(0, 0, 0, 1)
     ),
     url("../images/background.jpg");
   background-position: center;
@@ -84,28 +84,29 @@ body {
 }
 
 .header .header-logo-container {
-  width: 33%;
+  width: 10%;
 }
 
 .header .header-logo-container img {
-  margin-left: 30px;
+  margin-left: 10px;
   max-width: 5vw;
 }
 
 .header .search-form {
   display: flex;
+  font-size: 1em;
   margin: 0 auto;
+  width: 70%;
 }
 
 .header .search-form .search-input {
   font-family: "Sofia Sans", sans-serif;
-  width: 80%;
+  width: 100%;
   border: 1px solid red;
   outline: none;
   border-radius: 5px;
   padding: 5px;
   background-color: white;
-  font-size: 0.7em;
   margin-right: 1px;
 }
 
@@ -120,6 +121,7 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  width: 10%;
 }
 
 .header .search-form .search-buttom:hover {
@@ -166,6 +168,7 @@ body {
   background-color: red;
   color: white;
   margin-left: 0;
+  width: 10%;
   padding: 10px;
 }
 
@@ -240,6 +243,14 @@ body {
   display: flex;
   flex-direction: column;
   padding: 5px;
+}
+
+.register-main .register-container .form-container .img {
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px 1px red;
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
 }
 
 .register-main .register-container .form-container .form-field {
@@ -449,8 +460,8 @@ body {
 }
 
 .profile-main .profile-container .user-img {
-  background-color: black;
-  width: 100%;
+  background-color: transparent;
+  width: 50%;
   border-radius: 10px;
   box-shadow: 2px 2px 2px 2px red;
   margin: 10px;
@@ -461,6 +472,78 @@ body {
   box-shadow: 2px 2px 2px 2px gray;
   border-radius: 10px;
   padding: 15px;
+}
+
+.profile-main .profile-container .profile-info .password-container {
+  display: none;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .form-group
+  .form-label {
+  font-weight: bold;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .change-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: black;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  padding: 15px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1em;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .form-group
+  .input {
+  margin-bottom: 10px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  background-color: white;
+  font-size: 1em;
 }
 
 .profile-main .profile-container .profile-info .buttons {
@@ -610,6 +693,13 @@ body {
   color: red;
 }
 
+.detail-main .game-container .descripcion .detalles .precio-tachado {
+  color: gray;
+  text-align: right;
+  text-decoration: line-through solid red;
+  font-size: 1.5em;
+}
+
 .detail-main .game-container .descripcion .detalles .oferta {
   text-align: right;
   color: rgb(0, 255, 0);
@@ -651,6 +741,7 @@ body {
   font-size: 1em;
   margin: 2px;
   cursor: pointer;
+  width: 90%;
 }
 
 .detail-main
@@ -673,6 +764,7 @@ body {
   font-size: 1em;
   margin: 2px;
   cursor: pointer;
+  width: 90%;
 }
 
 .detail-main .game-container .descripcion .buttons .edit-btn:hover {
@@ -680,7 +772,7 @@ body {
   background-color: rgb(219, 219, 219);
 }
 
-.detail-main .game-container .descripcion .buttons .carrito {
+.detail-main .game-container .descripcion .buttons .carrito .carrito-btn {
   border: transparent;
   border-radius: 5px;
   background-color: rgb(0, 255, 0);
@@ -694,7 +786,7 @@ body {
   cursor: pointer;
 }
 
-.detail-main .game-container .descripcion .buttons .carrito:hover {
+.detail-main .game-container .descripcion .buttons .carrito .carrito-btn:hover {
   background-color: green;
   color: white;
 }
@@ -720,6 +812,11 @@ body {
   padding-bottom: 5px;
   text-align: right;
   border-bottom: 1px white solid;
+}
+
+.cart-main .none-title {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .cart-main .cart-container {
@@ -768,12 +865,77 @@ body {
   height: 100px;
 }
 
-.cart-main .cart-container .products-table .table-body td a {
+.cart-main
+  .cart-container
+  .products-table
+  .table-body
+  .product-name
+  .product-link {
   text-decoration: none;
-  color: red;
+  color: gray;
+}
+
+.cart-main
+  .cart-container
+  .products-table
+  .table-body
+  .product-name
+  .product-link:hover {
+    color: red;
+    font-weight: bold;
+  }
+
+.cart-main
+  .cart-container
+  .products-table
+  .acciones
+  .delete-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: red;
+  box-shadow: 1px 1px 1px 1px gray;
+  color: white;
+  padding: 10px;
+  margin: 2px;
+  cursor: pointer;
+  width: 90%;
+}
+
+.cart-main
+  .cart-container
+  .products-table
+  .acciones
+  .delete-btn:hover {
+  background-color: rgb(121, 45, 45);
+}
+
+.cart-main
+  .cart-container
+  .products-table
+  .acciones
+  .remove-btn {
+  border: transparent;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  box-shadow: 1px 1px 1px 1px gray;
+  padding: 10px;
+  margin: 2px;
+  cursor: pointer;
+  width: 90%;
+}
+
+.cart-main
+  .cart-container
+  .products-table
+  .acciones
+  .remove-btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .cart-main .cart-container .products-table .table-body .descuento {
+  font-weight: bold;
   color: rgb(0, 255, 0);
 }
 
@@ -813,18 +975,13 @@ body {
   width: 200px;
   color: inherit;
 
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .cart-main .cart-footer .footer-buttons .pay-button:hover {
   color: black;
   background-color: white;
   box-shadow: 1px 1px 1px 1px red;
-}
-
-.a_carrito {
-  text-decoration: none;
-  color: black;
 }
 
 /***** End Carrito *****/
@@ -928,6 +1085,17 @@ body {
 
 .product-main .seccion .search-title {
   color: white;
+}
+
+.product-main .seccion .title {
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  font-size: 1.5em;
+  width: 200px;
+  margin: 0 auto;
+  box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(255, 0, 0, 0.5);
+  border-radius: 5px;
 }
 
 .product-main .seccion .container {
@@ -1037,6 +1205,20 @@ body {
   border-bottom: 1px solid gray;
 }
 
+.create-main .create-container .errores-container {
+  border-radius: 1em;
+  background-color: red;
+  margin: 10px;
+}
+
+.create-main .create-container .errores-container .errores {
+  color: white;
+}
+
+.create-main .create-container .errores-container .errores .error {
+  padding: 10px;
+}
+
 .create-main .create-container .create-form {
   display: flex;
   flex-direction: row;
@@ -1054,12 +1236,25 @@ body {
   padding: 10px;
 }
 
+.create-main .create-container .create-form .field-img {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
 .create-main .create-container .create-form .detail {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: 10px;
   padding: 10px;
+}
+
+.create-main .create-container .create-form .detail .error-field {
+  color: red;
+  font-weight: lighter;
 }
 
 .create-main .create-container .create-form .detail .label {
@@ -1084,8 +1279,13 @@ body {
 }
 
 .create-main .create-container .create-form .detail textarea:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
+}
+
+.create-main .create-container .create-form .field .error-field {
+  color: red;
+  font-weight: lighter;
 }
 
 .create-main .create-container .create-form .field .label {
@@ -1110,11 +1310,43 @@ body {
 }
 
 .create-main .create-container .create-form .field .input:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
 .create-main .create-container .create-form .field select {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
+}
+
+.create-main .create-container .create-form .field-img .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-main .create-container .create-form .field-img .error-field {
+  color: red;
+  font-weight: lighter;
+}
+
+.create-main .create-container .create-form .field-img .img {
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px 1px red;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.create-main .create-container .create-form .field-img .input {
   margin-bottom: 30px;
   font-family: "Sofia Sans", sans-serif;
   border: none;
@@ -1195,6 +1427,21 @@ body {
   border-bottom: 1px solid gray;
 }
 
+.edit-main .edit-container .errores-container {
+  border-radius: 1em;
+  background-color: red;
+  margin: 10px;
+}
+
+.edit-main .edit-container .errores-container .errores {
+  list-style-type: none;
+}
+
+.edit-main .edit-container .errores-container .errores .error {
+  padding: 10px;
+  color: white;
+}
+
 .edit-main .edit-container .edit-form {
   display: flex;
   flex-direction: row;
@@ -1212,12 +1459,35 @@ body {
   padding: 10px;
 }
 
+.edit-main .edit-container .edit-form .field .error-field {
+  color: red;
+  font-weight: lighter;
+}
+
+.edit-main .edit-container .edit-form .field-img {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.edit-main .edit-container .edit-form .field-img .error-field {
+  color: red;
+  font-weight: lighter;
+}
+
 .edit-main .edit-container .edit-form .detail {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: 10px;
   padding: 10px;
+}
+
+.edit-main .edit-container .edit-form .detail .error-field {
+  color: red;
+  font-weight: lighter;
 }
 
 .edit-main .edit-container .edit-form .detail .label {
@@ -1242,7 +1512,7 @@ body {
 }
 
 .edit-main .edit-container .edit-form .detail textarea:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
@@ -1252,6 +1522,33 @@ body {
   color: red;
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .field-img .label {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-main .edit-container .edit-form .field-img .img {
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px 1px red;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.edit-main .edit-container .edit-form .field-img .input {
+  margin-bottom: 30px;
+  font-family: "Sofia Sans", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px 2px red;
+  font-size: 1em;
 }
 
 .edit-main .edit-container .edit-form .field .input {
@@ -1268,7 +1565,7 @@ body {
 }
 
 .edit-main .edit-container .edit-form .field .input:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   color: white;
 }
 
@@ -1405,8 +1702,16 @@ body {
     display: inherit;
   }
 
+  .header .header-logo-container {
+    width: 20%;
+  }
+
+  .header .header-logo-container img {
+    margin-left: 30px;
+  }
+
   .header .search-form .search-input {
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 
   .header .search-form .search-buttom {
@@ -1464,10 +1769,6 @@ body {
     width: 100%;
   }
 
-  .detail-main .game-container .descripcion .buttons {
-    flex-direction: column;
-  }
-
   .index-main .seccion .container {
     flex-direction: row;
     flex-wrap: wrap;
@@ -1504,6 +1805,10 @@ body {
     padding-bottom: 5em;
   }
 
+  .header .header-logo-container {
+    width: 10%;
+  }
+
   .header .navbar {
     display: flex;
   }
@@ -1518,8 +1823,18 @@ body {
     display: inherit;
   }
 
+  .header .search-form {
+    width: 40%;
+  }
+
+  .header .search-form .search-input {
+    font-size: 0.7em;
+    width: 90%;
+  }
+
   .header .search-form .search-buttom {
     display: inherit;
+    font-size: 0.7em;
   }
 
   .login-main {
@@ -1553,10 +1868,6 @@ body {
     width: 50%;
   }
 
-  .detail-main .game-container .descripcion .buttons {
-    flex-direction: row;
-  }
-
   .cart-main .cart-footer {
     flex-direction: row;
   }
@@ -1574,11 +1885,21 @@ body {
     width: 40%;
   }
 
+  .create-main .create-container .create-form .field-img {
+    flex-direction: column;
+    width: 40%;
+  }
+
   .create-main .create-container .create-form .detail {
     width: 90%;
   }
 
   .edit-main .edit-container .edit-form .field {
+    flex-direction: column;
+    width: 40%;
+  }
+
+  .edit-main .edit-container .edit-form .field-img {
     flex-direction: column;
     width: 40%;
   }

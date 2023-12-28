@@ -9,42 +9,85 @@
     <!-- Contenido principal -->
     <main class="cart-main">
       <h1 class="cart-title">Carrito</h1>
-      <div class="cart-container">
-        <table class="products-table">
-          <tr class="table-head">
-            <th class="img-head">Imagen</th>
-            <th>Juego</th>
-            <th>Cantidad</th>
-            <th>Acciones</th>
-            <th>Precio unitario</th>
-            <th class="disc-head">Descuento</th>
-            <th>Total</th>
-          </tr>
-          <tr class="table-body">
-            <td class="img-container">
-              <img
-                class="game-img-cart"
-                src="images/products/farcry.jpg"
-                alt="img-juego"
-              />
-            </td>
-            <td>Far Cry 6</td>
-            <td>1</td>
-            <td>
-              <a href="/cart/delete"><i class="fa-solid fa-trash-can"></i></a>
-            </td>
-            <td>$2.000</td>
-            <td class="descuento">20%</td>
-            <td class="final-price">$2.000</td>
-          </tr>
-        </table>
-      </div>
-      <div class="cart-footer">
-        <div class="total">TOTAL:</div>
-        <div class="footer-buttons">
-          <button class="pay-button" type="submit"><a class="a_carrito" href="/">Realizar compra </a></button>
+      <% if (carrito[0].productos.length > 0) { %>
+        <div class="cart-container">
+          <table class="products-table">
+            <tr class="table-head">
+              <th class="img-head">Portada</th>
+              <th>Juego</th>
+              <th>Cantidad</th>
+              <th>Acciones</th>
+              <th>Precio unitario</th>
+              <th class="disc-head">Descuento</th>
+              <th>Total</th>
+            </tr>
+            <% carrito.forEach((cart) => { %>
+              <% cart.productos.forEach((producto) => { %>
+                <tr class="table-body">
+                  <td class="img-container">
+                    <img
+                      class="game-img-cart"
+                      src="images/products/<%= producto.img_prod %>"
+                      alt="img-juego"
+                    />
+                  </td>
+                  <td class="product-name"><a href="/products/detail/<%= producto.id_producto %>" class="product-link"><%= producto.nombre %></a></td>
+                  <td><%= producto.CarritoProducto.cantidad %></td>
+                  <td class="acciones">
+                    <% if (producto.CarritoProducto.cantidad > 1) { %>
+                      <form action="/cart/remove/<%= producto.id_producto %>?_method=PUT" method="post">
+                        <abbr title="Quitar un producto del carrito">
+                          <button type="submit" class="remove-btn">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </button>
+                        </abbr>
+                      </form>
+                      <form action="/cart/delete/<%= producto.id_producto %>?_method=DELETE" method="post">
+                        <abbr title="Quitar todas las unidades">
+                          <button type="submit" class="delete-btn">
+                            <i class="fa-solid fa-ban"></i>
+                          </button>
+                        </abbr>
+                      </form>
+                    <% } else { %>
+                      <form action="/cart/delete/<%= producto.id_producto %>?_method=DELETE" method="post">
+                        <abbr title="Quitar todas las unidades">
+                          <button type="submit" class="delete-btn">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </button>
+                        </abbr>
+                      </form>
+                    <% } %>
+                  </td>
+                  <td>$<%= Number(producto.precio).toFixed(2) %></td>
+                  <% if (producto.cant_desc > 0) { %>
+                    <td class="descuento"><%= producto.cant_desc %>%</td>
+                  <% } else { %>
+                    <td>-</td>
+                  <% } %>
+                  <% if (producto.cant_desc > 0) { %>
+                    <td class="final-price">$<%= (producto.CarritoProducto.cantidad * (producto.precio - (producto.precio * (producto.cant_desc / 100)))).toFixed(2) %></td>
+                  <% } else { %>
+                    <td class="final-price">$<%= (producto.CarritoProducto.cantidad * producto.precio).toFixed(2) %></td>
+                  <% } %>
+                </tr>
+              <% }) %>
+            <% }) %>
+          </table>
         </div>
-      </div>
+        <div class="cart-footer">
+          <div class="total">TOTAL: $<%= total.toFixed(2) %></div>
+          <div class="footer-buttons">
+            <form action="/cart/comprar?_method=PUT" method="post">
+              <button class="pay-button" type="submit">
+                Realizar compra
+              </button>
+            </form>
+          </div>
+        </div>
+      <% } else { %>
+        <h1 class="none-title">No se han agregado productos.</h1>
+      <% } %>
     </main>
 
     <!-- Footer -->

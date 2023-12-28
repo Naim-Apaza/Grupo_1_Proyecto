@@ -65,5 +65,5 @@ app.use("/users", userRoutes);
 
 app.use((req, res, next) => {
 /*   console.log(req);
- */  res.status(404).render("error404");
+ */  res.status(404).render("notFound");
 });
