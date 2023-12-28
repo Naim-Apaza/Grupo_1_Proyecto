@@ -3,8 +3,8 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
-const session = require('express-session')
-const cookieParser = require('cookie-parser')
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 // Middlewares
 var logMiddleware = require("./src/middlewares/logMiddleware");
@@ -22,11 +22,13 @@ app.use(cookieParser());
 
 // Sesiones
 
-app.use(session({
-  secret: "Shhh, It's a secret",
-  resave: false,
-  saveUninitialized: false,
-}))
+app.use(
+  session({
+    secret: "Shhh, It's a secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Post
 
@@ -64,6 +66,5 @@ app.use("/users", userRoutes);
 //Error 404
 
 app.use((req, res, next) => {
-/*   console.log(req);
- */  res.status(404).render("notFound");
+  res.status(404).render("notFound");
 });
