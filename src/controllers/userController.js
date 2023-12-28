@@ -1,13 +1,5 @@
-// Encriptador
-
 const bcrypt = require("bcryptjs");
-
-// Validador de resultados
-
 const { validationResult } = require("express-validator");
-
-// Usuarios
-
 const db = require("../database/models/index.js");
 
 // Controlador de usuarios
@@ -24,7 +16,7 @@ const controller = {
       try {
         const hashedPassword = await bcrypt.hashSync(req.body.password, 10);
 
-        const producto = await db.Usuario.create({
+        await db.Usuario.create({
           nombre: req.body.name,
           apellido: req.body.lastName,
           correo: req.body.correo,
@@ -37,7 +29,9 @@ const controller = {
         // Responder con algún mensaje o redirigir a otra página
         res.redirect("/users/login");
       } catch (error) {
-        res.render("error", { error: error });
+        res.render("error", {
+          error: "Problema conectando a la base de datos",
+        });
       }
     } else {
       res.render("users/register", {
@@ -54,6 +48,7 @@ const controller = {
     try {
       const usuario = await db.Usuario.findOne({
         where: { correo: req.body.correo },
+        include: [{ model: db.Carrito, as: "carritos" }],
       });
       if (usuario) {
         const validarPass = await bcrypt.compare(
@@ -61,9 +56,28 @@ const controller = {
           usuario.clave
         );
         if (validarPass) {
-          delete usuario.clave;
-          delete usuario.id_rol;
-          req.session.userLogged = usuario;
+          let loginData = {
+            id_usuario: usuario.id_usuario,
+            nombre: usuario.nombre,
+            apellido: usuario.apellido,
+            correo: usuario.correo,
+            img_usuario: usuario.img_usuario,
+            id_rol: usuario.id_rol
+          }
+
+          let carrito = usuario.carritos.find((cart) => cart.status == true);
+
+          if (carrito) {
+            loginData.id_carrito = carrito.id_carrito;
+          } else {
+            const carrito = await db.Carrito.create({
+              status: 1,
+              id_usuario: usuario.id_usuario,
+            });
+            loginData.id_carrito = carrito.id_carrito;
+          }
+
+          req.session.userLogged = loginData;
           res.redirect("/");
         } else {
           res.render("users/login", {
@@ -78,7 +92,7 @@ const controller = {
         });
       }
     } catch (error) {
-      res.render("error", { error: error });
+      res.render("error", { error: "Problema conectando a la base de datos" });
     }
   },
   mostrarPerfil: async (req, res) => {
@@ -87,11 +101,12 @@ const controller = {
         where: {
           correo: req.session.userLogged.correo,
         },
+        include: [{ model: db.Carrito, as: "carritos" }],
       });
 
       res.render("users/profile", { usuario: usuario });
     } catch (error) {
-      res.render("error", { error: error });
+      res.render("error", { error: "Problema conectando a la base de datos" });
     }
   },
 
@@ -107,6 +122,7 @@ const controller = {
         where: {
           correo: req.session.userLogged.correo,
         },
+        include: [{ model: db.Carrito, as: "carritos" }],
       });
 
       const validarPass = await bcrypt.compare(
@@ -128,7 +144,7 @@ const controller = {
         });
       }
     } catch (error) {
-      res.render("error", { error: error });
+      res.render("error", { error: "Problema conectando a la base de datos" });
     }
   },
 };

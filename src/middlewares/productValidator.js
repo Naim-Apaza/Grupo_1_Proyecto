@@ -22,12 +22,12 @@ module.exports = [
   body("descuento")
     .optional({ checkFalsy: true })
     .isInt({
-      min: 1,
+      min: 0,
       max: 100,
       allow_leading_zeroes: false,
       allow_negatives: false,
     })
-    .withMessage("El descuento debe ser un numero entero entre 1 y 100."),
+    .withMessage("El descuento debe ser un numero entero entre 0 y 100."),
   body("detalle")
     .notEmpty()
     .withMessage(
