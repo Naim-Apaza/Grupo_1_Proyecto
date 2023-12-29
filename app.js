@@ -16,6 +16,11 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 
+//APIs
+const apiUserRoutes = require('./src/routes/api/userRoutes')
+
+app.use(apiUserRoutes);
+
 //COOKIES
 
 app.use(cookieParser());
