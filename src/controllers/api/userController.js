@@ -27,7 +27,6 @@ module.exports = {
 
             res.json(dataUser);
         } catch (error) {
-            // Manejar el error y devolver una respuesta apropiada.
             console.error('Error en la consulta:', error.message);
             res.status(404).send('El usuario no existe');
         }

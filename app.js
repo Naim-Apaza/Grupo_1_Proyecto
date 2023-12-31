@@ -18,14 +18,9 @@ const userRoutes = require("./src/routes/userRoutes");
 
 //APIs
 const apiUserRoutes = require('./src/routes/api/userRoutes')
-
-app.use(apiUserRoutes);
-//Api
-
 const productRouter = require("./src/routes/Api/ProductRouter")
 
 //COOKIES
-
 app.use(cookieParser());
 
 // Sesiones
@@ -36,12 +31,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
   })
-);
-
-// Post
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+  );
+  
+  // Post
+  
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.json());
 
 // Variables
 const port = 3001;
@@ -75,6 +70,7 @@ app.use("/users", userRoutes);
 
 //Apis
 app.use("/Api", productRouter);
+app.use(apiUserRoutes);
 
 //Error 404
 
