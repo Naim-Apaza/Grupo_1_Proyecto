@@ -30,6 +30,7 @@ module.exports = {
                 group:'nombre',  
             },
          ) 
+         //Hola camaradas
             //Esto cuenta la cantidad
             let totalProductos = await db.Producto.count();
 
