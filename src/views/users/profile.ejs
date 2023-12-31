@@ -6,19 +6,34 @@
     <!-- Barra de navegacion -->
     <%- include('../partials/header') %>
 
+    <!-- Contenido principal -->
     <main class="profile-main">
       <h1 class="profile-title">Perfil</h1>
       <div class="profile-container">
-        <img
+        <div class="img-container">
+          <img
           src="/images/users/<%= usuario.img_usuario %>"
           alt="usuario"
           class="user-img"
-        />
+          />
+        </div>
         <div class="profile-info">
-          <h3 class="tag">Nombre/s: <%= usuario.nombre %></h3>
-          <h3 class="tag">Apellido/s: <%= usuario.apellido %></h3>
-          <h3 class="tag">Correo: <%= usuario.correo %></h3>
-          <h3 class="tag">Contraseña: **********</h3>
+          <div class="tag">
+            <h1 class="tag-name">Nombre/s</h1>
+            <p class="tag-info"><%= usuario.nombre %></p>
+          </div>
+          <div class="tag">
+            <h1 class="tag-name">Apellido/s</h1> 
+            <p class="tag-info"><%= usuario.apellido %></p>
+          </div>
+          <div class="tag">
+            <h1 class="tag-name">Correo</h1>
+            <p class="tag-info"><%= usuario.correo %></p>
+          </div>
+          <div class="tag">
+            <h1 class="tag-name">Contraseña</h1>
+            <p class="tag-info">**********</p>
+          </div>
           <div class="buttons">
             <button class="edit-btn">Cambiar contraseña</button>
             <form
@@ -69,6 +84,8 @@
     </main>
     
     <%- include('../partials/footer') %>
+    
+    <script src="/js/menu.js"></script>
     <script src="/js/changePassword.js"></script>
   </body>
 </html>

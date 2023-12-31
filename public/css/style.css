@@ -170,6 +170,65 @@ body {
   margin-left: 0;
   width: 10%;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header .menu-container .menu-content {
+  width: 0;
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: width 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.header .menu-container.active .menu-content {
+  width: 80%;
+}
+
+.header .menu-container .menu-content .navbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header .menu-container .menu-content .navbar .nav-link {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 1em;
+  padding: 15px;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header .menu-container .menu-content .navbar .nav-link:hover {
+  background-color: white;
+  color: black;
+}
+
+.header .menu-container .menu-content .navbar .nav-link .link {
+  display: block;
+  color: inherit;
+  margin-left: 10px;
+}
+
+.header .menu-container .menu-content .navbar .nav-link i {
+  display: block;
+  margin-right: 10px;
 }
 
 /***** End Barra de navegacion *****/
@@ -459,19 +518,45 @@ body {
   margin: 10px;
 }
 
-.profile-main .profile-container .user-img {
+.profile-main .profile-container .img-container {
   background-color: transparent;
-  width: 50%;
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px 2px red;
+  border-radius: 100%;
+  box-shadow: 1px 1px 1px 1px red;
+  width: 250px;
+  height: 250px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-main .profile-container .img-container .user-img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 .profile-main .profile-container .profile-info {
   width: 100%;
   box-shadow: 2px 2px 2px 2px gray;
   border-radius: 10px;
-  padding: 15px;
+  padding: 10px;
+  background: black;
+}
+
+.profile-main .profile-container .profile-info .tag {
+  text-align: end;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.profile-main .profile-container .profile-info .tag-name {
+  color: white;
+  font-size: 1.5em;
+}
+
+.profile-main .profile-container .profile-info .tag-info {
+  color: red;
 }
 
 .profile-main .profile-container .profile-info .password-container {
@@ -507,6 +592,7 @@ body {
   .password-form
   .form-group
   .form-label {
+  color: white;
   font-weight: bold;
 }
 
@@ -518,14 +604,22 @@ body {
   .change-btn {
   border: transparent;
   border-radius: 5px;
-  background-color: black;
-  box-shadow: 1px 1px 1px 1px gray;
-  color: white;
+  background-color: white;
   padding: 15px;
   font-family: "Sofia Sans", sans-serif;
   font-size: 1em;
-  margin: 2px;
+  margin: 5px;
   cursor: pointer;
+}
+
+.profile-main
+  .profile-container
+  .profile-info
+  .password-container
+  .password-form
+  .change-btn:hover {
+  background: red;
+  color: white;
 }
 
 .profile-main
@@ -541,7 +635,7 @@ body {
   outline: none;
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 2px 2px 2px 2px red;
+  box-shadow: 1px 1px 1px 1px red;
   background-color: white;
   font-size: 1em;
 }
@@ -564,7 +658,6 @@ body {
   border: transparent;
   border-radius: 5px;
   background-color: red;
-  box-shadow: 1px 1px 1px 1px gray;
   color: white;
   padding: 15px;
   font-family: "Sofia Sans", sans-serif;
@@ -580,7 +673,9 @@ body {
   .buttons
   .logout-container
   .logout-btn:hover {
-  background-color: black;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px red;
+  color: black;
   font-weight: bold;
 }
 
@@ -588,20 +683,18 @@ body {
   border: transparent;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 1px 1px 1px 1px gray;
   color: black;
   padding: 15px;
   font-family: "Sofia Sans", sans-serif;
   font-size: 1em;
   margin: 2px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .profile-main .profile-container .profile-info .buttons .edit-btn:hover {
-  background-color: black;
+  box-shadow: inset 0px 11px 8px -10px black, inset 0px -11px 8px -10px black;
+  color: red;
   font-weight: bold;
-  color: white;
 }
 
 /***** End Perfil *****/
@@ -881,15 +974,11 @@ body {
   .table-body
   .product-name
   .product-link:hover {
-    color: red;
-    font-weight: bold;
-  }
+  color: red;
+  font-weight: bold;
+}
 
-.cart-main
-  .cart-container
-  .products-table
-  .acciones
-  .delete-btn {
+.cart-main .cart-container .products-table .acciones .delete-btn {
   border: transparent;
   border-radius: 5px;
   background-color: red;
@@ -901,19 +990,11 @@ body {
   width: 90%;
 }
 
-.cart-main
-  .cart-container
-  .products-table
-  .acciones
-  .delete-btn:hover {
+.cart-main .cart-container .products-table .acciones .delete-btn:hover {
   background-color: rgb(121, 45, 45);
 }
 
-.cart-main
-  .cart-container
-  .products-table
-  .acciones
-  .remove-btn {
+.cart-main .cart-container .products-table .acciones .remove-btn {
   border: transparent;
   border-radius: 5px;
   background-color: black;
@@ -925,11 +1006,7 @@ body {
   width: 90%;
 }
 
-.cart-main
-  .cart-container
-  .products-table
-  .acciones
-  .remove-btn:hover {
+.cart-main .cart-container .products-table .acciones .remove-btn:hover {
   background-color: white;
   color: black;
 }
@@ -1749,16 +1826,8 @@ body {
     display: inherit;
   }
 
-  .profile-main .profile-container .user-img {
-    width: 100%;
-  }
-
   .profile-main .profile-container .profile-info {
     width: 100%;
-  }
-
-  .profile-main .profile-container .profile-info {
-    flex-direction: column;
   }
 
   .detail-main .game-container .game-img {
@@ -1845,15 +1914,16 @@ body {
     width: 40vw;
   }
 
-  .profile-main .profile.container {
+  .profile-main .profile-container {
     flex-direction: row;
   }
 
-  .profile-main .profile-container .user-img {
-    width: 50%;
+  .profile-main .profile-container .img-container {
+    width: 20%;
   }
+
   .profile-main .profile-container .profile-info {
-    width: 50%;
+    width: 80%;
   }
 
   .detail-main .game-container {
