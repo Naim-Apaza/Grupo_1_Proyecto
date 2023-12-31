@@ -54,6 +54,7 @@ app.use(methodOverride("_method"));
 
 app.use(express.static("public"));
 app.set("views", "./src/views");
+
 // Configuracion de motor de plantillas
 
 app.set("view engine", "ejs");

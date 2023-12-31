@@ -29,6 +29,7 @@ const controller = {
         // Responder con algún mensaje o redirigir a otra página
         res.redirect("/users/login");
       } catch (error) {
+        console.log(error)
         res.render("error", {
           error: "Problema conectando a la base de datos",
         });
