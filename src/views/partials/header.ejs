@@ -3,12 +3,19 @@
 <header class="header">
   <div class="header-logo-container">
     <a href="/">
-    <img src="/images/gz-logo.png" alt="logo-header" />
+      <img src="/images/gz-logo.png" alt="logo-header" />
     </a>
   </div>
   <form action="/products" method="post" class="search-form">
-    <input type="text" class="search-input" name="searcher" placeholder="Buscar...">
-    <button class="search-buttom" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <input
+      type="text"
+      class="search-input"
+      name="searcher"
+      placeholder="Buscar producto..."
+    />
+    <button class="search-buttom" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
   </form>
   <nav class="navbar">
     <a class="nav-link" href="/">
@@ -24,32 +31,71 @@
       <i class="fa-solid fa-cart-shopping"></i>
     </a>
     <% if(!usuario) { %>
-    <a class="nav-link" href="/users/login">
-      <h1 class="link">Ingresar</h1>
-      <i class="fa-solid fa-user"></i>
-    </a>
-    <a class="nav-link" href="/users/register">
-      <h1 class="link">Registarse</h1>
-      <i class="fa-solid fa-user-pen"></i>
-    </a>
-    <% } else { %> 
-      <% if(usuario.id_rol == 1) {%>
-    <a class="nav-link" href="/users/profile">
-      <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
-      <i class="fa-solid fa-user"></i>
-    </a>
+      <a class="nav-link" href="/users/login">
+        <h1 class="link">Ingresar</h1>
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <a class="nav-link" href="/users/register">
+        <h1 class="link">Registarse</h1>
+        <i class="fa-solid fa-user-pen"></i>
+      </a>
+    <% } else { %> <% if(usuario.id_rol == 1) {%>
+      <a class="nav-link" href="/users/profile">
+        <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
+        <i class="fa-solid fa-user"></i>
+      </a>
     <% } else { %>
-    <a class="nav-link" href="/products/create">
-      <h1 class="link">Crear Producto</h1>
-      <i class="fa-solid fa-screwdriver-wrench"></i>
-    </a>
-    <a class="nav-link" href="/users/profile">
-      <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
-      <i class="fa-solid fa-user"></i>
-    </a>
+      <a class="nav-link" href="/products/create">
+        <h1 class="link">Crear Producto</h1>
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+      </a>
+      <a class="nav-link" href="/users/profile">
+        <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
+        <i class="fa-solid fa-user"></i>
+      </a>
     <% }} %>
   </nav>
   <div class="menu-container">
     <i class="fa-solid fa-bars"></i>
+    <div class="menu-content">
+      <nav class="navbar">
+        <a class="nav-link" href="/">
+          <h1 class="link">Home</h1>
+          <i class="fa-solid fa-house"></i>
+        </a>
+        <a class="nav-link" href="/products">
+          <h1 class="link">Juegos</h1>
+          <i class="fa-solid fa-gamepad"></i>
+        </a>
+        <a class="nav-link" href="/cart">
+          <h1 class="link">Carrito</h1>
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+        <% if(!usuario) { %>
+          <a class="nav-link" href="/users/login">
+            <h1 class="link">Ingresar</h1>
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <a class="nav-link" href="/users/register">
+            <h1 class="link">Registarse</h1>
+            <i class="fa-solid fa-user-pen"></i>
+          </a>
+        <% } else if(usuario.id_rol == 1) {%>
+          <a class="nav-link" href="/users/profile">
+            <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
+            <i class="fa-solid fa-user"></i>
+          </a>
+        <% } else { %>
+          <a class="nav-link" href="/products/create">
+            <h1 class="link">Crear Producto</h1>
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </a>
+          <a class="nav-link" href="/users/profile">
+            <h1 class="link"><%= usuario.nombre + ' ' + usuario.apellido %></h1>
+            <i class="fa-solid fa-user"></i>
+          </a>
+        <% } %>
+      </nav>
+    </div>
   </div>
 </header>

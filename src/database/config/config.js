@@ -21,3 +21,4 @@ module.exports = {
     "dialect": "mysql"
   }
 }
+
