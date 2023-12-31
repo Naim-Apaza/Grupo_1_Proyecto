@@ -11,32 +11,28 @@
       <section class="seccion">
         <h1 class="title">Ofertas</h1>
         <div class="container">
-          <% for(let i = 0;i < productos.length;i++ ){ %>
+          <% for(let i = 0;i < ofertas.length;i++ ){ %>
           <div class="juego-container">
             <img
               class="img-juego"
-              src="/images/products/<%=productos[i].img_prod%>"
+              src="/images/products/<%= ofertas[i].img_prod %>"
               alt="img-juego"
             />
             <div class="desc-box">
               <a
-                href="/products/detail/<%=productos[i].id_producto%>"
+                href="/products/detail/<%= ofertas[i].id_producto %>"
                 class="titulo-juego">
-                <%= productos[i].nombre + ' - ' %>
-                <% for( let j = 0; j < plataformas.length; j++ ) { %>
-                  <%= plataformas[j].id_plataforma == productos[i].id_plataforma ? plataformas[j].nombre : ''%>
-                <% } %>
+                <%= ofertas[i].nombre + ' - ' + ofertas[i].plataformas.nombre %>
                 </a>
-              <% if(productos[i].cant_desc > 0) { %>
-              <p class="oferta">
-                <%=productos[i].cant_desc %>% <i class="fa-solid fa-tag"></i>
-              </p>
-              <p class="precio">
-                $<%=productos[i].precio - (productos[i].precio /
-                productos[i].cant_desc) %>
-              </p>
+              <% if(ofertas[i].cant_desc > 0) { %>
+                <p class="oferta">
+                  <%= ofertas[i].cant_desc %>% <i class="fa-solid fa-tag"></i>
+                </p>
+                <p class="precio">
+                  $<%= (ofertas[i].precio - (ofertas[i].precio * (ofertas[i].cant_desc / 100))).toFixed(2) %>
+                </p>
               <% } else { %>
-              <p class="precio"><%=productos[i].precio %>$</p>
+                <p class="precio">$<%= (ofertas[i].precio).toFixed(2) %></p>
               <% } %>
             </div>
           </div>
@@ -46,50 +42,28 @@
       <section class="seccion">
         <h1 class="title">Novedades</h1>
         <div class="container">
+          <% novedades.forEach((novedad) => { %>
           <div class="juego-container">
-            <img
-              class="img-juego"
-              src="images/products/farcry.jpg"
-              alt="img-juego"
-            />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">Far Cry 6</a>
-              <p class="precio">$2000</p>
-            </div>
+              <img
+                class="img-juego"
+                src="images/products/<%= novedad.img_prod %>"
+                alt="img-juego"
+              />
+              <div class="desc-box">
+                <a href="/products/detail/<%= novedad.id_producto %>" class="titulo-juego"><%= novedad.nombre + " - " + novedad.plataformas.nombre %></a>
+                <% if(novedad.cant_desc > 0) { %>
+                  <p class="oferta">
+                    <%= novedad.cant_desc %>% <i class="fa-solid fa-tag"></i>
+                  </p>
+                  <p class="precio">
+                    $<%= (novedad.precio - (novedad.precio * (novedad.cant_desc / 100))).toFixed(2) %>
+                  </p>
+                <% } else { %>
+                  <p class="precio">$<%= (Number(novedad.precio)).toFixed(2) %></p>
+                <% } %>
+              </div>
           </div>
-          <div class="juego-container">
-            <img
-              class="img-juego"
-              src="images/products/gta.jpg"
-              alt="img-juego"
-            />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">GTA V</a>
-              <p class="precio">$2000</p>
-            </div>
-          </div>
-          <div class="juego-container">
-            <img
-              class="img-juego"
-              src="images/products/re4.jpeg"
-              alt="img-juego"
-            />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">RE 4 Remake</a>
-              <p class="precio">$2000</p>
-            </div>
-          </div>
-          <div class="juego-container">
-            <img
-              class="img-juego"
-              src="images/products/tlou.jpg"
-              alt="img-juego"
-            />
-            <div class="desc-box">
-              <a href="#" class="titulo-juego">The Last of Us Part I</a>
-              <p class="precio">$2000</p>
-            </div>
-          </div>
+          <% }) %>
         </div>
       </section>
     </main>

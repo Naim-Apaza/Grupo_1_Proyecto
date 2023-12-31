@@ -36,6 +36,7 @@ let fileUpload = multer({ storage: multerDiskStorage });
 router.get("/", productController.products);
 router.post("/", productController.search)
 router.get("/detail/:id", authMiddleware, productController.detail);
+router.post("/detail/:id", authMiddleware, productController.agregar)
 router.get("/create", authMiddleware, productController.create);
 router.post(
   "/create",

@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     correo: {
       type: DataTypes.STRING(40),
       allowNull: false,
+      unique: true,
     },
     clave: {
       type: DataTypes.STRING(255),
@@ -44,16 +45,18 @@ module.exports = (sequelize, DataTypes) => {
     Usuario.belongsTo(modelo.Rol, {
       as: "roles",
       foreignKey: "id_rol",
-    });
-
-    /************************    RELACION DE MUCHOS A MUCHOS   ******************************/
-    Usuario.belongsToMany(modelo.Producto, {
-      as: "productos",
-      through: "carrito",
-      foreignKey: "id_usuario",
-      otherKey: "id_producto",
       timestamps: false,
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE"
     });
+    /************************   RELACION MUCHOS A MUCHOS   ***************************/
+    Usuario.hasMany(modelo.Carrito, {
+      as: "carritos",
+      foreignKey: "id_usuario",
+      timestamps: false,
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE"
+    })
   };
 
   return Usuario;

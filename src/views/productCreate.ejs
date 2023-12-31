@@ -13,10 +13,8 @@
       </div>
       <div class="create-container">
         <h1 class="create-title">Crear</h1>
-        <div class="errores_div">
-          <ul class="ul_errores_div">
-            
-          </ul>
+        <div class="errores-container">
+          <ul class="errores"></ul>
         </div>
         <form
           action="/products/create"
@@ -27,18 +25,21 @@
           <div class="field">
             <label class="label" for="nombre">Juego</label>
             <input
-              class="input name_input"
+              class="input"
               id="nombre"
               type="text"
               name="nombre"
               placeholder="Inserte un nombre..."
-              
+              value="<%= locals.old && old.nombre ? old.nombre : '' %>"
             />
+            <% if(locals.errores && errores.nombre) { %>
+              <p class="error-field"><%= errores.nombre.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="precio">Precio</label>
             <input
-              class="input precio_input"
+              class="input"
               type="number"
               id="precio"
               maxlength="7"
@@ -48,8 +49,11 @@
               step="any"
               name="precio"
               placeholder="Introduzca el valor del juego..."
-             
+              value="<%= locals.old &&  old.precio ? old.precio : 0 %>"
             />
+            <% if(locals.errores && errores.precio) { %>
+              <p class="error-field"><%= errores.precio.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="descuento">Descuento</label>
@@ -62,48 +66,85 @@
               max="100"
               name="descuento"
               placeholder="Introduzca el porcentaje de descuento (opcional)"
-              value="0"
+              value="<%= locals.old && old.descuento ? old.descuento : 0 %>"
             />
+            <% if(locals.errores && errores.descuento) { %>
+              <p class="error-field"><%= errores.descuento.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="plataforma">Plataforma</label>
-            <select
-              name="plataforma"
-              required
-              id="plataforma"
-              size="4"
-            >
-              <% for(let j = 0; j < plataforma.length ; j++){ %>
-              <option value="<%= plataforma[j].id_plataforma %>">
-                <%=plataforma[j].nombre %>
-              </option>
+            <select name="plataforma" size="5" id="plataforma">
+              <% if (locals.old && old.plataforma) { %>
+                <% for(let i = 0;i < plataformas.length;i++) { %> 
+                  <% if(old.plataforma == plataformas[i].id_plataforma) { %>
+                    <option value="<%= plataformas[i].id_plataforma %>" selected>
+                      <%=plataformas[i].nombre %>
+                    </option>
+                  <% } else { %>
+                    <option value="<%= plataformas[i].id_plataforma %>">
+                      <%=plataformas[i].nombre %>
+                    </option>
+                  <% } %> 
+                <% } %>
+              <% } else { %>
+                <% for( let i = 0; i < plataformas.length; i++ ) { %>
+                  <option value="<%= plataformas[i].id_plataforma %>">
+                    <%=plataformas[i].nombre %>
+                  </option>
+                <% } %>
               <% } %>
             </select>
+            <% if(locals.errores && errores.plataforma) { %>
+              <p class="error-field"><%= errores.plataforma.msg %></p>
+            <% } %>
           </div>
           <div class="field">
             <label class="label" for="tag">Categorías</label>
             <select name="tag" multiple id="tag">
-              <% for(let i = 0; i < categoria.length ; i++){ %>
-              <option value="<%=categoria[i].id_categoria %>">
-                <%=categoria[i].nombre %>
-              </option>
+              <% if (locals.seleccionadas && locals.categorias) { %>
+                <% seleccionadas.forEach((seleccionada) => { %>
+                  <option value="<%= seleccionada.id_categoria %>" selected><%= seleccionada.nombre %></option>
+                 <% }) %>
               <% } %>
+              <% categorias.forEach((categoria) => { %>
+               <option value="<%= categoria.id_categoria %>"><%= categoria.nombre %></option>
+              <% }) %>
             </select>
+            <% if(locals.errores && errores.tag) { %>
+              <p class="error-field"><%= errores.tag.msg %></p>
+            <% } %>
           </div>
-          <div class="field">
+          <div class="field-img">
             <label class="label" for="imagen">Imagen</label>
-            <input class="input file_input" type="file" name="imagen" id="imagen" />
+            <% if (locals.old && locals.imagen &&old.nombre ) { %>
+              <img class="img" src="/images/products/<%= imagen %>" alt="<%= old.nombre %>">
+            <% } else { %>
+              <img class="img" src="/images/products/204.jpg" alt="imagenProducto">
+            <% } %>
+            <input
+              class="input"
+              type="file"
+              name="imagen"
+              id="imagen"
+            />
+            <% if(locals.errores && errores.imagen) { %>
+              <p class="error-field"><%= errores.imagen.msg %></p>
+            <% } %>
           </div>
           <div class="detail">
             <label for="detalle" class="label">Descripción</label>
             <textarea
-            class="input descripcion_input"
+              class="input"
               id="detalle"
               name="detalle"
               cols="30"
               rows="10"
               placeholder="Introduzca una descripcion del juego.."
-            ></textarea>
+            ><%= locals.old && old.detalle ? old.detalle : ''%></textarea>
+            <% if(locals.errores && errores.detalle) { %>
+              <p class="error-field"><%= errores.detalle.msg %></p>
+            <% } %>
           </div>
           <button class="crear-button" type="submit">Crear</button>
         </form>
@@ -112,6 +153,7 @@
 
     <!-- Footer -->
     <%- include('./partials/footer') %>
-    <script src="/js/createProduct.js"></script>
+      <script src="/js/imgViewProduct.js"></script>
+      <script src="/js/createProductValidator.js"></script>
   </body>
 </html>
