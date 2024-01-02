@@ -2,14 +2,12 @@
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 // Controllador
 
 const userController = require("../controllers/userController");
 
-// Path
-
-const path = require("path");
 
 // Middlewares
 
@@ -17,8 +15,6 @@ const logUserMiddleware = require("../middlewares/logUserMiddleware");
 const registerValidator = require("../middlewares/registerValidator");
 const guestMiddleware = require("../middlewares/guestMiddleware"); 
 const authMiddleware = require("../middlewares/authMiddleware");
-
-// Multer
 
 const multer = require("multer");
 const multerDiskStorage = multer.diskStorage({
@@ -36,6 +32,7 @@ const multerDiskStorage = multer.diskStorage({
 let fileUpload = multer({ storage: multerDiskStorage });
 
 // Ruteos
+
 router.post("/change-password", authMiddleware, userController.changePassword);
 router.get("/profile", authMiddleware,userController.mostrarPerfil);
 router.post("/profile", authMiddleware, userController.logout)

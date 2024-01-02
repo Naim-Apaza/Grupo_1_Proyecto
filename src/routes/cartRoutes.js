@@ -3,10 +3,10 @@
 const express = require("express");
 const router = express.Router();
 
-//middleware
+// Middleware
 const authMiddleware = require("../middlewares/authMiddleware");
 
-// Controladores
+// Controlador
 
 const cartController = require("../controllers/cartController");
 

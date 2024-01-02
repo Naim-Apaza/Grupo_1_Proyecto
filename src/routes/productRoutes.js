@@ -2,21 +2,19 @@
 
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
 const path = require("path");
 
-// Controladores
+// Controlador
 
 const productController = require("../controllers/productController");
 
-//Middlewares
+// Middlewares
 
 const logProductMiddleware = require("../middlewares/logProductMiddleware");
 const authMiddleware = require("../middlewares/authMiddleware");
 const productMiddleware = require("../middlewares/productValidator");
 
-// Multer
-
+const multer = require("multer");
 const multerDiskStorage = multer.diskStorage({
   destination: (req, file, callback) => {
     let folder = path.join(__dirname, "../../public/images/products");
