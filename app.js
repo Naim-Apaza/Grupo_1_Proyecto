@@ -35,10 +35,10 @@ app.use(
   })
   );
   
-  // Post
-  
-  app.use(express.urlencoded({ extended: false }));
-  app.use(express.json());
+// Post
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // Variables
 
