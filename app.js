@@ -16,7 +16,7 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 
-//APIs
+// APIs
 
 const userRouter = require("./src/routes/api/user");
 const productRouter = require("./src/routes/api/product");
