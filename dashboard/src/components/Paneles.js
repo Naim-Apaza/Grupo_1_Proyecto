@@ -1,50 +1,59 @@
-import React from 'react';
-import SmallCard from './SmallCard';
+import React, { useEffect, useState } from "react";
+import SmallCard from "./SmallCard";
 
-/*  Cada set de datos es un objeto literal */
+function Paneles() {
+    // const [ cantidadProductos, setCantidadProductos ] = useState({})
+    // const [ cantidadUsuarios, setCantidadUsuarios ] = useState({})
+    // const [ cantidadCategorias, setCantidadCategorias ] = useState({})
+    // const [ cardProps, setCardProps ] = useState([])
 
-/* <!-- Movies in DB --> */
+    async function getCantidadProductos() {
+        const result = await fetch("/api/products/")
+        
+        if(result.status === 200) {
+            console.log(result)
+        }
+    }
 
-let moviesInDB = {
-    title: 'Total de productos',
-    color: 'danger', 
+  /*  Cada set de datos es un objeto literal */
+
+  /* <!-- Movies in DB --> */
+
+  let productos = {
+    title: "Total de productos",
+    color: "danger",
     cuantity: 21,
-    icon: 'fa-clipboard-list'
-}
+    icon: "fa-clipboard-list",
+  };
 
-/* <!-- Total awards --> */
+  /* <!-- Total awards --> */
 
-let totalAwards = {
-    title:'Total de usuarios', 
-    color:'dark', 
-    cuantity: '79',
-    icon:'fa-user-check'
-}
+  let usuarios = {
+    title: "Total de usuarios",
+    color: "dark",
+    cuantity: "79",
+    icon: "fa-user-check",
+  };
 
-/* <!-- Actors quantity --> */
+  /* <!-- Actors quantity --> */
 
-let actorsQuantity = {
-    title:'Total de categorias',
-    color:'danger',
-    cuantity:'49',
-    icon:'fa-award'
-}
+  let categorias = {
+    title: "Total de categorias",
+    color: "danger",
+    cuantity: "49",
+    icon: "fa-award",
+  };
 
-let cartProps = [moviesInDB, totalAwards, actorsQuantity];
+  let cardProps = [productos, usuarios, categorias];
 
-function Paneles(){
-    return (
-    
-        <div className="row">
-            
-            {cartProps.map( (movie, i) => {
-
-                return <SmallCard {...movie} key={i}/>
-            
-            })}
-
-        </div>
-    )
+  return (
+    <div className="row m-4">
+        {getCantidadProductos()}
+      {cardProps.map((movie, i) => {
+        return <SmallCard {...movie} key={i} />;
+      })}
+    </div>
+  );
 }
 
 export default Paneles;
