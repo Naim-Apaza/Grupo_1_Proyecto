@@ -1,5 +1,6 @@
 // Controlador de productos
 const fs = require("fs").promises;
+const path = require("path")
 const db = require("../database/models/index.js");
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
@@ -252,7 +253,7 @@ const controller = {
           id_producto: req.params.id,
         },
       });
-      await fs.unlink(`../../images/products/${producto.img_prod}`);
+      await fs.unlink(path.join(__dirname, "../../public/images/products/" + producto.img_prod));
       await db.Producto.destroy({
         where: {
           id_producto: req.params.id,
