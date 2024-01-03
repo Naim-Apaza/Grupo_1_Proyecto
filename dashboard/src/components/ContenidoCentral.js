@@ -3,6 +3,7 @@ import UltimoProducto from './UltimoProducto';
 import Categorias from './Categorias';
 
 function ContenidoCentral(){
+    
     return (
         <div className="row">
             
@@ -12,6 +13,7 @@ function ContenidoCentral(){
 
             {/*<!-- Genres in DB -->*/}
             <Categorias />
+            {/*<!-- End content row Genres in DB -->*/}
 
         </div>
     )

@@ -2,53 +2,57 @@ import React, { useEffect, useState } from "react";
 import SmallCard from "./SmallCard";
 
 function Paneles() {
-    // const [ cantidadProductos, setCantidadProductos ] = useState({})
-    // const [ cantidadUsuarios, setCantidadUsuarios ] = useState({})
-    // const [ cantidadCategorias, setCantidadCategorias ] = useState({})
-    // const [ cardProps, setCardProps ] = useState([])
+  const [cantidadProductos, setCantidadProductos] = useState();
+  const [cantidadUsuarios, setCantidadUsuarios] = useState();
+  const [cantidadCategorias, setCantidadCategorias] = useState();
+  const [cardProps, setCardProps] = useState([]);
 
-    async function getCantidadProductos() {
-        const result = await fetch("/api/products/")
-        
-        if(result.status === 200) {
-            console.log(result)
-        }
+  async function getCantidadProductosCategorias() {
+    const data = await fetch("http://localhost:3001/api/products/");
+    const result = await data.json();
+
+    if (result.meta.status === 200) {
+      setCantidadProductos(result.meta.count);
+      setCantidadCategorias(result.data.categorias);
     }
+  }
 
-  /*  Cada set de datos es un objeto literal */
+  async function getCantidadUsuarios() {
+    const data = await fetch("http://localhost:3001/api/users/");
+    const result = await data.json();
 
-  /* <!-- Movies in DB --> */
+    if (result.meta.status === 200) {
+      setCantidadUsuarios(result.meta.count);
+    }
+  }
 
-  let productos = {
-    title: "Total de productos",
-    color: "danger",
-    cuantity: 21,
-    icon: "fa-clipboard-list",
-  };
+  useEffect(() => {
+    const productos = {
+      title: "Total de productos",
+      color: "danger",
+      cuantity: cantidadProductos,
+      icon: "fa-clipboard-list",
+    };
 
-  /* <!-- Total awards --> */
+    const usuarios = {
+      title: "Total de usuarios",
+      color: "dark",
+      cuantity: cantidadUsuarios,
+      icon: "fa-user-check",
+    };
 
-  let usuarios = {
-    title: "Total de usuarios",
-    color: "dark",
-    cuantity: "79",
-    icon: "fa-user-check",
-  };
+    const categorias = {
+      title: "Total de categorias",
+      color: "danger",
+      cuantity: cantidadCategorias,
+      icon: "fa-award",
+    };
 
-  /* <!-- Actors quantity --> */
-
-  let categorias = {
-    title: "Total de categorias",
-    color: "danger",
-    cuantity: "49",
-    icon: "fa-award",
-  };
-
-  let cardProps = [productos, usuarios, categorias];
+    setCardProps([productos, usuarios, categorias]);
+  }, [cantidadProductos, cantidadCategorias, cantidadUsuarios]);
 
   return (
-    <div className="row m-4">
-        {getCantidadProductos()}
+    <div className="row m-4" onMouseOver={() => getCantidadProductosCategorias() && getCantidadUsuarios()}>
       {cardProps.map((movie, i) => {
         return <SmallCard {...movie} key={i} />;
       })}

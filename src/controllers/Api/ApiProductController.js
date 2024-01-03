@@ -2,9 +2,25 @@ const db = require("../../database/models/index.js");
 
 module.exports = {
   list: async (req, res) => {
-    //parseINT sirve para convertir una cadena de texto a un numero entero
+    try {
+      //parseINT sirve para convertir una cadena de texto a un numero entero
     const limit = parseInt(req.query.limit) || 10;
     const offset = parseInt(req.query.offset) || 0;
+
+    const lastProduct = await db.Producto.findOne({
+      order: [["id_producto", "DESC"]],
+      limit: 1,
+      include: [
+        {
+          model: db.Plataforma,
+          as: "plataformas",
+        },
+        { 
+          model: db.Categoria, 
+          as: "categorias" 
+        },
+      ],
+    });
 
     let productos = await db.Producto.findAll({
       attributes: ["id_producto", "nombre", "descripcion"],
@@ -34,6 +50,9 @@ module.exports = {
       nest: true,
       group: "nombre",
     });
+
+    let totalCategorias = await db.Categoria.count();
+
     //Esto cuenta la cantidad de productos
     let totalProductos = await db.Producto.count();
 
@@ -53,6 +72,20 @@ module.exports = {
         url: `${req.protocol}://${req.get("host")}${req.url}`,
       },
       data: {
+        lastProduct: {
+          id: lastProduct.id_producto,
+          nombre: lastProduct.nombre,
+          descripcion: lastProduct.descripcion,
+          plataforma: lastProduct.plataformas.nombre,
+          categorias: lastProduct.categorias.map((categoria) => (categoria.nombre)),
+          imagen: `${req.protocol}://${req.get("host")}/images/products/${lastProduct.img_prod}`,
+          detalle: req.protocol +
+          "://" +
+          req.get("host") +
+          "/api/products" +
+          `/${lastProduct.id_producto}`,
+        },
+        categorias: totalCategorias,
         countByCategory: category,
         products: productos.map((product) => ({
           id: product.id_producto,
@@ -72,6 +105,10 @@ module.exports = {
         previous,
       },
     });
+    } catch (error) {
+      console.error(error);
+      res.status(400).json(error)
+    }
   },
   idProduct: async (req, res) => {
     const producto = await db.Producto.findByPk(req.params.id, {
@@ -96,7 +133,7 @@ module.exports = {
         },
       });
     }
-    res.json("Ups, No existe la pelicula");
+    res.status(400).json("Ups, No existe la pelicula");
   },
   createProduct: (req, res) => {
     db.Producto.create(req.body)

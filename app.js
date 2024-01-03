@@ -4,6 +4,7 @@ const app = express();
 const methodOverride = require("method-override");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const cors = require("cors")
 
 // Middlewares
 
@@ -71,6 +72,10 @@ app.use("/", mainRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
+
+// Cors 
+
+app.use(cors())
 
 // Rutas de APIs
 

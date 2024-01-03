@@ -12,7 +12,9 @@ module.exports = {
         throw new Error("El usuario no existe");
       }
 
-      let imgUrl = `${req.protocol}://${req.get("host")}/images/users/${usuario.img_usuario}`;
+      let imgUrl = `${req.protocol}://${req.get("host")}/images/users/${
+        usuario.img_usuario
+      }`;
 
       const { clave, id_rol, ...detail } = usuario.toJSON();
       detail.img_usuario = imgUrl;
@@ -39,14 +41,16 @@ module.exports = {
         meta: {
           status: 200,
           url: `${req.protocol}://${req.get("host")}${req.url}`,
+          count,
         },
-        count,
         users: usuarios.map((usuario) => {
           return {
             id: usuario.id_usuario,
             name: usuario.nombre,
             email: usuario.correo,
-            detail: `${req.protocol}://${req.get("host")}/api/users/${usuario.id_usuario}`,
+            detail: `${req.protocol}://${req.get("host")}/api/users/${
+              usuario.id_usuario
+            }`,
           };
         }),
       };
