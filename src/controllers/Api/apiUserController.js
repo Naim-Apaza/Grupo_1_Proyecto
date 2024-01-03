@@ -31,4 +31,25 @@ module.exports = {
       res.status(404).send("El usuario no existe");
     }
   },
+  listado: async (req, res) => {
+    try {
+      let usuarios = await Usuarios.findAll();
+      let count = usuarios.length;
+      let data = {
+        count,
+        users: usuarios.map((usuario) => {
+          return {
+            id: usuario.id_usuario,
+            name: usuario.nombre,
+            email: usuario.correo,
+            detail: `${req.protocol}://${req.get("host")}/api/users/${usuario.id_usuario}`,
+          };
+        }),
+      };
+      res.json(data);
+    } catch (error) {
+      console.error("Error en la consulta:", error.message);
+      res.status(404).send("Error al obtener la lista de usuarios");
+    }
+  },
 };
