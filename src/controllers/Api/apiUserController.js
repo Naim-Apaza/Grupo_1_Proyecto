@@ -20,7 +20,7 @@ module.exports = {
       let dataUser = {
         meta: {
           status: 200,
-          url: `${req.protocol}://${req.hostname}:3001${req.url}`,
+          url: `${req.protocol}://${req.get("host")}${req.url}`,
         },
         detail,
       };
@@ -38,7 +38,7 @@ module.exports = {
       let data = {
         meta: {
           status: 200,
-          url: `${req.protocol}://${req.hostname}:3001${req.url}`,
+          url: `${req.protocol}://${req.get("host")}${req.url}`,
         },
         count,
         users: usuarios.map((usuario) => {

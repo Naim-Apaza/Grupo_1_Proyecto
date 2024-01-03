@@ -1,2 +1,7 @@
 Se ingresó a la página /api/users.
 Se ingresó a la página /favicon.ico.
+Se ingresó a la página /api/users/1.
+Se ingresó a la página /api/users/1.
+Se ingresó a la página /api/products/.
+Se ingresó a la página /api/products/1.
+Se ingresó a la página /api/products/14.

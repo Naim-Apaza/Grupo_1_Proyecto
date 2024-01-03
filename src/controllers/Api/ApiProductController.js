@@ -47,8 +47,11 @@ module.exports = {
         : null;
 
     return res.status(200).json({
-      status: 200,
-      count: totalProductos,
+      meta: {
+        status: 200,
+        count: totalProductos,
+        url: `${req.protocol}://${req.get("host")}${req.url}`,
+      },
       data: {
         countByCategory: category,
         products: productos.map((product) => ({
@@ -76,7 +79,10 @@ module.exports = {
     });
     if (producto != null) {
       return res.status(200).json({
-        status: 200,
+        meta: {
+          status: 200,
+          url: `${req.protocol}://${req.get("host")}${req.url}`,
+        },
         data: {
           producto: {
             id: producto.id_producto,
