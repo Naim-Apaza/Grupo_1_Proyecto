@@ -25,7 +25,7 @@ module.exports = {
         detail,
       };
 
-      res.json(dataUser);
+      res.status(200).json(dataUser);
     } catch (error) {
       console.error("Error en la consulta:", error.message);
       res.status(404).send("El usuario no existe");
@@ -36,6 +36,10 @@ module.exports = {
       let usuarios = await Usuarios.findAll();
       let count = usuarios.length;
       let data = {
+        meta: {
+          status: 200,
+          url: `${req.protocol}://${req.hostname}:3001${req.url}`,
+        },
         count,
         users: usuarios.map((usuario) => {
           return {
@@ -46,7 +50,7 @@ module.exports = {
           };
         }),
       };
-      res.json(data);
+      res.status(200).json(data);
     } catch (error) {
       console.error("Error en la consulta:", error.message);
       res.status(404).send("Error al obtener la lista de usuarios");

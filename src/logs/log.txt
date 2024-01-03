@@ -1,0 +1,2 @@
+Se ingresó a la página /api/users.
+Se ingresó a la página /favicon.ico.
