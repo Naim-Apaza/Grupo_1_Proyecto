@@ -40,7 +40,7 @@ function UltimoProducto() {
           <p>
             { producto.descripcion ? producto.descripcion.slice(0, 149) + "..." : "Sin descripción"}
           </p>
-          <a className="btn btn-danger" target="_blank" rel="external" href={producto.detalle}>
+          <a className="btn btn-danger" target="_blank" rel="noreferrer" href={producto.detalle}>
             Ver más detalles
           </a>
         </div>
