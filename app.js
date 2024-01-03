@@ -1,5 +1,4 @@
 // Módulos
-const fs = require("fs");
 const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
@@ -7,7 +6,8 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 // Middlewares
-var logMiddleware = require("./src/middlewares/logMiddleware");
+
+const logMiddleware = require("./src/middlewares/logMiddleware");
 
 // Rutas
 
@@ -16,11 +16,12 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 
-//Api
+// APIs
 
-const productRouter = require("./src/routes/Api/ProductRouter")
+const userRouter = require("./src/routes/api/user");
+const productRouter = require("./src/routes/api/product");
 
-//COOKIES
+// Cookies
 
 app.use(cookieParser());
 
@@ -32,19 +33,20 @@ app.use(
     resave: false,
     saveUninitialized: false,
   })
-);
-
+  );
+  
 // Post
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Variables
+
 const port = 3001;
 
 // Servidor
 
-app.listen(port, () => console.log(`Servidor corriendo en el puerto ${port}`));
+app.listen(port, () => console.log(`[server] Corriendo en el puerto ${port}`));
 
 // Configuracion HTTP
 
@@ -63,16 +65,19 @@ app.set("view engine", "ejs");
 
 app.use(logMiddleware);
 
-//Rutas
+// Rutas
+
 app.use("/", mainRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
 
-//Apis
-app.use("/Api", productRouter);
+// Rutas de APIs
 
-//Error 404
+app.use(productRouter);
+app.use(userRouter);
+
+// Error 404
 
 app.use((req, res, next) => {
   res.status(404).render("notFound");
