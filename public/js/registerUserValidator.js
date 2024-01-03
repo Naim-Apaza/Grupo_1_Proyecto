@@ -76,13 +76,13 @@ window.addEventListener("load", function () {
     } else if (!extensionesPermitidas.includes(extension)) {
       errores.push("Debe ser un archivo valido (JPG, JPEG, PNG, WEBP, GIF)");
     }
-
+    console.log(errores.length + " errores ")
     if (errores.length > 0) {
       erroresList.innerHTML = "";
       for (let i = 0; i < errores.length; i++) {
         erroresList.innerHTML += `<li class="error">${errores[i]}</li>`;
       }
+      event.preventDefault();
     }
-    event.preventDefault();
   });
 });

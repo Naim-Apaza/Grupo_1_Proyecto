@@ -32,11 +32,11 @@ const registerValidator = [
     .withMessage("La contraseña es obligatoria.")
     .isLength({ min: 8 })
     .withMessage("La contraseña debe tener al menos 8 caracteres."),
-  body("repass").custom((value, { req }) => {
-    if (value !== req.body.password) {
+  /* body("repass").custom((value, { req }) => {
+    if (value != req.body.password) {
       throw new Error("Password confirmation does not match password");
     }
-  }),
+  }), */
   body("userImage").custom((value, { req }) => {
     if (!req.file) {
       throw new Error("Debe subir una imagen.");

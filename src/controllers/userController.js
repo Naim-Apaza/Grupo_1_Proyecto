@@ -12,6 +12,7 @@ const controller = {
   saveRegister: async (req, res) => {
     let errores = validationResult(req);
     let saveImage = req.file;
+    console.log(errores)
     if (errores.isEmpty()) {
       try {
         const hashedPassword = await bcrypt.hashSync(req.body.password, 10);
@@ -22,7 +23,7 @@ const controller = {
           correo: req.body.correo,
           clave: hashedPassword,
           img_usuario:
-            saveImage != undefined ? saveImage.filename : "default.jpg",
+          saveImage != undefined ? saveImage.filename : "default.jpg",
           id_rol: 1,
         });
 
@@ -35,6 +36,7 @@ const controller = {
         });
       }
     } else {
+      console.log("O no que mal")
       res.render("users/register", {
         errores: errores.mapped(),
         old: req.body,
